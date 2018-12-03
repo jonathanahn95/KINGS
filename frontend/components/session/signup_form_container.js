@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { signup, clearErrors, login } from "../../actions/session_actions";
-import SessionForm from "./session_form";
+import LogInForm from "./login_form";
 import errorsReducer from "../../reducers/errors_reducer";
 import { Link } from "react-router-dom";
 
@@ -23,4 +23,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   msp,
   mapDispatchToProps
-)(SessionForm);
+)(LogInForm);

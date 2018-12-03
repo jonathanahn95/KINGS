@@ -3,11 +3,13 @@ import React from "react";
 import { Route } from "react-router-dom";
 import LoginFormContainer from "./session/login_form_container";
 import SignupFormContainer from "./session/signup_form_container";
+import SplashContainer from "./splash/splash_container";
+import Modal from "./modals/modal";
 
 const App = () => (
   <div>
-    <Route path="/login" component={LoginFormContainer} />
-    <Route path="/signup" component={SignupFormContainer} />
+    <Modal />
+    <Route exact path="/" component={SplashContainer} />
   </div>
 );
 
