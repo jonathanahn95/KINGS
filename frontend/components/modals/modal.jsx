@@ -16,10 +16,10 @@ function Modal({ modal, closeModal, removeErrors }) {
       component = <LoginFormContainer />;
       break;
     case "register":
-      component = <SignupFormContainer modal={modal} />;
+      component = <SignupFormContainer />;
       break;
     case "sell":
-      component = <LoginFormContainer modal={modal} />;
+      component = <LoginFormContainer />;
       break;
     default:
       return null;

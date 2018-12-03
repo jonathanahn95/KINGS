@@ -1,8 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import { login, clearErrors } from "../../actions/session_actions";
-import LogInForm from "./login_form";
+import SessionForm from "./session_form";
 import { Link } from "react-router-dom";
+import { closeModal } from "../../actions/modal_actions";
 
 const msp = (state, ownProps) => {
   return {
@@ -15,11 +16,12 @@ const msp = (state, ownProps) => {
 const mapDispatchToProps = dispatch => {
   return {
     processForm: user => dispatch(login(user)),
-    clearErrors: () => dispatch(clearErrors())
+    clearErrors: () => dispatch(clearErrors()),
+    closeModal: () => dispatch(closeModal())
   };
 };
 
 export default connect(
   msp,
   mapDispatchToProps
-)(LogInForm);
+)(SessionForm);

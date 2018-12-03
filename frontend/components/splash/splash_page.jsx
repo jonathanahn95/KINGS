@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import LogInForm from "../session/login_form";
 import ModalLinks from "../modals/modal_links";
 
 class SplashPage extends React.Component {
