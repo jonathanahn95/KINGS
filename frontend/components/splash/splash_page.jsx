@@ -1,12 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import ModalLinks from "../modals/modal_links";
+import GreetingLinksContainer from "../greeting/greeting_links_container";
 
 class SplashPage extends React.Component {
   constructor(props) {
     super(props);
   }
 
+  toggleLinks() {
+    if (this.props.currentUser) {
+      return <GreetingLinksContainer openModal={this.props.openModal} />;
+    } else {
+      return <ModalLinks openModal={this.props.openModal} />;
+    }
+  }
   render() {
     return (
       <header>
@@ -21,7 +29,7 @@ class SplashPage extends React.Component {
               <div>Search</div>
             </form>
           </div>
-          <ModalLinks openModal={this.props.openModal} />
+          {this.toggleLinks()}
         </nav>
       </header>
     );

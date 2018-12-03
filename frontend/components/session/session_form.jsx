@@ -46,9 +46,17 @@ class SessionForm extends React.Component {
         <div className="sign-in-greeting">Sign in to continue</div>
         <form onSubmit={this.handleSubmit} className="session-form">
           <div className="session-form-email">Email address:</div>
-          <input className="session-form-email-input" type="text" />
+          <input
+            onChange={this.update("email")}
+            className="session-form-email-input"
+            type="text"
+          />
           <div className="session-form-password">Password:</div>
-          <input className="session-form-password-input" type="password" />
+          <input
+            onChange={this.update("password")}
+            className="session-form-password-input"
+            type="password"
+          />
           <input
             className="session-form-submit"
             type="submit"

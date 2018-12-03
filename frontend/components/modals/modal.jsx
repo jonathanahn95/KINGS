@@ -4,12 +4,14 @@ import { removeErrors } from "../../actions/session_actions";
 import { connect } from "react-redux";
 import LoginFormContainer from "../session/login_form_container";
 import SignupFormContainer from "../session/signup_form_container";
+import UserProfileContainer from "../user/user_profile_container";
 import { withRouter } from "react-router-dom";
 
 function Modal({ modal, closeModal, removeErrors }) {
   if (!modal) {
     return null;
   }
+  debugger;
   let component;
   switch (modal) {
     case "login":
@@ -20,6 +22,9 @@ function Modal({ modal, closeModal, removeErrors }) {
       break;
     case "sell":
       component = <LoginFormContainer />;
+      break;
+    case "userprof":
+      component = <UserProfileContainer />;
       break;
     default:
       return null;
