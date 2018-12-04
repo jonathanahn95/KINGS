@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import CategoryShowItem from "./category_show_item";
 
 class CategoryShow extends React.Component {
   constructor(props) {
@@ -11,8 +12,25 @@ class CategoryShow extends React.Component {
     this.props.fetchCategoryProducts(this.props.match.params);
   }
   render() {
-    debugger;
-    return <div>s</div>;
+    let renderProducts = null;
+    let { products, category, categoryName } = this.props;
+
+    if (products.length > 0) {
+      renderProducts = products.map((product, idx) => {
+        return <CategoryShowItem product={product} key={idx} />;
+      });
+    }
+
+    return (
+      <aside>
+        <ul>
+          <li>Home</li>
+          <li>{categoryName}</li>
+          <li>a</li>
+        </ul>
+        {renderProducts}
+      </aside>
+    );
   }
 }
 

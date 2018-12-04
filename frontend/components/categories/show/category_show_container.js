@@ -6,9 +6,15 @@ import { fetchSingleCategory } from "../../../actions/category_actions";
 import { fetchCategoryProducts } from "../../../actions/product_actions";
 
 const msp = (state, ownProps) => {
+  let categoryName = null;
+  let category = state.entities.categories[ownProps.match.params.id];
+  if (category) {
+    categoryName = category.category_name;
+  }
   return {
-    category: state.entities.categories[ownProps.match.params.id],
-    products: Object.values(state.entities.products)
+    category: category,
+    products: Object.values(state.entities.products),
+    categoryName: categoryName
   };
 };
 
