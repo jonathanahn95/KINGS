@@ -382,6 +382,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     processForm: function processForm(user) {
       return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["login"])(user));
+    },
+    openModal: function openModal(type) {
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_5__["openModal"])(type));
     }
   };
 };
@@ -475,6 +478,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     closeModal: function closeModal() {
       return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_1__["closeModal"])());
+    },
+    openModal: function openModal(type) {
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_1__["openModal"])(type));
     }
   };
 };
@@ -625,7 +631,9 @@ var msp = function msp(state, ownProps) {
     formType: "Login",
     link: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Link"], {
       to: "/login"
-    }, "Login")
+    }, "Login"),
+    greeting: "Sign in to continue",
+    value: "Sign in"
   };
 };
 
@@ -736,91 +744,54 @@ function (_React$Component) {
       this.props.processForm(user).then(this.props.closeModal());
     }
   }, {
-    key: "logInForm",
-    value: function logInForm() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "sign-in-modal"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "sign-in-greeting"
-      }, "Sign in to continue"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        onSubmit: this.handleSubmit,
-        className: "session-form"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "session-form-email"
-      }, "Email address:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        onChange: this.update("email"),
-        className: "session-form-email-input",
-        type: "text"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "session-form-password"
-      }, "Password:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        onChange: this.update("password"),
-        className: "session-form-password-input",
-        type: "password"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        className: "session-form-submit",
-        type: "submit",
-        value: "Sign in"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("fieldset", {
-        className: "hr-line"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("legend", {
-        align: "center"
-      }, "OR")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        onClick: this.guestDemo,
-        className: "modal-demo"
-      }, "Guest Demo"));
-    }
-  }, {
-    key: "signUpForm",
-    value: function signUpForm() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "sign-in-modal"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "sign-in-greeting"
-      }, "Create Your Account"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "easy-register"
-      }, "Registration is easy."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        onSubmit: this.handleSubmit,
-        className: "session-form"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "session-form-email"
-      }, "Email address:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        onChange: this.update("email"),
-        className: "session-form-email-input",
-        type: "text"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "session-form-name"
-      }, "First name:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        onChange: this.update("fname"),
-        className: "session-form-name-input",
-        type: "text"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "session-form-password"
-      }, "Password:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        onChange: this.update("password"),
-        className: "session-form-password-input",
-        type: "password"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        className: "session-form-submit",
-        type: "submit",
-        value: "Register"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("fieldset", {
-        className: "hr-line"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("legend", {
-        align: "center"
-      }, "OR")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        onClick: this.guestDemo,
-        className: "modal-demo"
-      }, "Guest Demo"));
-    }
-  }, {
     key: "render",
     value: function render() {
-      if (this.props.formType === "Login") {
-        return this.logInForm();
-      } else {
-        return this.signUpForm();
+      var registerGreeting,
+          signupInput = null;
+
+      if (this.props.formType === "Signup") {
+        registerGreeting = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: "easy-register"
+        }, "Registration is easy."), signupInput = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "session-form-name"
+        }, "First name:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          onChange: this.update("fname"),
+          className: "session-form-name-input",
+          type: "text"
+        }));
       }
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "sign-in-modal"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "sign-in-greeting"
+      }, this.props.greeting), registerGreeting, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        onSubmit: this.handleSubmit,
+        className: "session-form"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "session-form-email"
+      }, "Email address:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.update("email"),
+        className: "session-form-email-input",
+        type: "text"
+      }), signupInput, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "session-form-password"
+      }, "Password:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.update("password"),
+        className: "session-form-password-input",
+        type: "password"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "session-form-submit",
+        type: "submit",
+        value: this.props.value
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("fieldset", {
+        className: "hr-line"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("legend", {
+        align: "center"
+      }, "OR")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        onClick: this.guestDemo,
+        className: "modal-demo"
+      }, "Guest Demo"));
     }
   }]);
 
@@ -862,7 +833,9 @@ var msp = function msp(state, ownProps) {
     formType: "Signup",
     link: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
       to: "/signup"
-    }, "Login")
+    }, "Login"),
+    greeting: "Create your account",
+    value: "Register"
   };
 };
 
@@ -975,9 +948,7 @@ function (_React$Component) {
     key: "toggleLinks",
     value: function toggleLinks() {
       if (this.props.currentUser) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_greeting_greeting_links_container__WEBPACK_IMPORTED_MODULE_3__["default"], {
-          openModal: this.props.openModal
-        });
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_greeting_greeting_links_container__WEBPACK_IMPORTED_MODULE_3__["default"], null);
       } else {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modals_modal_links__WEBPACK_IMPORTED_MODULE_2__["default"], {
           openModal: this.props.openModal
@@ -1070,9 +1041,12 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      debugger;
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("figure", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "far fa-user"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this.props.currentUser.fname), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "View Profile")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         onClick: this.logoutUser
-      }, "Logout"));
+      }, "Logout")));
     }
   }]);
 

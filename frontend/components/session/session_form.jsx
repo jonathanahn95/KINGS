@@ -40,89 +40,59 @@ class SessionForm extends React.Component {
     this.props.processForm(user).then(this.props.closeModal());
   }
 
-  logInForm() {
-    return (
-      <div className="sign-in-modal">
-        <div className="sign-in-greeting">Sign in to continue</div>
-        <form onSubmit={this.handleSubmit} className="session-form">
-          <div className="session-form-email">Email address:</div>
-          <input
-            onChange={this.update("email")}
-            className="session-form-email-input"
-            type="text"
-          />
-          <div className="session-form-password">Password:</div>
-          <input
-            onChange={this.update("password")}
-            className="session-form-password-input"
-            type="password"
-          />
-          <input
-            className="session-form-submit"
-            type="submit"
-            value="Sign in"
-          />
-        </form>
-
-        <fieldset className="hr-line">
-          <legend align="center">OR</legend>
-        </fieldset>
-
-        <div onClick={this.guestDemo} className="modal-demo">
-          Guest Demo
-        </div>
-      </div>
-    );
-  }
-
-  signUpForm() {
-    return (
-      <div className="sign-in-modal">
-        <div className="sign-in-greeting">Create Your Account</div>
-        <p className="easy-register">Registration is easy.</p>
-        <form onSubmit={this.handleSubmit} className="session-form">
-          <div className="session-form-email">Email address:</div>
-          <input
-            onChange={this.update("email")}
-            className="session-form-email-input"
-            type="text"
-          />
-          <div className="session-form-name">First name:</div>
-          <input
-            onChange={this.update("fname")}
-            className="session-form-name-input"
-            type="text"
-          />
-          <div className="session-form-password">Password:</div>
-          <input
-            onChange={this.update("password")}
-            className="session-form-password-input"
-            type="password"
-          />
-          <input
-            className="session-form-submit"
-            type="submit"
-            value="Register"
-          />
-        </form>
-
-        <fieldset className="hr-line">
-          <legend align="center">OR</legend>
-        </fieldset>
-
-        <div onClick={this.guestDemo} className="modal-demo">
-          Guest Demo
-        </div>
-      </div>
-    );
-  }
-
   render() {
-    if (this.props.formType === "Login") {
-      return this.logInForm();
-    } else {
-      return this.signUpForm();
+    let registerGreeting,
+      signupInput = null;
+    if (this.props.formType === "Signup") {
+      (registerGreeting = (
+        <p className="easy-register">Registration is easy.</p>
+      )),
+        (signupInput = (
+          <div>
+            <div className="session-form-name">First name:</div>
+            <input
+              onChange={this.update("fname")}
+              className="session-form-name-input"
+              type="text"
+            />
+          </div>
+        ));
     }
+
+    return (
+      <div className="sign-in-modal">
+        <div className="sign-in-greeting">{this.props.greeting}</div>
+        {registerGreeting}
+        <form onSubmit={this.handleSubmit} className="session-form">
+          <div className="session-form-email">Email address:</div>
+          <input
+            onChange={this.update("email")}
+            className="session-form-email-input"
+            type="text"
+          />
+          {signupInput}
+          <div className="session-form-password">Password:</div>
+          <input
+            onChange={this.update("password")}
+            className="session-form-password-input"
+            type="password"
+          />
+          <input
+            className="session-form-submit"
+            type="submit"
+            value={this.props.value}
+          />
+        </form>
+
+        <fieldset className="hr-line">
+          <legend align="center">OR</legend>
+        </fieldset>
+
+        <div onClick={this.guestDemo} className="modal-demo">
+          Guest Demo
+        </div>
+      </div>
+    );
   }
 }
 

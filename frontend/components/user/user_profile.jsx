@@ -15,10 +15,20 @@ class UserProfile extends React.Component {
   }
 
   render() {
+    debugger;
     return (
-      <div>
-        <li onClick={this.logoutUser}>Logout</li>
-      </div>
+      <nav>
+        <div>
+          <figure>
+            <i className="far fa-user" />
+          </figure>
+          <div>
+            <p>{this.props.currentUser.fname}</p>
+            <div>View Profile</div>
+          </div>
+          <li onClick={this.logoutUser}>Logout</li>
+        </div>
+      </nav>
     );
   }
 }

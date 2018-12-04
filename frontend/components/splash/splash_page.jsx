@@ -10,7 +10,7 @@ class SplashPage extends React.Component {
 
   toggleLinks() {
     if (this.props.currentUser) {
-      return <GreetingLinksContainer openModal={this.props.openModal} />;
+      return <GreetingLinksContainer />;
     } else {
       return <ModalLinks openModal={this.props.openModal} />;
     }

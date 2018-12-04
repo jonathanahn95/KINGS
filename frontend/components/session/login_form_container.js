@@ -9,7 +9,9 @@ const msp = (state, ownProps) => {
   return {
     errors: state.errors.session,
     formType: "Login",
-    link: <Link to="/login">Login</Link>
+    link: <Link to="/login">Login</Link>,
+    greeting: "Sign in to continue",
+    value: "Sign in"
   };
 };
 

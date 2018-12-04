@@ -1,5 +1,5 @@
 import React from "react";
-import { closeModal } from "../../actions/modal_actions";
+import { closeModal, openModal } from "../../actions/modal_actions";
 import { removeErrors } from "../../actions/session_actions";
 import { connect } from "react-redux";
 import LoginFormContainer from "../session/login_form_container";
@@ -53,7 +53,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    closeModal: () => dispatch(closeModal())
+    closeModal: () => dispatch(closeModal()),
+    openModal: type => dispatch(openModal(type))
   };
 };
 
