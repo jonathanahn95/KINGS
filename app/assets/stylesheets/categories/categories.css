@@ -13,10 +13,14 @@
   align-items: center;
   margin: auto;
   font-size: 15px;
-  color: #222;
 }
 
-.categories-ul li:hover {
+.category-link:hover {
   cursor: pointer;
   border-bottom: 2px solid #f45800;
+}
+
+.category-link {
+  color: #222;
+  text-decoration: none;
 }
