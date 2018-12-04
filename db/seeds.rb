@@ -8,9 +8,25 @@
 
 
 User.destroy_all
+Category.destroy_all
+
+
 
 
 User.create!([
   {fname: 'Guest', email: "guest@demo.org", password: 123123},
   ])
 users = User.all
+
+
+Category.create!([
+  {category_name: 'Entertainment'},
+  {category_name: 'Pets'},
+  {category_name: 'Food'},
+  {category_name: 'Clothes'},
+  {category_name: 'Jewerly'},
+  {category_name: 'Vehicles'},
+  {category_name: 'Household'},
+  {category_name: 'Electronics'}
+  ])
+categories = Category.all

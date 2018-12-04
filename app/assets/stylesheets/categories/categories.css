@@ -1,0 +1,22 @@
+.categories-container {
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  padding: 12px 0;
+}
+
+.categories-ul {
+  display: flex;
+  justify-content: space-between;
+  width: 93%;
+  align-items: center;
+  margin: auto;
+  font-size: 15px;
+  color: #222;
+}
+
+.categories-ul li:hover {
+  cursor: pointer;
+  border-bottom: 2px solid #f45800;
+}

@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import ModalLinks from "../modals/modal_links";
 import GreetingLinksContainer from "../greeting/greeting_links_container";
+import CategoriesContainer from "../categories/categories_container";
 
 class SplashPage extends React.Component {
   constructor(props) {
@@ -31,6 +32,7 @@ class SplashPage extends React.Component {
           </div>
           {this.toggleLinks()}
         </nav>
+        <CategoriesContainer />
       </header>
     );
   }
