@@ -9,6 +9,7 @@
 
 User.destroy_all
 Category.destroy_all
+Product.destroy_all
 
 
 
@@ -30,3 +31,7 @@ Category.create!([
   {category_name: 'Electronics'}
   ])
 categories = Category.all
+
+Product.create!([
+  {description: 'This is the best gift I ever got', title: 'Necklace', price: 35.99, category_id: categories[0].id}
+  ])

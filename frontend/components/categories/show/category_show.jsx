@@ -8,6 +8,7 @@ class CategoryShow extends React.Component {
 
   componentDidMount() {
     this.props.fetchSingleCategory(this.props.match.params);
+    this.props.fetchCategoryProducts(this.props.match.params);
   }
   render() {
     debugger;

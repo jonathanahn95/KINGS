@@ -2,8 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import Categories from "./categories";
 import { Link } from "react-router-dom";
-import { openModal } from "../../actions/modal_actions";
-import { fetchAllCategories } from "../../actions/category_actions";
+import { openModal } from "../../../actions/modal_actions";
+import { fetchAllCategories } from "../../../actions/category_actions";
 
 const msp = ({ entities: { categories } }) => {
   return {
