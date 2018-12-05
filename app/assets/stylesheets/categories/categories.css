@@ -24,3 +24,37 @@
   color: #222;
   text-decoration: none;
 }
+
+.small-nav-links {
+  display: flex;
+  width: 14%;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #666666;
+  margin: 15px 0 0 50px;
+}
+
+.small-nav-links li {
+  text-decoration: underline;
+}
+
+.small-home {
+  cursor: pointer;
+}
+
+.small-name {
+  cursor: pointer;
+}
+
+.small-item-count {
+  text-decoration: none !important;
+}
+
+.show-home-link {
+  color: #666666;
+}
+
+.big-name {
+  margin: 25px 0 0 50px;
+  font-size: 25px;
+}

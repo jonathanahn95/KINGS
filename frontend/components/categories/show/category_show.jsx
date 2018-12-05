@@ -23,11 +23,18 @@ class CategoryShow extends React.Component {
 
     return (
       <aside>
-        <ul>
-          <li>Home</li>
-          <li>{categoryName}</li>
-          <li>a</li>
+        <ul className="small-nav-links">
+          <li className="small-home">
+            <Link className="show-home-link" to="/">
+              Home
+            </Link>
+          </li>
+          <i class="fa fa-caret-right" />
+          <li className="small-name">{categoryName}</li>
+          <i class="fa fa-caret-right" />
+          <li className="small-item-count">{`(${products.length} items)`}</li>
         </ul>
+        <div className="big-name">{categoryName}</div>
         {renderProducts}
       </aside>
     );

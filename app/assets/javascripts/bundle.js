@@ -620,7 +620,24 @@ function (_React$Component) {
         });
       }
 
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("aside", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Home"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, categoryName), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "a")), renderProducts);
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("aside", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "small-nav-links"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "small-home"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        className: "show-home-link",
+        to: "/"
+      }, "Home")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        class: "fa fa-caret-right"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "small-name"
+      }, categoryName), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        class: "fa fa-caret-right"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "small-item-count"
+      }, "(".concat(products.length, " items)"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "big-name"
+      }, categoryName), renderProducts);
     }
   }]);
 
