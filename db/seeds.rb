@@ -13,6 +13,13 @@ Product.destroy_all
 
 
 
+def add_photo(model, id, link, filename)
+  model_instance = model.find(id)
+  file = EzDownload.open(link)
+  model_instance.photos.attach(io: file, filename: filename)
+  model_instance.save!
+end
+
 
 User.create!([
   {fname: 'Guest', email: "guest@demo.org", password: 123123},
@@ -33,5 +40,25 @@ Category.create!([
 categories = Category.all
 
 Product.create!([
-  {description: 'This is the best gift I ever got', title: 'Necklace', price: 35.99, category_id: categories[0].id}
+  {rating: 5, description: 'This is the best gift I ever got', title: 'Necklace', price: 35.99, category_id: categories[0].id, user_id: users[0].id},
+  {rating: 5, description: 'I LOVE THESE EARRINGS', title: 'Earrings', price: 35.99, category_id: categories[0].id, user_id: users[0].id},
+  {rating: 5, description: 'Heavy ring', title: 'Ring', price: 35.99, category_id: categories[0].id, user_id: users[0].id},
+  {rating: 5, description: 'Two chains', title: 'Chain', price: 35.99, category_id: categories[0].id, user_id: users[0].id},
+  {rating: 5, description: '1 chain', title: 'Chain', price: 35.99, category_id: categories[0].id, user_id: users[0].id},
+  {rating: 5, description: 'Thank you for these', title: 'Pearl', price: 35.99, category_id: categories[0].id, user_id: users[0].id}
   ])
+
+
+necklace = Product.all[0]
+necklace1 = Product.all[1]
+necklace2 = Product.all[2]
+necklace3 = Product.all[3]
+necklace4 = Product.all[4]
+necklace5 = Product.all[5]
+
+add_photo(Product, necklace.id, "https://s3.amazonaws.com/kings-2-dev/necklage.png", "necklage.png")
+add_photo(Product, necklace1.id, "https://s3.amazonaws.com/kings-2-dev/necklage2.png", "necklage.png")
+add_photo(Product, necklace2.id, "https://s3.amazonaws.com/kings-2-dev/necklage2.png", "necklage.png")
+add_photo(Product, necklace3.id, "https://s3.amazonaws.com/kings-2-dev/necklage2.png", "necklage.png")
+add_photo(Product, necklace4.id, "https://s3.amazonaws.com/kings-2-dev/necklage2.png", "necklage.png")
+add_photo(Product, necklace5.id, "https://s3.amazonaws.com/kings-2-dev/necklage2.png", "necklage.png")

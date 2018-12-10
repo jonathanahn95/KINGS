@@ -3,25 +3,31 @@ import { connect } from "react-redux";
 import CategoryShow from "./category_show";
 import { Link } from "react-router-dom";
 import { fetchSingleCategory } from "../../../actions/category_actions";
-import { fetchCategoryProducts } from "../../../actions/product_actions";
 
 const msp = (state, ownProps) => {
-  let categoryName = null;
+  let categoryName,
+    photos,
+    products,
+    categoryId = null;
   let category = state.entities.categories[ownProps.match.params.id];
   if (category) {
     categoryName = category.category_name;
+    photos = category.photos;
+    products = category.products;
+    categoryId = category.id;
   }
   return {
     category: category,
-    products: Object.values(state.entities.products),
-    categoryName: categoryName
+    categoryId: categoryId,
+    categoryName: categoryName,
+    photos: photos,
+    products: products
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchSingleCategory: category => dispatch(fetchSingleCategory(category)),
-    fetchCategoryProducts: category => dispatch(fetchCategoryProducts(category))
+    fetchSingleCategory: category => dispatch(fetchSingleCategory(category))
   };
 };
 

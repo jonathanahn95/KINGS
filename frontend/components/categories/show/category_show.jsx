@@ -9,18 +9,24 @@ class CategoryShow extends React.Component {
 
   componentDidMount() {
     this.props.fetchSingleCategory(this.props.match.params);
-    this.props.fetchCategoryProducts(this.props.match.params);
   }
+
   render() {
     let renderProducts = null;
-    let { products, category, categoryName } = this.props;
+    let { products, category, categoryName, photos, categoryId } = this.props;
 
-    if (products.length > 0) {
-      renderProducts = products.map((product, idx) => {
-        return <CategoryShowItem product={product} key={idx} />;
+    if (products && photos) {
+      renderProducts = Object.values(products).map((prod, idx) => {
+        return (
+          <CategoryShowItem
+            product={prod}
+            key={idx}
+            photos={photos}
+            categoryId={categoryId}
+          />
+        );
       });
     }
-
     return (
       <aside>
         <ul className="small-nav-links">
@@ -29,10 +35,10 @@ class CategoryShow extends React.Component {
               Home
             </Link>
           </li>
-          <i class="fa fa-caret-right" />
+          <i className="fa fa-caret-right" />
           <li className="small-name">{categoryName}</li>
-          <i class="fa fa-caret-right" />
-          <li className="small-item-count">{`(${products.length} items)`}</li>
+          <i className="fa fa-caret-right" />
+          <li className="small-item-count">{`( items)`}</li>
         </ul>
         <div className="big-name">{categoryName}</div>
         {renderProducts}

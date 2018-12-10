@@ -13,7 +13,12 @@ class Header extends React.Component {
     if (this.props.currentUser) {
       return <GreetingLinksContainer />;
     } else {
-      return <ModalLinks openModal={this.props.openModal} />;
+      return (
+        <ModalLinks
+          closeModal={this.props.closeModal}
+          openModal={this.props.openModal}
+        />
+      );
     }
   }
   render() {

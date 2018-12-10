@@ -125,7 +125,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   delete window.currentUser;
   var root = document.getElementById("root");
-  var store = Object(_store_store__WEBPACK_IMPORTED_MODULE_2__["default"])();
+  var store = Object(_store_store__WEBPACK_IMPORTED_MODULE_2__["default"])(preloadedState);
   window.getState = store.getState;
   react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_root__WEBPACK_IMPORTED_MODULE_3__["default"], {
     store: store
@@ -600,7 +600,6 @@ function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchSingleCategory(this.props.match.params);
-      this.props.fetchCategoryProducts(this.props.match.params);
     }
   }, {
     key: "render",
@@ -609,13 +608,17 @@ function (_React$Component) {
       var _this$props = this.props,
           products = _this$props.products,
           category = _this$props.category,
-          categoryName = _this$props.categoryName;
+          categoryName = _this$props.categoryName,
+          photos = _this$props.photos,
+          categoryId = _this$props.categoryId;
 
-      if (products.length > 0) {
-        renderProducts = products.map(function (product, idx) {
+      if (products && photos) {
+        renderProducts = Object.values(products).map(function (prod, idx) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_category_show_item__WEBPACK_IMPORTED_MODULE_2__["default"], {
-            product: product,
-            key: idx
+            product: prod,
+            key: idx,
+            photos: photos,
+            categoryId: categoryId
           });
         });
       }
@@ -628,14 +631,14 @@ function (_React$Component) {
         className: "show-home-link",
         to: "/"
       }, "Home")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        class: "fa fa-caret-right"
+        className: "fa fa-caret-right"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "small-name"
       }, categoryName), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        class: "fa fa-caret-right"
+        className: "fa fa-caret-right"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "small-item-count"
-      }, "(".concat(products.length, " items)"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "( items)")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "big-name"
       }, categoryName), renderProducts);
     }
@@ -663,8 +666,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _category_show__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./category_show */ "./frontend/components/categories/show/category_show.jsx");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
 /* harmony import */ var _actions_category_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../actions/category_actions */ "./frontend/actions/category_actions.js");
-/* harmony import */ var _actions_product_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../actions/product_actions */ "./frontend/actions/product_actions.js");
-
 
 
 
@@ -672,17 +673,25 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var msp = function msp(state, ownProps) {
-  var categoryName = null;
+  var categoryName,
+      photos,
+      products,
+      categoryId = null;
   var category = state.entities.categories[ownProps.match.params.id];
 
   if (category) {
     categoryName = category.category_name;
+    photos = category.photos;
+    products = category.products;
+    categoryId = category.id;
   }
 
   return {
     category: category,
-    products: Object.values(state.entities.products),
-    categoryName: categoryName
+    categoryId: categoryId,
+    categoryName: categoryName,
+    photos: photos,
+    products: products
   };
 };
 
@@ -690,9 +699,6 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     fetchSingleCategory: function fetchSingleCategory(category) {
       return dispatch(Object(_actions_category_actions__WEBPACK_IMPORTED_MODULE_4__["fetchSingleCategory"])(category));
-    },
-    fetchCategoryProducts: function fetchCategoryProducts(category) {
-      return dispatch(Object(_actions_product_actions__WEBPACK_IMPORTED_MODULE_5__["fetchCategoryProducts"])(category));
     }
   };
 };
@@ -748,7 +754,14 @@ function (_React$Component) {
   _createClass(CategoryShowItem, [{
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null);
+      var _this$props = this.props,
+          product = _this$props.product,
+          photos = _this$props.photos,
+          categoryId = _this$props.categoryId;
+      debugger;
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("figure", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: photos[product.id][0].photo_image_url
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, product.description), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, product.rating), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, product.price));
     }
   }]);
 
@@ -933,6 +946,7 @@ function (_React$Component) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_greeting_greeting_links_container__WEBPACK_IMPORTED_MODULE_3__["default"], null);
       } else {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modals_modal_links__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          closeModal: this.props.closeModal,
           openModal: this.props.openModal
         });
       }
