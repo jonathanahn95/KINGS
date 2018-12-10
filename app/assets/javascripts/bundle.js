@@ -322,6 +322,38 @@ var logout = function logout() {
 
 /***/ }),
 
+/***/ "./frontend/actions/user_actions.js":
+/*!******************************************!*\
+  !*** ./frontend/actions/user_actions.js ***!
+  \******************************************/
+/*! exports provided: RECEIVE_PRODUCT_USER, fetchUser */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_PRODUCT_USER", function() { return RECEIVE_PRODUCT_USER; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUser", function() { return fetchUser; });
+/* harmony import */ var _util_user_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/user_api_util */ "./frontend/util/user_api_util.jsx");
+
+var RECEIVE_PRODUCT_USER = "RECEIVE_PRODUCT_USER";
+
+var receiveUser = function receiveUser(user) {
+  return {
+    type: RECEIVE_PRODUCT_USER,
+    user: user
+  };
+};
+
+var fetchUser = function fetchUser(userId) {
+  return function (dispatch) {
+    return _util_user_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchUser"](userId).then(function (user) {
+      return dispatch(receiveUser(user));
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/components/App.jsx":
 /*!*************************************!*\
   !*** ./frontend/components/App.jsx ***!
@@ -604,13 +636,16 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this = this;
+
       var renderProducts = null;
       var _this$props = this.props,
           products = _this$props.products,
           category = _this$props.category,
           categoryName = _this$props.categoryName,
           photos = _this$props.photos,
-          categoryId = _this$props.categoryId;
+          categoryId = _this$props.categoryId,
+          users = _this$props.users;
 
       if (products && photos) {
         renderProducts = Object.values(products).map(function (prod, idx) {
@@ -618,7 +653,9 @@ function (_React$Component) {
             product: prod,
             key: idx,
             photos: photos,
-            categoryId: categoryId
+            categoryId: categoryId,
+            fetchUser: _this.props.fetchUser,
+            users: users
           });
         });
       }
@@ -668,6 +705,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _category_show__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./category_show */ "./frontend/components/categories/show/category_show.jsx");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
 /* harmony import */ var _actions_category_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../actions/category_actions */ "./frontend/actions/category_actions.js");
+/* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../actions/user_actions */ "./frontend/actions/user_actions.js");
+
 
 
 
@@ -693,7 +732,8 @@ var msp = function msp(state, ownProps) {
     categoryId: categoryId,
     categoryName: categoryName,
     photos: photos,
-    products: products
+    products: products,
+    users: state.entities.users
   };
 };
 
@@ -701,6 +741,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     fetchSingleCategory: function fetchSingleCategory(category) {
       return dispatch(Object(_actions_category_actions__WEBPACK_IMPORTED_MODULE_4__["fetchSingleCategory"])(category));
+    },
+    fetchUser: function fetchUser(user) {
+      return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_5__["fetchUser"])(user));
     }
   };
 };
@@ -753,19 +796,31 @@ var CategoryShowItem =
 function (_React$Component) {
   _inherits(CategoryShowItem, _React$Component);
 
-  function CategoryShowItem(props) {
+  function CategoryShowItem() {
     _classCallCheck(this, CategoryShowItem);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(CategoryShowItem).call(this, props));
+    return _possibleConstructorReturn(this, _getPrototypeOf(CategoryShowItem).apply(this, arguments));
   }
 
   _createClass(CategoryShowItem, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.fetchUser(this.props.product.user_id);
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,
           product = _this$props.product,
           photos = _this$props.photos,
-          categoryId = _this$props.categoryId;
+          categoryId = _this$props.categoryId,
+          users = _this$props.users;
+      var userName = null;
+
+      if (users[product.user_id]) {
+        userName = users[product.user_id].fname;
+      }
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "cat-show-prod-ul"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("figure", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
@@ -779,6 +834,11 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "cat-show-description"
       }, product.description)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        className: "cat-show-link",
+        to: "/user_prof/".concat(product.user_id)
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "cat-show-name"
+      }, userName)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         className: "cat-show-link",
         to: "/product/".concat(product.id)
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_stars__WEBPACK_IMPORTED_MODULE_2___default.a, {
@@ -1988,9 +2048,11 @@ var sessionReducer = function sessionReducer() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/session_actions */ "./frontend/actions/session_actions.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/user_actions */ "./frontend/actions/user_actions.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_2__);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -2000,8 +2062,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   Object.freeze(state);
 
   switch (action.type) {
+    case _actions_user_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_PRODUCT_USER"]:
+      return Object(lodash__WEBPACK_IMPORTED_MODULE_2__["merge"])({}, state, _defineProperty({}, action.user.id, action.user));
+
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
-      return Object(lodash__WEBPACK_IMPORTED_MODULE_1__["merge"])({}, state, _defineProperty({}, action.user.id, action.user));
+      return Object(lodash__WEBPACK_IMPORTED_MODULE_2__["merge"])({}, state, _defineProperty({}, action.user.id, action.user));
 
     default:
       return state;
@@ -2117,6 +2182,25 @@ var logout = function logout() {
   return $.ajax({
     method: "DELETE",
     url: "api/session"
+  });
+};
+
+/***/ }),
+
+/***/ "./frontend/util/user_api_util.jsx":
+/*!*****************************************!*\
+  !*** ./frontend/util/user_api_util.jsx ***!
+  \*****************************************/
+/*! exports provided: fetchUser */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUser", function() { return fetchUser; });
+var fetchUser = function fetchUser(userId) {
+  return $.ajax({
+    method: "GET",
+    url: "/api/users/".concat(userId)
   });
 };
 

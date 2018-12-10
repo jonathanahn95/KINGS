@@ -4,13 +4,16 @@ import ReactStars from "react-stars";
 import { render } from "react-dom";
 
 class CategoryShowItem extends React.Component {
-  constructor(props) {
-    super(props);
+  componentDidMount() {
+    this.props.fetchUser(this.props.product.user_id);
   }
 
   render() {
-    let { product, photos, categoryId } = this.props;
-
+    let { product, photos, categoryId, users } = this.props;
+    let userName = null;
+    if (users[product.user_id]) {
+      userName = users[product.user_id].fname;
+    }
     return (
       <ul className="cat-show-prod-ul">
         <figure>
@@ -20,6 +23,9 @@ class CategoryShowItem extends React.Component {
         </figure>
         <Link className="cat-show-link" to={`/product/${product.id}`}>
           <li className="cat-show-description">{product.description}</li>
+        </Link>
+        <Link className="cat-show-link" to={`/user_prof/${product.user_id}`}>
+          <li className="cat-show-name">{userName}</li>
         </Link>
         <Link className="cat-show-link" to={`/product/${product.id}`}>
           <li>

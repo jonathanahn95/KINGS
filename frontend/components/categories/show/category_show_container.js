@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import CategoryShow from "./category_show";
 import { Link } from "react-router-dom";
 import { fetchSingleCategory } from "../../../actions/category_actions";
+import { fetchUser } from "../../../actions/user_actions";
 
 const msp = (state, ownProps) => {
   let categoryName,
@@ -21,13 +22,15 @@ const msp = (state, ownProps) => {
     categoryId: categoryId,
     categoryName: categoryName,
     photos: photos,
-    products: products
+    products: products,
+    users: state.entities.users
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchSingleCategory: category => dispatch(fetchSingleCategory(category))
+    fetchSingleCategory: category => dispatch(fetchSingleCategory(category)),
+    fetchUser: user => dispatch(fetchUser(user))
   };
 };
 

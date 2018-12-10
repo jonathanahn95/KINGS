@@ -13,7 +13,14 @@ class CategoryShow extends React.Component {
 
   render() {
     let renderProducts = null;
-    let { products, category, categoryName, photos, categoryId } = this.props;
+    let {
+      products,
+      category,
+      categoryName,
+      photos,
+      categoryId,
+      users
+    } = this.props;
 
     if (products && photos) {
       renderProducts = Object.values(products).map((prod, idx) => {
@@ -23,10 +30,13 @@ class CategoryShow extends React.Component {
             key={idx}
             photos={photos}
             categoryId={categoryId}
+            fetchUser={this.props.fetchUser}
+            users={users}
           />
         );
       });
     }
+
     return (
       <aside>
         <ul className="small-nav-links">
