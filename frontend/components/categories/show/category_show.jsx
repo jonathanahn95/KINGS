@@ -41,7 +41,7 @@ class CategoryShow extends React.Component {
           <li className="small-item-count">{`( items)`}</li>
         </ul>
         <div className="big-name">{categoryName}</div>
-        {renderProducts}
+        <div className="products-container">{renderProducts}</div>
       </aside>
     );
   }

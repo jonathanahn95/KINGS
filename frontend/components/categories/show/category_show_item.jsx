@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import ReactStars from "react-stars";
+import { render } from "react-dom";
 
 class CategoryShowItem extends React.Component {
   constructor(props) {
@@ -8,16 +10,31 @@ class CategoryShowItem extends React.Component {
 
   render() {
     let { product, photos, categoryId } = this.props;
-    debugger;
 
     return (
-      <ul>
+      <ul className="cat-show-prod-ul">
         <figure>
-          <img src={photos[product.id][0].photo_image_url} />
+          <Link className="cat-show-link" to={`/product/${product.id}`}>
+            <img src={photos[product.id][0].photo_image_url} />
+          </Link>
         </figure>
-        <li>{product.description}</li>
-        <li>{product.rating}</li>
-        <li>{product.price}</li>
+        <Link className="cat-show-link" to={`/product/${product.id}`}>
+          <li className="cat-show-description">{product.description}</li>
+        </Link>
+        <Link className="cat-show-link" to={`/product/${product.id}`}>
+          <li>
+            <ReactStars
+              color2={"black"}
+              count={5}
+              edit={false}
+              value={product.rating}
+              size={18}
+            />
+          </li>
+        </Link>
+        <Link className="cat-show-link" to={`/product/${product.id}`}>
+          <li className="cat-show-price">{`$${product.price}`}</li>
+        </Link>
       </ul>
     );
   }

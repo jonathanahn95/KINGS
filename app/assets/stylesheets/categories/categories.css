@@ -58,3 +58,32 @@
   margin: 25px 0 0 50px;
   font-size: 25px;
 }
+
+.products-container {
+  display: flex;
+  width: 70%;
+  flex-wrap: wrap;
+  margin: auto;
+  justify-content: space-between;
+}
+
+.cat-show-description {
+  font-size: 14px;
+  padding: 3px 0;
+  font-weight: 100;
+}
+
+.cat-show-price {
+  font-size: 16px;
+  font-weight: 500;
+  padding: 3px 0;
+}
+
+.cat-show-prod-ul {
+  padding-bottom: 60px;
+}
+
+.cat-show-link {
+  text-decoration: none;
+  color: black;
+}
