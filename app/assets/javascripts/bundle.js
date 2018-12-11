@@ -675,7 +675,7 @@ function (_React$Component) {
         className: "fa fa-caret-right"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "small-item-count"
-      }, "( items)")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "($ items)")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "big-name"
       }, categoryName), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "products-container"
@@ -1609,6 +1609,81 @@ var mapDispatchToPros = function mapDispatchToPros(dispatch) {
 
 /***/ }),
 
+/***/ "./frontend/components/splash/splash_header_info.jsx":
+/*!***********************************************************!*\
+  !*** ./frontend/components/splash/splash_header_info.jsx ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+
+
+
+var SplashHeaderInfo = function SplashHeaderInfo() {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "splash-text-wrapper"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "splash-greeting-text"
+  }, "If it\u2019s handcrafted, vintage, custom, or"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "splash-greeting-text"
+  }, "unique, it\u2019s on KINGS.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "splash-pics-wrapper"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("figure", {
+    className: "splash-figure-wrapper"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("figcaption", {
+    className: "splash-figcaption"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "splash-figcaption-text"
+  }, "The world of KINGS awaits you!")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    className: "splash-big-pic",
+    src: "https://s3.amazonaws.com/kings-2-dev/splash.png"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "splash-pics2-wrapper"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("figure", {
+    className: "splash-figure"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    className: "splash-sec-pic",
+    src: "https://s3.amazonaws.com/kings-2-dev/splash2.jpg"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("figcaption", {
+    className: "splash-ship-products"
+  }, "Shop ready-to-ship products"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+    className: "splash-kings-about"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    className: "splash-kings-ul"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "splash-li-title"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fa fa-check"
+  }), "Unique everything"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "splash-li-body"
+  }, "We have millions of one-of-a-kind items, so you can find whatever you need (or really, really want).")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    className: "splash-kings-ul"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "splash-li-title"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fa fa-check"
+  }), "Independent sellers"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "splash-li-body"
+  }, "Buy directly from someone who put their heart and soul into making something special.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    className: "splash-kings-ul"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "splash-li-title"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fa fa-check"
+  }), "Secure shopping"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "splash-li-body"
+  }, "We use best-in-class technology to protect your transactions."))));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(SplashHeaderInfo));
+
+/***/ }),
+
 /***/ "./frontend/components/splash/splash_page.jsx":
 /*!****************************************************!*\
   !*** ./frontend/components/splash/splash_page.jsx ***!
@@ -1621,6 +1696,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+/* harmony import */ var _splash_header_info__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./splash_header_info */ "./frontend/components/splash/splash_header_info.jsx");
+/* harmony import */ var _splash_popular_items__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./splash_popular_items */ "./frontend/components/splash/splash_popular_items.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1642,21 +1719,23 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
+
 var SplashPage =
 /*#__PURE__*/
 function (_React$Component) {
   _inherits(SplashPage, _React$Component);
 
-  function SplashPage(props) {
+  function SplashPage() {
     _classCallCheck(this, SplashPage);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(SplashPage).call(this, props));
+    return _possibleConstructorReturn(this, _getPrototypeOf(SplashPage).apply(this, arguments));
   }
 
   _createClass(SplashPage, [{
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null);
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("main", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_splash_header_info__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_splash_popular_items__WEBPACK_IMPORTED_MODULE_3__["default"], null));
     }
   }]);
 
@@ -1664,6 +1743,31 @@ function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (SplashPage);
+
+/***/ }),
+
+/***/ "./frontend/components/splash/splash_popular_items.jsx":
+/*!*************************************************************!*\
+  !*** ./frontend/components/splash/splash_popular_items.jsx ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+
+
+
+var SplashPopularItems = function SplashPopularItems() {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "splash-popular-wrapper"
+  }, "Popular right now"));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(SplashPopularItems));
 
 /***/ }),
 
