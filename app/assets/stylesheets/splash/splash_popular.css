@@ -1,5 +1,36 @@
-.splash-popular-wrapper {
+.splash-popular-text {
   margin: auto;
   text-align: center;
   font-size: 26px;
+  padding: 35px 0;
+}
+
+.splash-popular-wrapper {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.splash-pop-description {
+  font-size: 14px;
+  padding: 3px 0;
+  font-weight: 100;
+  padding: 3px 0;
+}
+
+.splash-pop-username {
+  font-size: 13px;
+  padding: 3px 0;
+  font-weight: 100;
+  color: grey;
+}
+
+.splash-pop-price {
+  font-size: 16px;
+  font-weight: 500;
+  padding: 3px 0;
+}
+
+.splash-pop-pic {
+  height: 70%;
+  border-radius: 4px;
 }

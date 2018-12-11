@@ -217,16 +217,19 @@ var closeModal = function closeModal(modal) {
 /*!*********************************************!*\
   !*** ./frontend/actions/product_actions.js ***!
   \*********************************************/
-/*! exports provided: RECEIVE_CATEGORY_PRODUCTS, fetchCategoryProducts */
+/*! exports provided: RECEIVE_CATEGORY_PRODUCTS, RECEIVE_ALL_PRODUCTS, fetchCategoryProducts, fetchAllProducts */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_CATEGORY_PRODUCTS", function() { return RECEIVE_CATEGORY_PRODUCTS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ALL_PRODUCTS", function() { return RECEIVE_ALL_PRODUCTS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCategoryProducts", function() { return fetchCategoryProducts; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAllProducts", function() { return fetchAllProducts; });
 /* harmony import */ var _util_product_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/product_api_util */ "./frontend/util/product_api_util.jsx");
 
 var RECEIVE_CATEGORY_PRODUCTS = "RECEIVE_CATEGORY_PRODUCTS";
+var RECEIVE_ALL_PRODUCTS = "RECEIVE_ALL_PRODUCTS";
 
 var receiveCategoryProducts = function receiveCategoryProducts(products) {
   return {
@@ -239,6 +242,21 @@ var fetchCategoryProducts = function fetchCategoryProducts(category) {
   return function (dispatch) {
     return _util_product_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchCategoryProducts"](category).then(function (products) {
       return dispatch(receiveCategoryProducts(products));
+    });
+  };
+};
+
+var receiveAllProducts = function receiveAllProducts(products) {
+  return {
+    type: RECEIVE_ALL_PRODUCTS,
+    products: products
+  };
+};
+
+var fetchAllProducts = function fetchAllProducts() {
+  return function (dispatch) {
+    return _util_product_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchAllProducts"]().then(function (products) {
+      return dispatch(receiveAllProducts(products));
     });
   };
 };
@@ -1583,14 +1601,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
 /* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
 /* harmony import */ var _splash_page__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./splash_page */ "./frontend/components/splash/splash_page.jsx");
+/* harmony import */ var _actions_product_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/product_actions */ "./frontend/actions/product_actions.js");
+/* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions/user_actions */ "./frontend/actions/user_actions.js");
+
+
 
 
 
 
 
 var mapStateToProps = function mapStateToProps(state) {
+  var photos,
+      products = null;
+
+  if (state.entities.products["products"]) {
+    products = state.entities.products["products"];
+    photos = state.entities.products["photos"];
+  }
+
   return {
-    currentUser: state.entities.users[state.session.id]
+    currentUser: state.entities.users[state.session.id],
+    products: products,
+    photos: photos,
+    users: state.entities.users
   };
 };
 
@@ -1601,6 +1634,12 @@ var mapDispatchToPros = function mapDispatchToPros(dispatch) {
     },
     openModal: function openModal(type) {
       return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__["openModal"])(type));
+    },
+    fetchAllProducts: function fetchAllProducts() {
+      return dispatch(Object(_actions_product_actions__WEBPACK_IMPORTED_MODULE_4__["fetchAllProducts"])());
+    },
+    fetchUser: function fetchUser(user) {
+      return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_5__["fetchUser"])(user));
     }
   };
 };
@@ -1733,9 +1772,38 @@ function (_React$Component) {
   }
 
   _createClass(SplashPage, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.fetchAllProducts();
+    }
+  }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("main", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_splash_header_info__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_splash_popular_items__WEBPACK_IMPORTED_MODULE_3__["default"], null));
+      var _this = this;
+
+      var _this$props = this.props,
+          photos = _this$props.photos,
+          products = _this$props.products,
+          users = _this$props.users;
+      var renderPopularContent = null;
+
+      if (photos && products) {
+        renderPopularContent = Object.values(products).slice(0, 5).map(function (prod, idx) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_splash_popular_items__WEBPACK_IMPORTED_MODULE_3__["default"], {
+            fetchUser: _this.props.fetchUser,
+            product: prod,
+            key: idx,
+            photos: photos,
+            users: users
+          });
+        });
+      }
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("main", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_splash_header_info__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "splash-popular-text"
+      }, "Popular right now"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "splash-popular-wrapper"
+      }, renderPopularContent));
     }
   }]);
 
@@ -1758,16 +1826,73 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 
 
-var SplashPopularItems = function SplashPopularItems() {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-    className: "splash-popular-wrapper"
-  }, "Popular right now"));
-};
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(SplashPopularItems));
+var SplashPopularItems =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(SplashPopularItems, _React$Component);
+
+  function SplashPopularItems() {
+    _classCallCheck(this, SplashPopularItems);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(SplashPopularItems).apply(this, arguments));
+  }
+
+  _createClass(SplashPopularItems, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.fetchUser(this.props.product.user_id);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          product = _this$props.product,
+          photos = _this$props.photos,
+          users = _this$props.users;
+      var userName = null;
+
+      if (users[product.user_id]) {
+        userName = users[product.user_id].fname;
+      }
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "splash-pop-pic",
+        src: photos[product.id][0].photo_image_url
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("figcaption", {
+        className: "splash-pop-description"
+      }, product.description), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "splash-pop-username"
+      }, userName), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "splash-pop-price"
+      }, "$".concat(product.price)));
+    }
+  }]);
+
+  return SplashPopularItems;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (SplashPopularItems);
 
 /***/ }),
 
@@ -2018,11 +2143,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ __webpack_exports__["default"] = (function () {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(state);
 
   switch (action.type) {
+    case _actions_product_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_ALL_PRODUCTS"]:
+      return lodash_merge__WEBPACK_IMPORTED_MODULE_0___default()({}, action.products);
+
     case _actions_product_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_CATEGORY_PRODUCTS"]:
       return lodash_merge__WEBPACK_IMPORTED_MODULE_0___default()({}, action.products);
 
@@ -2237,16 +2365,23 @@ var fetchSingleCategory = function fetchSingleCategory(category) {
 /*!********************************************!*\
   !*** ./frontend/util/product_api_util.jsx ***!
   \********************************************/
-/*! exports provided: fetchCategoryProducts */
+/*! exports provided: fetchCategoryProducts, fetchAllProducts */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCategoryProducts", function() { return fetchCategoryProducts; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAllProducts", function() { return fetchAllProducts; });
 var fetchCategoryProducts = function fetchCategoryProducts(category) {
   return $.ajax({
     method: "GET",
     url: "/api/categories/".concat(category.id, "/products")
+  });
+};
+var fetchAllProducts = function fetchAllProducts() {
+  return $.ajax({
+    method: "GET",
+    url: "/api/products/"
   });
 };
 
