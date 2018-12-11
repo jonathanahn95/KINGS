@@ -390,7 +390,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _categories_show_category_show_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./categories/show/category_show_container */ "./frontend/components/categories/show/category_show_container.js");
 /* harmony import */ var _header_header_container__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./header/header_container */ "./frontend/components/header/header_container.js");
 /* harmony import */ var _modals_modal__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modals/modal */ "./frontend/components/modals/modal.jsx");
+/* harmony import */ var _footer__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./footer */ "./frontend/components/footer.jsx");
  // import { AuthRoute, ProtectedRoute } from "../util/route_util";
+
 
 
 
@@ -409,7 +411,7 @@ var App = function App() {
     exact: true,
     path: "/category/:id",
     component: _categories_show_category_show_container__WEBPACK_IMPORTED_MODULE_5__["default"]
-  }));
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_footer__WEBPACK_IMPORTED_MODULE_8__["default"], null));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (App);
@@ -878,6 +880,70 @@ function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (CategoryShowItem);
+
+/***/ }),
+
+/***/ "./frontend/components/footer.jsx":
+/*!****************************************!*\
+  !*** ./frontend/components/footer.jsx ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var Footer = function Footer() {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("footer", {
+    className: "footer"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "footer-top"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    className: "footer-top-list"
+  }, "About", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    target: "_blank",
+    href: "https://github.com/jonathanahn95/BetterHelp"
+  }, "About BetterHelp"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    target: "_blank",
+    href: "https://jonahn.io"
+  }, "About Me"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    className: "footer-top-list"
+  }, "Connect", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    target: "_blank",
+    href: "https://github.com/jonathanahn95/"
+  }, "GitHub"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    target: "_blank",
+    href: "https://www.linkedin.com/in/jonathanahn95/"
+  }, "LinkedIn"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    target: "_blank",
+    href: "https://angel.co/jonathan-ahn-1"
+  }, "Angel List")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    className: "footer-top-list"
+  }, "Other Projects", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    target: "_blank",
+    href: "https://betterhelp.herokuapp.com/"
+  }, "BetterHelp"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    target: "_blank",
+    href: "http://fatal-start.jonahn.io/"
+  }, "Fatal-Start"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "footer-bottom"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "footer-left"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "footer-logo"
+  }, "KINGS"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+    className: "footer-slogan"
+  }, "We make it easy to find your thing.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "footer-right"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+    className: "footer-credit"
+  }, "Created by Jonathan Ahn"))));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Footer);
 
 /***/ }),
 
@@ -1678,7 +1744,14 @@ var SplashHeaderInfo = function SplashHeaderInfo() {
     className: "splash-figcaption"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "splash-figcaption-text"
-  }, "The world of KINGS awaits you!")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+  }, "The world of KINGS awaits you!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    className: "splash-explore-link",
+    to: "/products"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "splash-figcaption-subtext"
+  }, "Take a look inside", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fa fa-caret-right splash-subtext"
+  })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     className: "splash-big-pic",
     src: "https://s3.amazonaws.com/kings-2-dev/splash.png"
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1688,9 +1761,12 @@ var SplashHeaderInfo = function SplashHeaderInfo() {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     className: "splash-sec-pic",
     src: "https://s3.amazonaws.com/kings-2-dev/splash2.jpg"
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("figcaption", {
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    className: "splash-explore-link",
+    to: "/products"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("figcaption", {
     className: "splash-ship-products"
-  }, "Shop ready-to-ship products"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+  }, "Shop ready-to-ship products")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
     className: "splash-kings-about"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
     className: "splash-kings-ul"
@@ -1876,16 +1952,28 @@ function (_React$Component) {
         userName = users[product.user_id].fname;
       }
 
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        className: "splash-pop-link",
+        to: "/product/".concat(product.id)
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "splash-pop-pic",
         src: photos[product.id][0].photo_image_url
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("figcaption", {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        className: "splash-pop-link",
+        to: "/product/".concat(product.id)
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("figcaption", {
         className: "splash-pop-description"
-      }, product.description), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      }, product.description)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        className: "splash-pop-link",
+        to: "/user_prof/".concat(product.user_id)
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "splash-pop-username"
-      }, userName), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      }, userName)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        className: "splash-pop-link",
+        to: "/product/".concat(product.id)
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "splash-pop-price"
-      }, "$".concat(product.price)));
+      }, "$".concat(product.price))));
     }
   }]);
 

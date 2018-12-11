@@ -34,3 +34,23 @@
   height: 70%;
   border-radius: 4px;
 }
+
+.splash-pop-link {
+  text-decoration: none;
+  color: black;
+}
+
+.splash-figcaption-subtext {
+  font-weight: 100;
+  padding-top: 20px;
+  font-size: 15px;
+}
+
+.splash-subtext {
+  padding-left: 6px !important;
+}
+
+.splash-explore-link {
+  text-decoration: none;
+  color: white;
+}

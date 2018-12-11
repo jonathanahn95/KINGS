@@ -16,6 +16,11 @@ const SplashHeaderInfo = () => {
             <p className="splash-figcaption-text">
               The world of KINGS awaits you!
             </p>
+            <Link className="splash-explore-link" to="/products">
+              <p className="splash-figcaption-subtext">
+                Take a look inside<i className="fa fa-caret-right splash-subtext" />
+              </p>
+            </Link>
           </figcaption>
           <img
             className="splash-big-pic"
@@ -29,9 +34,11 @@ const SplashHeaderInfo = () => {
               src="https://s3.amazonaws.com/kings-2-dev/splash2.jpg"
             />
           </figure>
-          <figcaption className="splash-ship-products">
-            Shop ready-to-ship products
-          </figcaption>
+          <Link className="splash-explore-link" to="/products">
+            <figcaption className="splash-ship-products">
+              Shop ready-to-ship products
+            </figcaption>
+          </Link>
         </div>
       </div>
       <section className="splash-kings-about">
