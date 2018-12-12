@@ -75,3 +75,114 @@
   font-family: "Merriweather", serif;
   font-size: 36px;
 }
+
+.splash-greeting-text {
+  font-family: "Guardian-EgypTT";
+}
+
+.splash-text-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 140px;
+  width: 40%;
+  flex-direction: column;
+  margin: auto;
+  font-size: 32px;
+}
+
+.splash-figure-wrapper {
+  display: flex;
+  width: 60%;
+}
+
+.splash-pics-wrapper {
+  display: flex;
+  justify-content: space-around;
+  width: 93%;
+  margin: auto;
+}
+
+.splash-ship-products {
+  background-color: #30476a;
+  color: white;
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+  border-radius: 4px;
+}
+
+.splash-sec-pic {
+  width: 100%;
+  height: 225px;
+  border-radius: 4px;
+}
+
+.splash-pics2-wrapper {
+  flex-direction: column;
+  justify-content: space-between;
+  display: flex;
+  width: 35%;
+}
+
+.splash-big-pic {
+  width: 70%;
+  border-radius: 0 4px 4px 0;
+}
+
+.splash-figcaption {
+  display: flex;
+  justify-content: center;
+  width: 30%;
+  align-items: center;
+  background-color: #30476a;
+  color: white;
+  height: 99.5%;
+  border-radius: 4px 0 0 4px;
+  flex-direction: column;
+}
+
+.splash-figcaption-text {
+  width: 80%;
+  font-size: 20px;
+  font-weight: 200;
+  text-align: center;
+}
+
+.splash-kings-about {
+  display: flex;
+  width: 85%;
+  margin: auto;
+  padding: 40px 0;
+}
+
+.splash-kings-ul {
+  width: 33%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.splash-li-body {
+  width: 90%;
+  font-weight: 100;
+  font-size: 15px;
+  text-align: center;
+  padding-top: 10px;
+  line-height: 1.2;
+}
+
+.splash-li-title {
+  font-weight: 300;
+  font-size: 18px;
+}
+
+.fa-check {
+  color: orange;
+  padding-right: 15px;
+  font-size: 26px;
+}
+
+.splash-figure {
+  padding-bottom: 16px;
+}

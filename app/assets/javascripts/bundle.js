@@ -217,16 +217,19 @@ var closeModal = function closeModal(modal) {
 /*!*********************************************!*\
   !*** ./frontend/actions/product_actions.js ***!
   \*********************************************/
-/*! exports provided: RECEIVE_CATEGORY_PRODUCTS, fetchCategoryProducts */
+/*! exports provided: RECEIVE_CATEGORY_PRODUCTS, RECEIVE_ALL_PRODUCTS, fetchCategoryProducts, fetchAllProducts */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_CATEGORY_PRODUCTS", function() { return RECEIVE_CATEGORY_PRODUCTS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ALL_PRODUCTS", function() { return RECEIVE_ALL_PRODUCTS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCategoryProducts", function() { return fetchCategoryProducts; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAllProducts", function() { return fetchAllProducts; });
 /* harmony import */ var _util_product_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/product_api_util */ "./frontend/util/product_api_util.jsx");
 
 var RECEIVE_CATEGORY_PRODUCTS = "RECEIVE_CATEGORY_PRODUCTS";
+var RECEIVE_ALL_PRODUCTS = "RECEIVE_ALL_PRODUCTS";
 
 var receiveCategoryProducts = function receiveCategoryProducts(products) {
   return {
@@ -239,6 +242,21 @@ var fetchCategoryProducts = function fetchCategoryProducts(category) {
   return function (dispatch) {
     return _util_product_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchCategoryProducts"](category).then(function (products) {
       return dispatch(receiveCategoryProducts(products));
+    });
+  };
+};
+
+var receiveAllProducts = function receiveAllProducts(products) {
+  return {
+    type: RECEIVE_ALL_PRODUCTS,
+    products: products
+  };
+};
+
+var fetchAllProducts = function fetchAllProducts() {
+  return function (dispatch) {
+    return _util_product_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchAllProducts"]().then(function (products) {
+      return dispatch(receiveAllProducts(products));
     });
   };
 };
@@ -372,7 +390,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _categories_show_category_show_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./categories/show/category_show_container */ "./frontend/components/categories/show/category_show_container.js");
 /* harmony import */ var _header_header_container__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./header/header_container */ "./frontend/components/header/header_container.js");
 /* harmony import */ var _modals_modal__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modals/modal */ "./frontend/components/modals/modal.jsx");
+/* harmony import */ var _footer__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./footer */ "./frontend/components/footer.jsx");
  // import { AuthRoute, ProtectedRoute } from "../util/route_util";
+
 
 
 
@@ -391,7 +411,7 @@ var App = function App() {
     exact: true,
     path: "/category/:id",
     component: _categories_show_category_show_container__WEBPACK_IMPORTED_MODULE_5__["default"]
-  }));
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_footer__WEBPACK_IMPORTED_MODULE_8__["default"], null));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (App);
@@ -634,6 +654,13 @@ function (_React$Component) {
       this.props.fetchSingleCategory(this.props.match.params);
     }
   }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps, prevState) {
+      if (this.props.match.params.id !== prevProps.match.params.id) {
+        this.props.fetchSingleCategory(this.props.match.params);
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this = this;
@@ -675,7 +702,7 @@ function (_React$Component) {
         className: "fa fa-caret-right"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "small-item-count"
-      }, "( items)")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "($ items)")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "big-name"
       }, categoryName), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "products-container"
@@ -827,13 +854,14 @@ function (_React$Component) {
         className: "cat-show-link",
         to: "/product/".concat(product.id)
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "cat-show-pic",
         src: photos[product.id][0].photo_image_url
       }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         className: "cat-show-link",
         to: "/product/".concat(product.id)
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "cat-show-description"
-      }, product.description)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      }, product.description.slice(0, 32))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         className: "cat-show-link",
         to: "/user_prof/".concat(product.user_id)
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
@@ -860,6 +888,70 @@ function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (CategoryShowItem);
+
+/***/ }),
+
+/***/ "./frontend/components/footer.jsx":
+/*!****************************************!*\
+  !*** ./frontend/components/footer.jsx ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var Footer = function Footer() {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("footer", {
+    className: "footer"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "footer-top"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    className: "footer-top-list"
+  }, "About", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    target: "_blank",
+    href: "https://github.com/jonathanahn95/KINGS"
+  }, "About KINGS"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    target: "_blank",
+    href: "https://jonahn.io"
+  }, "About Me"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    className: "footer-top-list"
+  }, "Connect", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    target: "_blank",
+    href: "https://github.com/jonathanahn95/"
+  }, "GitHub"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    target: "_blank",
+    href: "https://www.linkedin.com/in/jonathanahn95/"
+  }, "LinkedIn"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    target: "_blank",
+    href: "https://angel.co/jonathan-ahn-1"
+  }, "Angel List")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    className: "footer-top-list"
+  }, "Other Projects", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    target: "_blank",
+    href: "https://betterhelp.herokuapp.com/"
+  }, "BetterHelp"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    target: "_blank",
+    href: "http://fatal-start.jonahn.io/"
+  }, "Fatal-Start"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "footer-bottom"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "footer-left"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "footer-logo"
+  }, "KINGS"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+    className: "footer-slogan"
+  }, "We make it easy to find your thing.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "footer-right"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+    className: "footer-credit"
+  }, "Created by Jonathan Ahn"))));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Footer);
 
 /***/ }),
 
@@ -1583,14 +1675,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
 /* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
 /* harmony import */ var _splash_page__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./splash_page */ "./frontend/components/splash/splash_page.jsx");
+/* harmony import */ var _actions_product_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/product_actions */ "./frontend/actions/product_actions.js");
+/* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions/user_actions */ "./frontend/actions/user_actions.js");
+
+
 
 
 
 
 
 var mapStateToProps = function mapStateToProps(state) {
+  var photos,
+      products = null;
+
+  if (state.entities.products["products"]) {
+    products = state.entities.products["products"];
+    photos = state.entities.products["photos"];
+  }
+
   return {
-    currentUser: state.entities.users[state.session.id]
+    currentUser: state.entities.users[state.session.id],
+    products: products,
+    photos: photos,
+    users: state.entities.users
   };
 };
 
@@ -1601,6 +1708,12 @@ var mapDispatchToPros = function mapDispatchToPros(dispatch) {
     },
     openModal: function openModal(type) {
       return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__["openModal"])(type));
+    },
+    fetchAllProducts: function fetchAllProducts() {
+      return dispatch(Object(_actions_product_actions__WEBPACK_IMPORTED_MODULE_4__["fetchAllProducts"])());
+    },
+    fetchUser: function fetchUser(user) {
+      return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_5__["fetchUser"])(user));
     }
   };
 };
@@ -1609,10 +1722,186 @@ var mapDispatchToPros = function mapDispatchToPros(dispatch) {
 
 /***/ }),
 
+/***/ "./frontend/components/splash/splash_header_info.jsx":
+/*!***********************************************************!*\
+  !*** ./frontend/components/splash/splash_header_info.jsx ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+
+
+
+var SplashHeaderInfo = function SplashHeaderInfo() {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "splash-text-wrapper"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "splash-greeting-text"
+  }, "If it\u2019s handcrafted, vintage, custom, or"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "splash-greeting-text"
+  }, "unique, it\u2019s on KINGS.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "splash-pics-wrapper"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("figure", {
+    className: "splash-figure-wrapper"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("figcaption", {
+    className: "splash-figcaption"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "splash-figcaption-text"
+  }, "The world of KINGS awaits you!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    className: "splash-explore-link",
+    to: "/products"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "splash-figcaption-subtext"
+  }, "Take a look inside", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fa fa-caret-right splash-subtext"
+  })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    className: "splash-big-pic",
+    src: "https://s3.amazonaws.com/kings-2-dev/splash.png"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "splash-pics2-wrapper"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("figure", {
+    className: "splash-figure"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    className: "splash-sec-pic",
+    src: "https://s3.amazonaws.com/kings-2-dev/splash2.jpg"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    className: "splash-explore-link",
+    to: "/products"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("figcaption", {
+    className: "splash-ship-products"
+  }, "Shop ready-to-ship products")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+    className: "splash-kings-about"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    className: "splash-kings-ul"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "splash-li-title"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fa fa-check"
+  }), "Unique everything"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "splash-li-body"
+  }, "We have millions of one-of-a-kind items, so you can find whatever you need (or really, really want).")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    className: "splash-kings-ul"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "splash-li-title"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fa fa-check"
+  }), "Independent sellers"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "splash-li-body"
+  }, "Buy directly from someone who put their heart and soul into making something special.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    className: "splash-kings-ul"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "splash-li-title"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fa fa-check"
+  }), "Secure shopping"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "splash-li-body"
+  }, "We use best-in-class technology to protect your transactions."))));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(SplashHeaderInfo));
+
+/***/ }),
+
 /***/ "./frontend/components/splash/splash_page.jsx":
 /*!****************************************************!*\
   !*** ./frontend/components/splash/splash_page.jsx ***!
   \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+/* harmony import */ var _splash_header_info__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./splash_header_info */ "./frontend/components/splash/splash_header_info.jsx");
+/* harmony import */ var _splash_popular_items__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./splash_popular_items */ "./frontend/components/splash/splash_popular_items.jsx");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+
+var SplashPage =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(SplashPage, _React$Component);
+
+  function SplashPage() {
+    _classCallCheck(this, SplashPage);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(SplashPage).apply(this, arguments));
+  }
+
+  _createClass(SplashPage, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.fetchAllProducts();
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this = this;
+
+      var _this$props = this.props,
+          photos = _this$props.photos,
+          products = _this$props.products,
+          users = _this$props.users;
+      var renderPopularContent = null;
+
+      if (photos && products) {
+        renderPopularContent = Object.values(products).slice(0, 5).map(function (prod, idx) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_splash_popular_items__WEBPACK_IMPORTED_MODULE_3__["default"], {
+            fetchUser: _this.props.fetchUser,
+            product: prod,
+            key: idx,
+            photos: photos,
+            users: users
+          });
+        });
+      }
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("main", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_splash_header_info__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "splash-popular-text"
+      }, "Popular right now"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "splash-popular-wrapper"
+      }, renderPopularContent));
+    }
+  }]);
+
+  return SplashPage;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (SplashPage);
+
+/***/ }),
+
+/***/ "./frontend/components/splash/splash_popular_items.jsx":
+/*!*************************************************************!*\
+  !*** ./frontend/components/splash/splash_popular_items.jsx ***!
+  \*************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1642,28 +1931,64 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-var SplashPage =
+var SplashPopularItems =
 /*#__PURE__*/
 function (_React$Component) {
-  _inherits(SplashPage, _React$Component);
+  _inherits(SplashPopularItems, _React$Component);
 
-  function SplashPage(props) {
-    _classCallCheck(this, SplashPage);
+  function SplashPopularItems() {
+    _classCallCheck(this, SplashPopularItems);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(SplashPage).call(this, props));
+    return _possibleConstructorReturn(this, _getPrototypeOf(SplashPopularItems).apply(this, arguments));
   }
 
-  _createClass(SplashPage, [{
+  _createClass(SplashPopularItems, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.fetchUser(this.props.product.user_id);
+    }
+  }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null);
+      var _this$props = this.props,
+          product = _this$props.product,
+          photos = _this$props.photos,
+          users = _this$props.users;
+      var userName = null;
+
+      if (users[product.user_id]) {
+        userName = users[product.user_id].fname;
+      }
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        className: "splash-pop-link",
+        to: "/product/".concat(product.id)
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "splash-pop-pic",
+        src: photos[product.id][0].photo_image_url
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        className: "splash-pop-link",
+        to: "/product/".concat(product.id)
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("figcaption", {
+        className: "splash-pop-description"
+      }, product.description.slice(0, 30))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        className: "splash-pop-link",
+        to: "/user_prof/".concat(product.user_id)
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "splash-pop-username"
+      }, userName)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        className: "splash-pop-link",
+        to: "/product/".concat(product.id)
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "splash-pop-price"
+      }, "$".concat(product.price))));
     }
   }]);
 
-  return SplashPage;
+  return SplashPopularItems;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (SplashPage);
+/* harmony default export */ __webpack_exports__["default"] = (SplashPopularItems);
 
 /***/ }),
 
@@ -1914,11 +2239,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ __webpack_exports__["default"] = (function () {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(state);
 
   switch (action.type) {
+    case _actions_product_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_ALL_PRODUCTS"]:
+      return lodash_merge__WEBPACK_IMPORTED_MODULE_0___default()({}, action.products);
+
     case _actions_product_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_CATEGORY_PRODUCTS"]:
       return lodash_merge__WEBPACK_IMPORTED_MODULE_0___default()({}, action.products);
 
@@ -2133,16 +2461,23 @@ var fetchSingleCategory = function fetchSingleCategory(category) {
 /*!********************************************!*\
   !*** ./frontend/util/product_api_util.jsx ***!
   \********************************************/
-/*! exports provided: fetchCategoryProducts */
+/*! exports provided: fetchCategoryProducts, fetchAllProducts */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCategoryProducts", function() { return fetchCategoryProducts; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAllProducts", function() { return fetchAllProducts; });
 var fetchCategoryProducts = function fetchCategoryProducts(category) {
   return $.ajax({
     method: "GET",
     url: "/api/categories/".concat(category.id, "/products")
+  });
+};
+var fetchAllProducts = function fetchAllProducts() {
+  return $.ajax({
+    method: "GET",
+    url: "/api/products/"
   });
 };
 

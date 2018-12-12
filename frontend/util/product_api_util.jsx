@@ -4,3 +4,10 @@ export const fetchCategoryProducts = category => {
     url: `/api/categories/${category.id}/products`
   });
 };
+
+export const fetchAllProducts = () => {
+  return $.ajax({
+    method: "GET",
+    url: `/api/products/`
+  });
+};

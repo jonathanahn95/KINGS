@@ -7,6 +7,7 @@ import SplashContainer from "./splash/splash_container";
 import CategoryShowContainer from "./categories/show/category_show_container";
 import HeaderContainer from "./header/header_container";
 import Modal from "./modals/modal";
+import Footer from "./footer";
 
 const App = () => (
   <div>
@@ -15,6 +16,7 @@ const App = () => (
     <Modal />
     <Route exact path="/" component={SplashContainer} />
     <Route exact path="/category/:id" component={CategoryShowContainer} />
+    <Footer />
   </div>
 );
 

@@ -61,7 +61,7 @@
 
 .products-container {
   display: flex;
-  width: 70%;
+  width: 73%;
   flex-wrap: wrap;
   margin: auto;
   justify-content: space-between;
@@ -93,4 +93,11 @@
   padding: 3px 0;
   font-weight: 100;
   color: grey;
+}
+
+.cat-show-pic {
+  height: 200px;
+  border-radius: 4px;
+  width: 252px;
+  object-fit: contain;
 }
