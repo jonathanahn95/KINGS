@@ -2,7 +2,7 @@
 
 # KINGS
 
-It is currently under heavy construction, so please bear with us and check back frequently!
+***It is currently under heavy construction***, so please bear with us and check back frequently!
 
 [Live!](https://kings.herokuapp.com/#/)
  * Please note the live site is currently on Heroku Hobby Dynos, so please allow a couple seconds for KINGS to get up and running *
