@@ -11,7 +11,6 @@ function Modal({ modal, closeModal, removeErrors }) {
   if (!modal) {
     return null;
   }
-  debugger;
   let component;
   switch (modal) {
     case "login":

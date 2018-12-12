@@ -15,7 +15,6 @@ class UserProfile extends React.Component {
   }
 
   render() {
-    debugger;
     return (
       <nav>
         <div>
