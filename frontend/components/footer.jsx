@@ -6,11 +6,8 @@ const Footer = () => {
         <ul className="footer-top-list">
           About
           <li>
-            <a
-              target="_blank"
-              href="https://github.com/jonathanahn95/BetterHelp"
-            >
-              About BetterHelp
+            <a target="_blank" href="https://github.com/jonathanahn95/KINGS">
+              About KINGS
             </a>
             <a target="_blank" href="https://jonahn.io">
               About Me

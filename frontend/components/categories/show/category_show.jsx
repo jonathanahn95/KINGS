@@ -11,6 +11,12 @@ class CategoryShow extends React.Component {
     this.props.fetchSingleCategory(this.props.match.params);
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.match.params.id !== prevProps.match.params.id) {
+      this.props.fetchSingleCategory(this.props.match.params);
+    }
+  }
+
   render() {
     let renderProducts = null;
     let {
@@ -21,7 +27,6 @@ class CategoryShow extends React.Component {
       categoryId,
       users
     } = this.props;
-
     if (products && photos) {
       renderProducts = Object.values(products).map((prod, idx) => {
         return (

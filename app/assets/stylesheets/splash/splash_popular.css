@@ -31,7 +31,9 @@
 }
 
 .splash-pop-pic {
-  height: 70%;
+  height: 200px;
+  width: 252px;
+  object-fit: contain;
   border-radius: 4px;
 }
 

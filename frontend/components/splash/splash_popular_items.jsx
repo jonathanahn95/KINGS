@@ -22,7 +22,7 @@ class SplashPopularItems extends React.Component {
         </Link>
         <Link className="splash-pop-link" to={`/product/${product.id}`}>
           <figcaption className="splash-pop-description">
-            {product.description}
+            {product.description.slice(0, 30)}
           </figcaption>
         </Link>
         <Link className="splash-pop-link" to={`/user_prof/${product.user_id}`}>

@@ -654,6 +654,13 @@ function (_React$Component) {
       this.props.fetchSingleCategory(this.props.match.params);
     }
   }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps, prevState) {
+      if (this.props.match.params.id !== prevProps.match.params.id) {
+        this.props.fetchSingleCategory(this.props.match.params);
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this = this;
@@ -847,13 +854,14 @@ function (_React$Component) {
         className: "cat-show-link",
         to: "/product/".concat(product.id)
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "cat-show-pic",
         src: photos[product.id][0].photo_image_url
       }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         className: "cat-show-link",
         to: "/product/".concat(product.id)
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "cat-show-description"
-      }, product.description)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      }, product.description.slice(0, 32))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         className: "cat-show-link",
         to: "/user_prof/".concat(product.user_id)
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
@@ -905,8 +913,8 @@ var Footer = function Footer() {
     className: "footer-top-list"
   }, "About", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     target: "_blank",
-    href: "https://github.com/jonathanahn95/BetterHelp"
-  }, "About BetterHelp"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "https://github.com/jonathanahn95/KINGS"
+  }, "About KINGS"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     target: "_blank",
     href: "https://jonahn.io"
   }, "About Me"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
@@ -1963,7 +1971,7 @@ function (_React$Component) {
         to: "/product/".concat(product.id)
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("figcaption", {
         className: "splash-pop-description"
-      }, product.description)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      }, product.description.slice(0, 30))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         className: "splash-pop-link",
         to: "/user_prof/".concat(product.user_id)
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {

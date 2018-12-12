@@ -18,11 +18,16 @@ class CategoryShowItem extends React.Component {
       <ul className="cat-show-prod-ul">
         <figure>
           <Link className="cat-show-link" to={`/product/${product.id}`}>
-            <img src={photos[product.id][0].photo_image_url} />
+            <img
+              className="cat-show-pic"
+              src={photos[product.id][0].photo_image_url}
+            />
           </Link>
         </figure>
         <Link className="cat-show-link" to={`/product/${product.id}`}>
-          <li className="cat-show-description">{product.description}</li>
+          <li className="cat-show-description">
+            {product.description.slice(0, 32)}
+          </li>
         </Link>
         <Link className="cat-show-link" to={`/user_prof/${product.user_id}`}>
           <li className="cat-show-name">{userName}</li>
