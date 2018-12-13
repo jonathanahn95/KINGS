@@ -33,7 +33,7 @@ class ProductShow extends React.Component {
     }
 
     return (
-      <h2>
+      <div>
         <nav className="prod-show-h2">
           <ul className="prod-show-user-info">
             <li className="prod-show-user-star">
@@ -58,9 +58,17 @@ class ProductShow extends React.Component {
           </figure>
         </nav>
         <section className="prod-show-middle-section">
-          <figure>
-            <img className="prod-show-main-pic" src={photos} />
-          </figure>
+          <section>
+            <figure className="prod-show-main-pic-wrapper">
+              <img className="prod-show-main-pic" src={photos} />
+            </figure>
+            <div className="prod-show-main-description">
+              <h2 className="prod-show-main-description-header">Description</h2>
+              <div className="prod-show-main-description-text">
+                {description}
+              </div>
+            </div>
+          </section>
           <div className="prod-show-form-wrapper">
             <form className="prod-show-form">
               <div className="prod-show-description">{description}</div>
@@ -103,9 +111,24 @@ class ProductShow extends React.Component {
                 15 people have this in their carts right now.
               </aside>
             </div>
+            <aside className="prod-show-overview-wrapper">
+              <div className="prod-show-overview">Overview</div>
+              <ul className="prod-show-overview-ul">
+                <li>Handmade item</li>
+                <li>Can be personalized: Yes</li>
+                <li>Made to order</li>
+              </ul>
+            </aside>
+            <aside className="prod-show-overview-wrapper">
+              <div className="prod-show-overview">Shipping & returns</div>
+              <ul className="prod-show-overview-ul">
+                <li>Ready to ship in 2–4 weeks</li>
+                <li>From United States</li>
+              </ul>
+            </aside>
           </div>
         </section>
-      </h2>
+      </div>
     );
   }
 }

@@ -1477,7 +1477,7 @@ function (_React$Component) {
         user = users[product.user_id].fname;
       }
 
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
         className: "prod-show-h2"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "prod-show-user-info"
@@ -1497,10 +1497,18 @@ function (_React$Component) {
         src: photos
       }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
         className: "prod-show-middle-section"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("figure", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("figure", {
+        className: "prod-show-main-pic-wrapper"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "prod-show-main-pic",
         src: photos
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "prod-show-main-description"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+        className: "prod-show-main-description-header"
+      }, "Description"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "prod-show-main-description-text"
+      }, description))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "prod-show-form-wrapper"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         className: "prod-show-form"
@@ -1554,7 +1562,19 @@ function (_React$Component) {
         className: "prod-show-like"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "prod-show-like-child"
-      }, "Other people want this."), "15 people have this in their carts right now.")))));
+      }, "Other people want this."), "15 people have this in their carts right now.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("aside", {
+        className: "prod-show-overview-wrapper"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "prod-show-overview"
+      }, "Overview"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "prod-show-overview-ul"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Handmade item"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Can be personalized: Yes"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Made to order"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("aside", {
+        className: "prod-show-overview-wrapper"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "prod-show-overview"
+      }, "Shipping & returns"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "prod-show-overview-ul"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Ready to ship in 2\u20134 weeks"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "From United States"))))));
     }
   }]);
 
