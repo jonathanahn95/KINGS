@@ -4,12 +4,19 @@ import merge from "lodash/merge";
 import { Link } from "react-router-dom";
 import ReactStars from "react-stars";
 
-class ProductShowItem extends React.Component {
+class ProductShowInfo extends React.Component {
+  componentDidMount() {
+    this.props.fetchUser(this.props.product.user_id);
+  }
   render() {
-    const { product, users } = this.props;
+    const { product, user } = this.props;
     const { rating, description, price } = product;
     let photos = product.photos[0].photo_image_url;
-    let user = users[product.user_id].fname;
+    let userName = null;
+
+    if (user[product.user_id]) {
+      userName = user[product.user_id].fname;
+    }
 
     return (
       <div>
@@ -20,7 +27,7 @@ class ProductShowItem extends React.Component {
                 className="prod-show-user-img"
                 src="https://s3.amazonaws.com/kings-2-dev/user_prof.png"
               />
-              <p>{user}</p>
+              <p>{userName}</p>
             </li>
             <li>
               <ReactStars
@@ -112,4 +119,4 @@ class ProductShowItem extends React.Component {
   }
 }
 
-export default withRouter(ProductShowItem);
+export default withRouter(ProductShowInfo);

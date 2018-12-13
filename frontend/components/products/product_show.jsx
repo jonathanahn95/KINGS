@@ -2,7 +2,7 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import merge from "lodash/merge";
 import { Link } from "react-router-dom";
-import ProductShowItem from "./product_show_item";
+import ProductShowInfo from "./product_show_info";
 import ReactStars from "react-stars";
 
 class ProductShow extends React.Component {
@@ -12,16 +12,22 @@ class ProductShow extends React.Component {
 
   componentDidMount() {
     this.props.fetchProduct(this.props.match.params);
-    this.props.fetchAllUsers();
   }
 
   render() {
-    const { product, users } = this.props;
+    const { product, user } = this.props;
     let renderProductInfo = null;
 
-    if (product && users && users[product.user_id]) {
+    if (product) {
       renderProductInfo = [product].map((prod, idx) => {
-        return <ProductShowItem product={product} key={idx} users={users} />;
+        return (
+          <ProductShowInfo
+            product={product}
+            key={idx}
+            user={user}
+            fetchUser={this.props.fetchUser}
+          />
+        );
       });
     }
 
