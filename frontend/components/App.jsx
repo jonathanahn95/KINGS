@@ -5,6 +5,7 @@ import LoginFormContainer from "./session/login_form_container";
 import SignupFormContainer from "./session/signup_form_container";
 import SplashContainer from "./splash/splash_container";
 import CategoryShowContainer from "./categories/show/category_show_container";
+import ProductShowContainer from "./products/product_show_container";
 import HeaderContainer from "./header/header_container";
 import Modal from "./modals/modal";
 import Footer from "./footer";
@@ -16,6 +17,7 @@ const App = () => (
     <Modal />
     <Route exact path="/" component={SplashContainer} />
     <Route exact path="/category/:id" component={CategoryShowContainer} />
+    <Route exact path="/product/:id" component={ProductShowContainer} />
     <Footer />
   </div>
 );

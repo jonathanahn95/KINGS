@@ -6,7 +6,10 @@ class Api::ProductsController < ApplicationController
     else
       @products = Product.all
     end
+  end
 
+  def show
+    @product = Product.find(params[:id])
   end
 
   private
