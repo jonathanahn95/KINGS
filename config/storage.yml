@@ -9,7 +9,6 @@ amazon_dev:
   bucket: <%= Rails.application.credentials.aws[:bucket] %>
 
 
-
 # Remember not to checkin your GCS keyfile to a repository
 # google:
 #   service: GCS

@@ -1,0 +1,216 @@
+.prod-show-h2 {
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  padding: 30px 0 40px 0;
+  width: 70%;
+}
+
+.prod-show-user-info {
+  display: flex;
+  width: 23%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.prod-show-pictures {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+}
+
+.prod-show-middle-section {
+  display: flex;
+  justify-content: space-between;
+  width: 70%;
+  margin: auto;
+}
+
+.prod-show-main-pic {
+  object-fit: contain;
+  height: 475px;
+  width: 575px;
+}
+
+.prod-show-form {
+  font-weight: normal;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 310px;
+}
+
+.prod-show-price-quest {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 5px;
+}
+
+.prod-show-select-quantity {
+  display: flex;
+  margin-bottom: 5px;
+  flex-direction: column;
+}
+
+.prod-show-select-size {
+  display: flex;
+  flex-direction: column;
+}
+
+.custom-select {
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05);
+  background-color: #fff;
+  border-color: rgba(0, 0, 0, 0.15);
+  border-style: solid;
+  border-width: 1px;
+  border-bottom-color: rgba(0, 0, 0, 0.2);
+  color: #222;
+  text-indent: 0.01px;
+  transition: opacity 0.3s ease-out;
+  font-size: 14px;
+  height: 38px;
+}
+
+.custom-select-2 {
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05);
+  background-color: #fff;
+  border-color: rgba(0, 0, 0, 0.15);
+  border-style: solid;
+  border-width: 1px;
+  border-bottom-color: rgba(0, 0, 0, 0.2);
+  color: #222;
+  text-indent: 0.01px;
+  transition: opacity 0.3s ease-out;
+  font-size: 14px;
+  height: 38px;
+  width: 15%;
+}
+
+.prod-show-form-submit {
+  width: 100%;
+  color: white;
+  background-color: black;
+  height: 45px;
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: 5px;
+}
+
+.prod-show-form-submit:hover {
+  background-color: #222;
+  cursor: pointer;
+}
+
+.prod-show-price {
+  font-weight: 600;
+  font-size: 19px;
+}
+
+.prod-show-description {
+  font-size: 22px;
+  font-family: "Merriweather";
+  line-height: 26px;
+}
+
+.prod-show-size {
+  padding-bottom: 10px;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.prod-show-quantity {
+  padding-bottom: 10px;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.prod-ask-question {
+  padding: 9px;
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.prod-ask-question:hover {
+  background-color: #f9f9f7;
+  cursor: pointer;
+}
+
+.prod-show-user-img {
+  height: 70px;
+  width: 70px;
+  object-fit: cover;
+}
+
+.prod-show-user-star {
+  display: flex;
+  width: 60%;
+  justify-content: space-between;
+  font-size: 17px;
+  font-weight: 600;
+  align-items: center;
+}
+
+.prod-show-form-wrapper {
+  width: 39%;
+}
+
+.prod-show-like {
+  font-size: 14px;
+  font-weight: normal;
+  padding-top: 20px;
+}
+
+.prod-show-like-child {
+  font-weight: 600;
+}
+
+.prod-show-like-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #ccc;
+}
+
+.prod-show-overview-wrapper {
+  margin-top: 25px;
+  font-weight: 300;
+  font-size: 15px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #ccc;
+}
+
+.prod-show-overview {
+  font-weight: 500;
+  font-size: 17px;
+  padding-bottom: 10px;
+}
+
+.prod-show-overview-ul {
+  list-style: initial;
+  padding-left: 20px;
+  font-weight: 300;
+}
+
+.prod-show-main-pic-wrapper {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 40px;
+}
+
+.prod-show-main-description {
+  padding: 40px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.prod-show-main-description-header {
+  font-size: 16px;
+  margin: 25px 0;
+}
+
+.prod-show-main-description-text {
+  font-size: 16px;
+  font-weight: 300;
+}

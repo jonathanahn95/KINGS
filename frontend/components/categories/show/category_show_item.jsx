@@ -4,13 +4,10 @@ import ReactStars from "react-stars";
 import { render } from "react-dom";
 
 class CategoryShowItem extends React.Component {
-  componentDidMount() {
-    this.props.fetchUser(this.props.product.user_id);
-  }
-
   render() {
     let { product, photos, categoryId, users } = this.props;
     let userName = null;
+    debugger;
     if (users[product.user_id]) {
       userName = users[product.user_id].fname;
     }

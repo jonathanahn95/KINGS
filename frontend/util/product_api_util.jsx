@@ -1,13 +1,13 @@
-export const fetchCategoryProducts = category => {
-  return $.ajax({
-    method: "GET",
-    url: `/api/categories/${category.id}/products`
-  });
-};
-
 export const fetchAllProducts = () => {
   return $.ajax({
     method: "GET",
     url: `/api/products/`
+  });
+};
+
+export const fetchProduct = product => {
+  return $.ajax({
+    method: "GET",
+    url: `/api/products/${product.id}`
   });
 };

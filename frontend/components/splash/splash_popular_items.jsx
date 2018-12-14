@@ -2,10 +2,6 @@ import React from "react";
 import { withRouter, Link } from "react-router-dom";
 
 class SplashPopularItems extends React.Component {
-  componentDidMount() {
-    this.props.fetchUser(this.props.product.user_id);
-  }
-
   render() {
     const { product, photos, users } = this.props;
     let userName = null;

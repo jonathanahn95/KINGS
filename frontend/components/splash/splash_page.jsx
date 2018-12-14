@@ -6,6 +6,7 @@ import SplashPopularItems from "./splash_popular_items";
 class SplashPage extends React.Component {
   componentDidMount() {
     this.props.fetchAllProducts();
+    this.props.fetchAllUsers();
   }
 
   render() {
@@ -17,7 +18,6 @@ class SplashPage extends React.Component {
         .map((prod, idx) => {
           return (
             <SplashPopularItems
-              fetchUser={this.props.fetchUser}
               product={prod}
               key={idx}
               photos={photos}
