@@ -16,7 +16,8 @@ class Api::UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.includes(:products).find(params[:id])
+    @products = @user.products.with_attached_photos.includes(:category, :user)
     render :show
   end
 

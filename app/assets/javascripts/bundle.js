@@ -675,6 +675,7 @@ function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchSingleCategory(this.props.match.params);
+      this.props.fetchAllUsers();
     }
   }, {
     key: "componentDidUpdate",
@@ -794,6 +795,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     fetchUser: function fetchUser(user) {
       return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_5__["fetchUser"])(user));
+    },
+    fetchAllUsers: function fetchAllUsers() {
+      return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_5__["fetchAllUsers"])());
     }
   };
 };
@@ -853,11 +857,6 @@ function (_React$Component) {
   }
 
   _createClass(CategoryShowItem, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.props.fetchUser(this.props.product.user_id);
-    }
-  }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,
@@ -866,6 +865,7 @@ function (_React$Component) {
           categoryId = _this$props.categoryId,
           users = _this$props.users;
       var userName = null;
+      debugger;
 
       if (users[product.user_id]) {
         userName = users[product.user_id].fname;
@@ -1513,7 +1513,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var msp = function msp(state, ownProps) {
-  debugger;
   return {
     product: state.entities.products[ownProps.match.params.id],
     user: state.entities.users
@@ -1608,6 +1607,7 @@ function (_React$Component) {
 
       if (user[product.user_id]) {
         userName = user[product.user_id].fname;
+        debugger;
       }
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
@@ -2052,8 +2052,8 @@ var mapDispatchToPros = function mapDispatchToPros(dispatch) {
     fetchAllProducts: function fetchAllProducts() {
       return dispatch(Object(_actions_product_actions__WEBPACK_IMPORTED_MODULE_4__["fetchAllProducts"])());
     },
-    fetchUser: function fetchUser(user) {
-      return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_5__["fetchUser"])(user));
+    fetchAllUsers: function fetchAllUsers() {
+      return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_5__["fetchAllUsers"])());
     }
   };
 };
@@ -2199,12 +2199,11 @@ function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchAllProducts();
+      this.props.fetchAllUsers();
     }
   }, {
     key: "render",
     value: function render() {
-      var _this = this;
-
       var _this$props = this.props,
           photos = _this$props.photos,
           products = _this$props.products,
@@ -2214,7 +2213,6 @@ function (_React$Component) {
       if (photos && products) {
         renderPopularContent = Object.values(products).slice(0, 5).map(function (prod, idx) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_splash_popular_items__WEBPACK_IMPORTED_MODULE_3__["default"], {
-            fetchUser: _this.props.fetchUser,
             product: prod,
             key: idx,
             photos: photos,
@@ -2283,11 +2281,6 @@ function (_React$Component) {
   }
 
   _createClass(SplashPopularItems, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.props.fetchUser(this.props.product.user_id);
-    }
-  }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,

@@ -16,6 +16,7 @@ class ProductShowInfo extends React.Component {
 
     if (user[product.user_id]) {
       userName = user[product.user_id].fname;
+      debugger;
     }
 
     return (

@@ -3,7 +3,7 @@ import { logout } from "../../actions/session_actions";
 import { openModal } from "../../actions/modal_actions";
 import SplashPage from "./splash_page";
 import { fetchAllProducts } from "../../actions/product_actions";
-import { fetchUser } from "../../actions/user_actions";
+import { fetchUser, fetchAllUsers } from "../../actions/user_actions";
 
 const mapStateToProps = state => {
   let photos,
@@ -26,7 +26,7 @@ const mapDispatchToPros = dispatch => {
     logout: () => dispatch(logout()),
     openModal: type => dispatch(openModal(type)),
     fetchAllProducts: () => dispatch(fetchAllProducts()),
-    fetchUser: user => dispatch(fetchUser(user))
+    fetchAllUsers: () => dispatch(fetchAllUsers())
   };
 };
 

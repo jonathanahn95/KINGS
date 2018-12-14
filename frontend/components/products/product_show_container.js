@@ -6,7 +6,6 @@ import { fetchProduct } from "../../actions/product_actions";
 import { fetchAllUsers, fetchUser } from "../../actions/user_actions";
 
 const msp = (state, ownProps) => {
-  debugger;
   return {
     product: state.entities.products[ownProps.match.params.id],
     user: state.entities.users
