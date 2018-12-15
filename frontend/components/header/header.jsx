@@ -5,10 +5,6 @@ import GreetingLinksContainer from "../greeting/greeting_links_container";
 import CategoriesContainer from "../categories/index/categories_container";
 
 class Header extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   toggleLinks() {
     if (this.props.currentUser) {
       return <GreetingLinksContainer />;

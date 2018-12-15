@@ -1139,10 +1139,10 @@ var Header =
 function (_React$Component) {
   _inherits(Header, _React$Component);
 
-  function Header(props) {
+  function Header() {
     _classCallCheck(this, Header);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(Header).call(this, props));
+    return _possibleConstructorReturn(this, _getPrototypeOf(Header).apply(this, arguments));
   }
 
   _createClass(Header, [{
@@ -1446,10 +1446,10 @@ var ProductShow =
 function (_React$Component) {
   _inherits(ProductShow, _React$Component);
 
-  function ProductShow(props) {
+  function ProductShow() {
     _classCallCheck(this, ProductShow);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(ProductShow).call(this, props));
+    return _possibleConstructorReturn(this, _getPrototypeOf(ProductShow).apply(this, arguments));
   }
 
   _createClass(ProductShow, [{

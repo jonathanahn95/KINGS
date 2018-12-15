@@ -6,10 +6,6 @@ import ProductShowInfo from "./product_show_info";
 import ReactStars from "react-stars";
 
 class ProductShow extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     this.props.fetchProduct(this.props.match.params);
   }
