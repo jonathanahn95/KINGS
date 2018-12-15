@@ -10,7 +10,9 @@ export default (state = [], action) => {
     case RECEIVE_ALL_CATEGORIES:
       return merge({}, action.categories);
     case RECEIVE_SINGLE_CATEGORY:
-      return merge({}, state, { [action.category.id]: action.category });
+      return merge({}, state, {
+        [action.payload.category.id]: action.payload.category
+      });
     default:
       return state;
   }

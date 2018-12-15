@@ -76,6 +76,10 @@
   font-size: 36px;
 }
 
+.link-kings-logo {
+  text-decoration: none;
+}
+
 .splash-greeting-text {
   font-family: "Guardian-EgypTT";
 }

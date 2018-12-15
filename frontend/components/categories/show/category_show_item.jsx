@@ -7,7 +7,6 @@ class CategoryShowItem extends React.Component {
   render() {
     let { product, photos, categoryId, users } = this.props;
     let userName = null;
-    debugger;
     if (users[product.user_id]) {
       userName = users[product.user_id].fname;
     }

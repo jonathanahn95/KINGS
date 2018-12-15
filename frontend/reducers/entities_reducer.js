@@ -1,14 +1,16 @@
 import { combineReducers } from "redux";
-import usersReducer from "./users_reducer";
-import modalReducer from "./modal_reducer";
-import categoriesReducer from "./categories_reducer";
-import productsReducer from "./products_reducer";
+import users from "./users_reducer";
+import modal from "./modal_reducer";
+import categories from "./categories_reducer";
+import products from "./products_reducer";
+import photos from "./photos_reducer";
 
 const entitiesReducer = combineReducers({
-  users: usersReducer,
-  modal: modalReducer,
-  categories: categoriesReducer,
-  products: productsReducer
+  users,
+  modal,
+  categories,
+  products,
+  photos
 });
 
 export default entitiesReducer;

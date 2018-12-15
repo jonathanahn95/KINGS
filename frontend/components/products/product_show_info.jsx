@@ -5,18 +5,14 @@ import { Link } from "react-router-dom";
 import ReactStars from "react-stars";
 
 class ProductShowInfo extends React.Component {
-  componentDidMount() {
-    this.props.fetchUser(this.props.product.user_id);
-  }
   render() {
-    const { product, user } = this.props;
+    const { product, user, photos } = this.props;
     const { rating, description, price } = product;
-    let photos = product.photos[0].photo_image_url;
-    let userName = null;
-
+    let userName,
+      renderPhoto = null;
     if (user[product.user_id]) {
       userName = user[product.user_id].fname;
-      debugger;
+      renderPhoto = photos[0].photo_image_url;
     }
 
     return (
@@ -41,13 +37,13 @@ class ProductShowInfo extends React.Component {
             </li>
           </ul>
           <figure>
-            <img className="prod-show-pictures" src={photos} />
+            <img className="prod-show-pictures" src={renderPhoto} />
           </figure>
         </nav>
         <section className="prod-show-middle-section">
           <section>
             <figure className="prod-show-main-pic-wrapper">
-              <img className="prod-show-main-pic" src={photos} />
+              <img className="prod-show-main-pic" src={renderPhoto} />
             </figure>
             <div className="prod-show-main-description">
               <h2 className="prod-show-main-description-header">Description</h2>

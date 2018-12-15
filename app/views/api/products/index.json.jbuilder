@@ -16,3 +16,11 @@ json.photos do
     end
   end
 end
+
+json.users do
+  @products.each do |product|
+    json.set! product.user.id do
+      json.extract! product.user, :id, :fname, :email
+    end
+  end
+end

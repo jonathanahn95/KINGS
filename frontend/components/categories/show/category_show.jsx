@@ -9,7 +9,6 @@ class CategoryShow extends React.Component {
 
   componentDidMount() {
     this.props.fetchSingleCategory(this.props.match.params);
-    this.props.fetchAllUsers();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -37,7 +36,6 @@ class CategoryShow extends React.Component {
             key={idx}
             photos={photos}
             categoryId={categoryId}
-            fetchUser={this.props.fetchUser}
             users={users}
           />
         );

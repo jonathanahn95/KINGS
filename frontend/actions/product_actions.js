@@ -3,17 +3,17 @@ import * as ProductApiUtil from "../util/product_api_util";
 export const RECEIVE_ALL_PRODUCTS = "RECEIVE_ALL_PRODUCTS";
 export const RECEIVE_PRODUCT = "RECEIVE_PRODUCT";
 
-const receiveAllProducts = products => {
+const receiveAllProducts = payload => {
   return {
     type: RECEIVE_ALL_PRODUCTS,
-    products
+    payload
   };
 };
 
-const receiveProduct = product => {
+const receiveProduct = payload => {
   return {
     type: RECEIVE_PRODUCT,
-    product
+    payload
   };
 };
 

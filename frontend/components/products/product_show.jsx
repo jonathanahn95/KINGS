@@ -15,9 +15,8 @@ class ProductShow extends React.Component {
   }
 
   render() {
-    const { product, user } = this.props;
+    const { product, user, photos } = this.props;
     let renderProductInfo = null;
-
     if (product) {
       renderProductInfo = [product].map((prod, idx) => {
         return (
@@ -25,7 +24,7 @@ class ProductShow extends React.Component {
             product={product}
             key={idx}
             user={user}
-            fetchUser={this.props.fetchUser}
+            photos={photos}
           />
         );
       });

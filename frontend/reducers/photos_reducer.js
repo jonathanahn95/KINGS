@@ -9,14 +9,14 @@ export default (state = {}, action) => {
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_SINGLE_CATEGORY:
-      if (action.payload.products) {
-        return action.payload.products[action.payload.category.id];
+      if (action.payload.photos) {
+        return action.payload.photos[action.payload.category.id];
       }
       return {};
     case RECEIVE_ALL_PRODUCTS:
-      return action.payload.products;
+      return merge({}, action.payload.photos);
     case RECEIVE_PRODUCT:
-      return { [action.payload.product.id]: action.payload.product };
+      return { [action.payload.product.id]: action.payload.photos };
     default:
       return state;
   }
