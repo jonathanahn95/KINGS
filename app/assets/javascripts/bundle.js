@@ -636,7 +636,8 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var renderProducts = null;
+      var renderProducts,
+          productsCount = null;
       var _this$props = this.props,
           products = _this$props.products,
           category = _this$props.category,
@@ -646,6 +647,7 @@ function (_React$Component) {
           users = _this$props.users;
 
       if (products && photos) {
+        productsCount = Object.values(products).length;
         renderProducts = Object.values(products).map(function (prod, idx) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_category_show_item__WEBPACK_IMPORTED_MODULE_2__["default"], {
             product: prod,
@@ -672,7 +674,7 @@ function (_React$Component) {
         className: "fa fa-caret-right"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "small-item-count"
-      }, "($ items)")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "(".concat(productsCount, " items)"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "big-name"
       }, categoryName), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "products-container"
@@ -1355,7 +1357,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
 /* harmony import */ var lodash_merge__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lodash/merge */ "./node_modules/lodash/merge.js");
 /* harmony import */ var lodash_merge__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash_merge__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _product_show_info__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./product_show_info */ "./frontend/components/products/product_show_info.jsx");
+/* harmony import */ var _product_show_info_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./product_show_info_container */ "./frontend/components/products/product_show_info_container.js");
 /* harmony import */ var react_stars__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-stars */ "./node_modules/react-stars/dist/react-stars.js");
 /* harmony import */ var react_stars__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_stars__WEBPACK_IMPORTED_MODULE_4__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -1388,38 +1390,16 @@ var ProductShow =
 function (_React$Component) {
   _inherits(ProductShow, _React$Component);
 
-  function ProductShow(props) {
+  function ProductShow() {
     _classCallCheck(this, ProductShow);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(ProductShow).call(this, props));
+    return _possibleConstructorReturn(this, _getPrototypeOf(ProductShow).apply(this, arguments));
   }
 
   _createClass(ProductShow, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.props.fetchProduct(this.props.match.params);
-    }
-  }, {
     key: "render",
     value: function render() {
-      var _this$props = this.props,
-          product = _this$props.product,
-          user = _this$props.user,
-          photos = _this$props.photos;
-      var renderProductInfo = null;
-
-      if (product) {
-        renderProductInfo = [product].map(function (prod, idx) {
-          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_product_show_info__WEBPACK_IMPORTED_MODULE_3__["default"], {
-            product: product,
-            key: idx,
-            user: user,
-            photos: photos
-          });
-        });
-      }
-
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, renderProductInfo);
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_product_show_info_container__WEBPACK_IMPORTED_MODULE_3__["default"], null));
     }
   }]);
 
@@ -1523,12 +1503,18 @@ function (_React$Component) {
   }
 
   _createClass(ProductShowInfo, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.fetchProduct(this.props.match.params);
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,
           product = _this$props.product,
           user = _this$props.user,
           photos = _this$props.photos;
+      debugger;
       var rating = product.rating,
           description = product.description,
           price = product.price;
@@ -1645,6 +1631,48 @@ function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(ProductShowInfo));
+
+/***/ }),
+
+/***/ "./frontend/components/products/product_show_info_container.js":
+/*!*********************************************************************!*\
+  !*** ./frontend/components/products/product_show_info_container.js ***!
+  \*********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _product_show_info__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./product_show_info */ "./frontend/components/products/product_show_info.jsx");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+/* harmony import */ var _actions_product_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/product_actions */ "./frontend/actions/product_actions.js");
+
+
+
+
+
+
+var msp = function msp(state, ownProps) {
+  debugger;
+  return {
+    product: state.entities.products[ownProps.match.params.id],
+    user: state.entities.users,
+    photos: state.entities.photos[ownProps.match.params.id]
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    fetchProduct: function fetchProduct(product) {
+      return dispatch(Object(_actions_product_actions__WEBPACK_IMPORTED_MODULE_4__["fetchProduct"])(product));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(msp, mapDispatchToProps)(_product_show_info__WEBPACK_IMPORTED_MODULE_2__["default"]));
 
 /***/ }),
 

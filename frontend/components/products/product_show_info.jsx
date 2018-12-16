@@ -5,8 +5,13 @@ import { Link } from "react-router-dom";
 import ReactStars from "react-stars";
 
 class ProductShowInfo extends React.Component {
+  componentDidMount() {
+    this.props.fetchProduct(this.props.match.params);
+  }
+
   render() {
     const { product, user, photos } = this.props;
+    debugger;
     const { rating, description, price } = product;
     let userName,
       renderPhoto = null;
