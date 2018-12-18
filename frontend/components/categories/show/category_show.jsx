@@ -9,7 +9,6 @@ class CategoryShow extends React.Component {
 
   componentDidMount() {
     this.props.fetchSingleCategory(this.props.match.params);
-    this.props.fetchAllUsers();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -19,7 +18,8 @@ class CategoryShow extends React.Component {
   }
 
   render() {
-    let renderProducts = null;
+    let renderProducts,
+      productsCount = null;
     let {
       products,
       category,
@@ -30,6 +30,7 @@ class CategoryShow extends React.Component {
     } = this.props;
 
     if (products && photos) {
+      productsCount = Object.values(products).length;
       renderProducts = Object.values(products).map((prod, idx) => {
         return (
           <CategoryShowItem
@@ -37,7 +38,6 @@ class CategoryShow extends React.Component {
             key={idx}
             photos={photos}
             categoryId={categoryId}
-            fetchUser={this.props.fetchUser}
             users={users}
           />
         );
@@ -55,7 +55,7 @@ class CategoryShow extends React.Component {
           <i className="fa fa-caret-right" />
           <li className="small-name">{categoryName}</li>
           <i className="fa fa-caret-right" />
-          <li className="small-item-count">{`($ items)`}</li>
+          <li className="small-item-count">{`(${productsCount} items)`}</li>
         </ul>
         <div className="big-name">{categoryName}</div>
         <div className="products-container">{renderProducts}</div>

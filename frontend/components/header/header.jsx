@@ -22,7 +22,9 @@ class Header extends React.Component {
       <header>
         <nav className="header-nav">
           <div className="header-nav-left">
-            <div className="kings-logo">KINGS</div>
+            <Link className="link-kings-logo" to="/">
+              <div className="kings-logo">KINGS</div>
+            </Link>
             <form className="header-nav-form">
               <input
                 placeholder="Search for items or shops"

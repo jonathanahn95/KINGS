@@ -214,3 +214,51 @@
   font-size: 16px;
   font-weight: 300;
 }
+
+.user-prod-pic {
+  width: 170px;
+  height: 130px;
+  object-fit: cover;
+}
+
+.single-user-prod {
+  width: 48%;
+}
+
+.user-products-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.user-product-section {
+  text-align: center;
+}
+
+.user-prod-name {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 30px;
+}
+
+.single-user-info {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+  align-items: flex-start;
+}
+
+.user-prod-description {
+  font-size: 14px;
+  font-size: 14px;
+  padding: 5px 0;
+}
+
+.user-prod-price {
+  font-weight: bold;
+}
+
+.single-user-link {
+  text-decoration: none;
+  color: black;
+}

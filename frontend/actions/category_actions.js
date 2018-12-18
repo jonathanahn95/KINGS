@@ -18,10 +18,10 @@ export const fetchAllCategories = () => {
   };
 };
 
-const receiveSingleCategory = category => {
+const receiveSingleCategory = payload => {
   return {
     type: RECEIVE_SINGLE_CATEGORY,
-    category
+    payload
   };
 };
 

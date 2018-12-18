@@ -6,30 +6,47 @@ import { render } from "react-dom";
 class CategoryShowItem extends React.Component {
   render() {
     let { product, photos, categoryId, users } = this.props;
-    let userName = null;
-    debugger;
+    let userName,
+      photoSrc = null;
     if (users[product.user_id]) {
       userName = users[product.user_id].fname;
+    }
+
+    if (photos[product.id]) {
+      photoSrc = photos[product.id][0].photo_image_url;
     }
     return (
       <ul className="cat-show-prod-ul">
         <figure>
-          <Link className="cat-show-link" to={`/product/${product.id}`}>
-            <img
-              className="cat-show-pic"
-              src={photos[product.id][0].photo_image_url}
-            />
+          <Link
+            target="_blank"
+            className="cat-show-link"
+            to={`/product/${product.id}`}
+          >
+            <img className="cat-show-pic" src={photoSrc} />
           </Link>
         </figure>
-        <Link className="cat-show-link" to={`/product/${product.id}`}>
+        <Link
+          target="_blank"
+          className="cat-show-link"
+          to={`/product/${product.id}`}
+        >
           <li className="cat-show-description">
             {product.description.slice(0, 32)}
           </li>
         </Link>
-        <Link className="cat-show-link" to={`/user_prof/${product.user_id}`}>
+        <Link
+          target="_blank"
+          className="cat-show-link"
+          to={`/user_prof/${product.user_id}`}
+        >
           <li className="cat-show-name">{userName}</li>
         </Link>
-        <Link className="cat-show-link" to={`/product/${product.id}`}>
+        <Link
+          target="_blank"
+          className="cat-show-link"
+          to={`/product/${product.id}`}
+        >
           <li>
             <ReactStars
               color2={"black"}
@@ -40,7 +57,11 @@ class CategoryShowItem extends React.Component {
             />
           </li>
         </Link>
-        <Link className="cat-show-link" to={`/product/${product.id}`}>
+        <Link
+          target="_blank"
+          className="cat-show-link"
+          to={`/product/${product.id}`}
+        >
           <li className="cat-show-price">{`$${product.price}`}</li>
         </Link>
       </ul>

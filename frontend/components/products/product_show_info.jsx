@@ -3,20 +3,29 @@ import { withRouter } from "react-router-dom";
 import merge from "lodash/merge";
 import { Link } from "react-router-dom";
 import ReactStars from "react-stars";
+import UserProductsContainer from "./user_products_container";
 
 class ProductShowInfo extends React.Component {
   componentDidMount() {
     this.props.fetchUser(this.props.product.user_id);
   }
+
   render() {
-    const { product, user } = this.props;
+    const {
+      product,
+      user,
+      photos,
+      userProducts,
+      userProductPhotos
+    } = this.props;
     const { rating, description, price } = product;
-    let photos = product.photos[0].photo_image_url;
-    let userName = null;
+    let renderUsersProducts = null;
+    let userName,
+      renderPhoto = null;
 
     if (user[product.user_id]) {
       userName = user[product.user_id].fname;
-      debugger;
+      renderPhoto = photos[0].photo_image_url;
     }
 
     return (
@@ -41,13 +50,13 @@ class ProductShowInfo extends React.Component {
             </li>
           </ul>
           <figure>
-            <img className="prod-show-pictures" src={photos} />
+            <img className="prod-show-pictures" src={renderPhoto} />
           </figure>
         </nav>
         <section className="prod-show-middle-section">
           <section>
             <figure className="prod-show-main-pic-wrapper">
-              <img className="prod-show-main-pic" src={photos} />
+              <img className="prod-show-main-pic" src={renderPhoto} />
             </figure>
             <div className="prod-show-main-description">
               <h2 className="prod-show-main-description-header">Description</h2>
@@ -60,7 +69,7 @@ class ProductShowInfo extends React.Component {
             <form className="prod-show-form">
               <div className="prod-show-description">{description}</div>
               <div className="prod-show-price-quest">
-                <p className="prod-show-price">{price}</p>
+                <p className="prod-show-price">{`$${price}`}</p>
                 <p className="prod-ask-question">Ask a question</p>
               </div>
               <div className="prod-show-select-size">
@@ -112,6 +121,10 @@ class ProductShowInfo extends React.Component {
                 <li>Ready to ship in 2–4 weeks</li>
                 <li>From United States</li>
               </ul>
+            </aside>
+            <aside className="user-product-section">
+              <h2 className="user-prod-name">{userName}</h2>
+              <UserProductsContainer />
             </aside>
           </div>
         </section>

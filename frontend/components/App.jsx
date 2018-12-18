@@ -17,7 +17,7 @@ const App = () => (
     <Modal />
     <Route exact path="/" component={SplashContainer} />
     <Route exact path="/category/:id" component={CategoryShowContainer} />
-    <Route exact path="/product/:id" component={ProductShowContainer} />
+    <Route path="/product/:id" component={ProductShowContainer} />
     <Footer />
   </div>
 );

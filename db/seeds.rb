@@ -1,12 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
-
 User.destroy_all
 Category.destroy_all
 Product.destroy_all
@@ -23,6 +14,7 @@ end
 
 User.create!([
   {fname: 'Guest', email: "guest@demo.org", password: 123123},
+  {fname: 'Jonathan', email: "jonathan@gmail.com", password: 123123}
   ])
 users = User.all
 
@@ -40,7 +32,7 @@ Category.create!([
 categories = Category.all
 
 Product.create!([
-  {rating: 5, description: 'This is the best gift I ever got', title: 'Necklace', price: 35.99, category_id: categories[4].id, user_id: users[0].id},
+  {rating: 5, description: 'This is the best gift I ever got', title: 'Necklace', price: 35.99, category_id: categories[4].id, user_id: users[1].id},
   {rating: 5, description: 'I LOVE THESE EARRINGS', title: 'Earrings', price: 35.99, category_id: categories[4].id, user_id: users[0].id},
   {rating: 5, description: 'Daddy Necklace to wear around your neck to remember', title: 'Daddy Necklace', price: 35.99, category_id: categories[4].id, user_id: users[0].id},
   {rating: 5, description: 'Bracelet', title: 'Bracelet', price: 35.99, category_id: categories[4].id, user_id: users[0].id},
@@ -65,13 +57,13 @@ Product.create!([
   {rating: 5, description: 'Pea Coat2', title: 'Pea Coat', price: 35.99, category_id: categories[3].id, user_id: users[0].id},
   {rating: 5, description: 'Custom made nike show', title: 'Shoe', price: 35.99, category_id: categories[3].id, user_id: users[0].id},
   {rating: 5, description: 'Art 1', title: 'Art', price: 35.99, category_id: categories[1].id, user_id: users[0].id},
-  {rating: 5, description: 'Art 2', title: 'Art', price: 35.99, category_id: categories[1].id, user_id: users[0].id},
+  {rating: 5, description: 'Art 2', title: 'Art', price: 35.99, category_id: categories[1].id, user_id: users[1].id},
   {rating: 5, description: 'Art 3', title: 'Art', price: 35.99, category_id: categories[1].id, user_id: users[0].id},
-  {rating: 5, description: 'Art 4', title: 'Art', price: 35.99, category_id: categories[1].id, user_id: users[0].id},
+  {rating: 5, description: 'Art 4', title: 'Art', price: 35.99, category_id: categories[1].id, user_id: users[1].id},
   {rating: 5, description: 'Art 5', title: 'Art', price: 35.99, category_id: categories[1].id, user_id: users[0].id},
-  {rating: 5, description: 'Art 6', title: 'Art', price: 35.99, category_id: categories[1].id, user_id: users[0].id},
+  {rating: 5, description: 'Art 6', title: 'Art', price: 35.99, category_id: categories[1].id, user_id: users[1].id},
   {rating: 5, description: 'Art 7', title: 'Art', price: 35.99, category_id: categories[1].id, user_id: users[0].id},
-  {rating: 5, description: 'Art 8', title: 'Art', price: 35.99, category_id: categories[1].id, user_id: users[0].id},
+  {rating: 5, description: 'Art 8', title: 'Art', price: 35.99, category_id: categories[1].id, user_id: users[1].id},
   {rating: 5, description: 'Art 9', title: 'Art', price: 35.99, category_id: categories[1].id, user_id: users[0].id},
   {rating: 5, description: 'Art 10', title: 'Art', price: 35.99, category_id: categories[1].id, user_id: users[0].id},
   {rating: 5, description: 'Art 11', title: 'Art', price: 35.99, category_id: categories[1].id, user_id: users[0].id},

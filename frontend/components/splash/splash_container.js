@@ -3,14 +3,12 @@ import { logout } from "../../actions/session_actions";
 import { openModal } from "../../actions/modal_actions";
 import SplashPage from "./splash_page";
 import { fetchAllProducts } from "../../actions/product_actions";
-import { fetchUser, fetchAllUsers } from "../../actions/user_actions";
-
 const mapStateToProps = state => {
   let photos,
     products = null;
-  if (state.entities.products["products"]) {
-    products = state.entities.products["products"];
-    photos = state.entities.products["photos"];
+  if (Object.values(state.entities.products).length > 0) {
+    products = state.entities.products;
+    photos = state.entities.photos;
   }
 
   return {
@@ -25,8 +23,7 @@ const mapDispatchToPros = dispatch => {
   return {
     logout: () => dispatch(logout()),
     openModal: type => dispatch(openModal(type)),
-    fetchAllProducts: () => dispatch(fetchAllProducts()),
-    fetchAllUsers: () => dispatch(fetchAllUsers())
+    fetchAllProducts: () => dispatch(fetchAllProducts())
   };
 };
 
