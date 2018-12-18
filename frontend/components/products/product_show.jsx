@@ -2,16 +2,31 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import merge from "lodash/merge";
 import { Link } from "react-router-dom";
-import ProductShowInfoContainer from "./product_show_info_container";
+import ProductShowInfo from "./product_show_info";
 import ReactStars from "react-stars";
 
 class ProductShow extends React.Component {
+  componentDidMount() {
+    this.props.fetchProduct(this.props.match.params);
+  }
+
   render() {
-    return (
-      <div>
-        <ProductShowInfoContainer />
-      </div>
-    );
+    const { product, user, photos, userProducts } = this.props;
+    let renderProductInfo = null;
+    if (product) {
+      renderProductInfo = (
+        <ProductShowInfo
+          product={product}
+          key={product.id}
+          user={user}
+          photos={photos}
+          userProducts={userProducts}
+          fetchUser={this.props.fetchUser}
+        />
+      );
+    }
+
+    return <div>{renderProductInfo}</div>;
   }
 }
 

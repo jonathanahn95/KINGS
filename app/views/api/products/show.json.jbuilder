@@ -8,8 +8,12 @@ json.photos do
     end
 end
 
-json.user do
-  json.set! @product.user.id do
-    json.extract! @product.user, :id, :fname, :email
+json.photos do
+  @product.photos.each do |photo|
+    json.set! @product.id do
+      json.array! @product.photos.each do |photo|
+        json.photo_image_url url_for(photo)
+      end
+    end
   end
 end

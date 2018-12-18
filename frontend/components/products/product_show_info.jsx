@@ -3,18 +3,20 @@ import { withRouter } from "react-router-dom";
 import merge from "lodash/merge";
 import { Link } from "react-router-dom";
 import ReactStars from "react-stars";
+import UserProducts from "./user_products";
 
 class ProductShowInfo extends React.Component {
   componentDidMount() {
-    this.props.fetchProduct(this.props.match.params);
+    this.props.fetchUser(this.props.product.user_id);
   }
 
   render() {
-    const { product, user, photos } = this.props;
-    debugger;
+    const { product, user, photos, userProducts } = this.props;
     const { rating, description, price } = product;
+    let renderUsersProducts = null;
     let userName,
       renderPhoto = null;
+    debugger;
     if (user[product.user_id]) {
       userName = user[product.user_id].fname;
       renderPhoto = photos[0].photo_image_url;

@@ -4,17 +4,21 @@ import { withRouter, Link } from "react-router-dom";
 class SplashPopularItems extends React.Component {
   render() {
     const { product, photos, users } = this.props;
-    let userName = null;
+    let userName,
+      photoSrc = null;
     if (users[product.user_id]) {
       userName = users[product.user_id].fname;
     }
+
+    if (photos[product.id]) {
+      photoSrc = photos[product.id][0].photo_image_url;
+    }
+
+    debugger;
     return (
       <div>
         <Link className="splash-pop-link" to={`/product/${product.id}`}>
-          <img
-            className="splash-pop-pic"
-            src={photos[product.id][0].photo_image_url}
-          />
+          <img className="splash-pop-pic" src={photoSrc} />
         </Link>
         <Link className="splash-pop-link" to={`/product/${product.id}`}>
           <figcaption className="splash-pop-description">
