@@ -11,7 +11,13 @@ class ProductShow extends React.Component {
   }
 
   render() {
-    const { product, user, photos, userProducts } = this.props;
+    const {
+      product,
+      user,
+      photos,
+      userProducts,
+      userProductPhotos
+    } = this.props;
     let renderProductInfo = null;
     if (product) {
       renderProductInfo = (
@@ -22,6 +28,7 @@ class ProductShow extends React.Component {
           photos={photos}
           userProducts={userProducts}
           fetchUser={this.props.fetchUser}
+          userProductPhotos={userProductPhotos}
         />
       );
     }

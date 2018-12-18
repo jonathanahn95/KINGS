@@ -3,7 +3,7 @@ import { withRouter } from "react-router-dom";
 import merge from "lodash/merge";
 import { Link } from "react-router-dom";
 import ReactStars from "react-stars";
-import UserProducts from "./user_products";
+import UserProductsContainer from "./user_products_container";
 
 class ProductShowInfo extends React.Component {
   componentDidMount() {
@@ -11,12 +11,18 @@ class ProductShowInfo extends React.Component {
   }
 
   render() {
-    const { product, user, photos, userProducts } = this.props;
+    const {
+      product,
+      user,
+      photos,
+      userProducts,
+      userProductPhotos
+    } = this.props;
     const { rating, description, price } = product;
     let renderUsersProducts = null;
     let userName,
       renderPhoto = null;
-    debugger;
+
     if (user[product.user_id]) {
       userName = user[product.user_id].fname;
       renderPhoto = photos[0].photo_image_url;
@@ -63,7 +69,7 @@ class ProductShowInfo extends React.Component {
             <form className="prod-show-form">
               <div className="prod-show-description">{description}</div>
               <div className="prod-show-price-quest">
-                <p className="prod-show-price">{price}</p>
+                <p className="prod-show-price">{`$${price}`}</p>
                 <p className="prod-ask-question">Ask a question</p>
               </div>
               <div className="prod-show-select-size">
@@ -115,6 +121,10 @@ class ProductShowInfo extends React.Component {
                 <li>Ready to ship in 2–4 weeks</li>
                 <li>From United States</li>
               </ul>
+            </aside>
+            <aside className="user-product-section">
+              <h2 className="user-prod-name">{userName}</h2>
+              <UserProductsContainer />
             </aside>
           </div>
         </section>
