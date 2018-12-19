@@ -5,7 +5,7 @@ class Api::SessionsController < ApplicationController
       params[:user][:email],
       params[:user][:password]
     )
-
+    @products = @user.products.with_attached_photos.includes(:category, :user).limit(8)
     if @user
       login(@user)
       render 'api/users/show'

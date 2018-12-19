@@ -5,6 +5,12 @@ import GreetingLinks from "./greeting_links.jsx";
 import { Link } from "react-router-dom";
 import { closeModal, openModal } from "../../actions/modal_actions";
 
+const mapStateToProps = state => {
+  return {
+    modal: state.entities.modal
+  };
+};
+
 const mapDispatchToProps = dispatch => {
   return {
     processForm: user => dispatch(login(user)),
@@ -12,4 +18,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapDispatchToProps)(GreetingLinks);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(GreetingLinks);
