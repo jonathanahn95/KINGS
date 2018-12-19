@@ -1,0 +1,11 @@
+.shopping-cart {
+  text-decoration: none;
+  color: black;
+}
+
+.cart-header {
+  display: flex;
+  justify-content: space-between;
+  width: 75%;
+  margin: auto;
+}
