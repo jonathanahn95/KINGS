@@ -6,8 +6,30 @@ import ReactStars from "react-stars";
 import UserProductsContainer from "./user_products_container";
 
 class ProductShowInfo extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      quantity: 1,
+      product_id: parseInt(this.props.match.params.id)
+    };
+    this.selectQuantity = this.selectQuantity.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+
+    this.addToCart = this.props.addToCart.bind(this);
+  }
+
   componentDidMount() {
     this.props.fetchUser(this.props.product.user_id);
+  }
+
+  handleClick(e) {
+    e.preventDefault();
+
+    this.addToCart(this.state).then(() => this.props.history.push("/cart"));
+  }
+
+  selectQuantity(e) {
+    this.setState({ quantity: parseInt(e.target.value) });
   }
 
   render() {
@@ -83,7 +105,12 @@ class ProductShowInfo extends React.Component {
               </div>
               <div className="prod-show-select-quantity">
                 <h3 className="prod-show-quantity">Quanity</h3>
-                <select className="custom-select-2" type="quantity">
+                <select
+                  className="custom-select-2"
+                  type="quantity"
+                  value={this.state.quantity}
+                  onChange={this.selectQuantity}
+                >
                   <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
@@ -93,6 +120,7 @@ class ProductShowInfo extends React.Component {
               <input
                 className="prod-show-form-submit"
                 type="submit"
+                onClick={this.handleClick}
                 value="Add to Cart"
               />
             </form>

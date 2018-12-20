@@ -16,7 +16,8 @@ class ProductShow extends React.Component {
       user,
       photos,
       userProducts,
-      userProductPhotos
+      userProductPhotos,
+      addToCart
     } = this.props;
     let renderProductInfo = null;
     if (product) {
@@ -28,6 +29,7 @@ class ProductShow extends React.Component {
           photos={photos}
           userProducts={userProducts}
           fetchUser={this.props.fetchUser}
+          addToCart={addToCart}
           userProductPhotos={userProductPhotos}
         />
       );

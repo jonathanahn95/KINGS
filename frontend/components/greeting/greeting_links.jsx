@@ -14,9 +14,11 @@ class GreetingLinks extends React.Component {
         >
           You
         </li>
-        <li className="header-cart-li">
-          <i className="fas fa-shopping-cart" />Cart
-        </li>
+        <Link className="shopping-cart" to="/cart">
+          <li className="header-cart-li">
+            <i className="fas fa-shopping-cart" />Cart
+          </li>
+        </Link>
       </ul>
     );
   }

@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { fetchUser } from "../../actions/user_actions";
 
 const msp = (state, ownProps) => {
-  debugger;
   return {
     userProducts: state.entities.products,
     userProductPhotos: state.entities.photos
