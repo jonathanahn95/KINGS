@@ -21,7 +21,12 @@ export const updateItem = item => {
 export const deleteItem = item => {
   return $.ajax({
     method: "DELETE",
-    url: `api/cart_items/${item}`,
-    data: { item }
+    url: `api/cart_items/${item}`
+  });
+};
+export const checkOut = () => {
+  return $.ajax({
+    method: "DELETE",
+    url: `api/cart_items/checkout/`
   });
 };

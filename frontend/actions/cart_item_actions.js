@@ -3,6 +3,7 @@ import * as CartItemApiUtil from "../util/cart_item_api_util";
 export const RECEIVE_ALL_ITEMS = "RECEIVE_ALL_ITEMS";
 export const RECEIVE_ITEM = "RECEIVE_ITEM";
 export const REMOVE_ITEM = "REMOVE_ITEM";
+export const REMOVE_ALL_ITEMS = "REMOVE_ALL_ITEMS";
 
 export const receiveItem = item => ({
   type: RECEIVE_ITEM,
@@ -19,6 +20,10 @@ const receiveCartItems = payload => {
 export const removeItem = item => ({
   type: REMOVE_ITEM,
   item
+});
+
+export const removeAllItems = () => ({
+  type: REMOVE_ALL_ITEMS
 });
 
 export const fetchCartItems = () => {
@@ -39,9 +44,7 @@ export const addToCart = item => {
 
 export const updateItem = item => {
   return dispatch => {
-    debugger;
     return CartItemApiUtil.updateItem(item).then(item => {
-      debugger;
       return dispatch(receiveItem(item));
     });
   };
@@ -49,10 +52,16 @@ export const updateItem = item => {
 
 export const deleteItem = item => {
   return dispatch => {
-    debugger;
     return CartItemApiUtil.deleteItem(item).then(item => {
-      debugger;
       return dispatch(removeItem(item));
+    });
+  };
+};
+
+export const checkOut = () => {
+  return dispatch => {
+    return CartItemApiUtil.checkOut().then(() => {
+      return dispatch(removeAllItems());
     });
   };
 };

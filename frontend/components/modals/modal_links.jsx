@@ -16,7 +16,10 @@ class ModalLinks extends React.Component {
         <li className="header-discover-li">
           <i className="fas fa-search" />Discover
         </li>
-        <li className="header-cart-li">
+        <li
+          onClick={() => this.props.openModal("login")}
+          className="header-cart-li"
+        >
           <i className="fas fa-shopping-cart" />Cart
         </li>
       </ul>

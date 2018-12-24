@@ -6,7 +6,10 @@ import ProductShowInfo from "./product_show_info";
 class UserProductsIndexItem extends React.Component {
   render() {
     const { product, photos } = this.props;
-    const photoSrc = photos[product.id][0].photo_image_url;
+    let photoSrc = null;
+    if (photos[product.id]) {
+      photoSrc = photos[product.id][0].photo_image_url;
+    }
     return (
       <div className="single-user-prod">
         <Link className="single-user-link" to={`/product/${product.id}`}>

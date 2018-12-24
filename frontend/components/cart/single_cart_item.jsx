@@ -29,14 +29,13 @@ class SingleCartItem extends React.Component {
       price,
       description
     } = this.props.item;
-    const itemPhotos = this.props.photos[product_id];
+    let totalPrice = price * quantity;
     let photoSrc = null;
+    const itemPhotos = this.props.photos[product_id];
 
     if (this.props.photos[product_id]) {
       photoSrc = itemPhotos[0].photo_image_url;
     }
-
-    let totalPrice = price * quantity;
 
     return (
       <div className="single-cart-item">

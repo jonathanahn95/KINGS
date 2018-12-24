@@ -23,9 +23,13 @@ class ProductShowInfo extends React.Component {
   }
 
   handleClick(e) {
+    debugger;
     e.preventDefault();
-
-    this.addToCart(this.state).then(() => this.props.history.push("/cart"));
+    if (this.props.currentUser) {
+      this.addToCart(this.state).then(() => this.props.history.push("/cart"));
+    } else {
+      this.props.openModal("login");
+    }
   }
 
   selectQuantity(e) {

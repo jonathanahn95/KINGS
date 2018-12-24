@@ -6,7 +6,8 @@ import { Link } from "react-router-dom";
 import {
   fetchCartItems,
   updateItem,
-  deleteItem
+  deleteItem,
+  checkOut
 } from "../../actions/cart_item_actions";
 
 const mapStateToProps = ({ session, entities: { cart, photos, users } }) => {
@@ -21,7 +22,8 @@ const mapDispatchToProps = dispatch => {
   return {
     fetchCartItems: () => dispatch(fetchCartItems()),
     updateItem: item => dispatch(updateItem(item)),
-    deleteItem: item => dispatch(deleteItem(item))
+    deleteItem: item => dispatch(deleteItem(item)),
+    checkOut: () => dispatch(checkOut())
   };
 };
 

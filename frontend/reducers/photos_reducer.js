@@ -22,6 +22,7 @@ export default (state = {}, action) => {
     case RECEIVE_USER_INFO:
       return merge({}, state, action.payload.photos);
     case RECEIVE_ALL_ITEMS:
+      debugger;
       return action.payload.photos;
     default:
       return state;
