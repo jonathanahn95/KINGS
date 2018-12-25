@@ -18,7 +18,9 @@ export default (state = {}, action) => {
       }
       return {};
     case RECEIVE_USER_INFO:
-      return action.payload.user;
+      return merge({}, state, {
+        [action.payload.user.id]: action.payload.user
+      });
     default:
       return state;
   }

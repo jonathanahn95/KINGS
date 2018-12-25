@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_10_202256) do
+ActiveRecord::Schema.define(version: 2018_12_19_193729) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,15 @@ ActiveRecord::Schema.define(version: 2018_12_10_202256) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "cart_items", force: :cascade do |t|
+    t.integer "product_id", null: false
+    t.integer "user_id", null: false
+    t.integer "quantity", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "product_id"], name: "index_cart_items_on_user_id_and_product_id", unique: true
+  end
+
   create_table "categories", force: :cascade do |t|
     t.string "category_name", null: false
     t.datetime "created_at", null: false
@@ -54,6 +63,17 @@ ActiveRecord::Schema.define(version: 2018_12_10_202256) do
     t.integer "rating"
     t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["user_id"], name: "index_products_on_user_id"
+  end
+
+  create_table "shopping_cart_items", force: :cascade do |t|
+    t.integer "product_id", null: false
+    t.integer "user_id", null: false
+    t.integer "quantity"
+    t.integer "size"
+    t.integer "color"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "product_id"], name: "index_shopping_cart_items_on_user_id_and_product_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|

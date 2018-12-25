@@ -16,34 +16,18 @@ class SplashPopularItems extends React.Component {
 
     return (
       <div>
-        <Link
-          target="_blank"
-          className="splash-pop-link"
-          to={`/product/${product.id}`}
-        >
+        <Link className="splash-pop-link" to={`/product/${product.id}`}>
           <img className="splash-pop-pic" src={photoSrc} />
         </Link>
-        <Link
-          target="_blank"
-          className="splash-pop-link"
-          to={`/product/${product.id}`}
-        >
+        <Link className="splash-pop-link" to={`/product/${product.id}`}>
           <figcaption className="splash-pop-description">
             {product.description.slice(0, 30)}
           </figcaption>
         </Link>
-        <Link
-          target="_blank"
-          className="splash-pop-link"
-          to={`/user_prof/${product.user_id}`}
-        >
+        <Link className="splash-pop-link" to={`/user_prof/${product.user_id}`}>
           <li className="splash-pop-username">{userName}</li>
         </Link>
-        <Link
-          target="_blank"
-          className="splash-pop-link"
-          to={`/product/${product.id}`}
-        >
+        <Link className="splash-pop-link" to={`/product/${product.id}`}>
           <li className="splash-pop-price">{`$${product.price}`}</li>
         </Link>
       </div>

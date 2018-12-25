@@ -7,6 +7,7 @@ import ReactStars from "react-stars";
 
 class ProductShow extends React.Component {
   componentDidMount() {
+    window.scrollTo(0, 0);
     this.props.fetchProduct(this.props.match.params);
   }
 
@@ -16,7 +17,10 @@ class ProductShow extends React.Component {
       user,
       photos,
       userProducts,
-      userProductPhotos
+      userProductPhotos,
+      addToCart,
+      currentUser,
+      openModal
     } = this.props;
     let renderProductInfo = null;
     if (product) {
@@ -28,7 +32,10 @@ class ProductShow extends React.Component {
           photos={photos}
           userProducts={userProducts}
           fetchUser={this.props.fetchUser}
+          addToCart={addToCart}
           userProductPhotos={userProductPhotos}
+          currentUser={currentUser}
+          openModal={openModal}
         />
       );
     }
