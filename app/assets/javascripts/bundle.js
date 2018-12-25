@@ -3158,8 +3158,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
   switch (action.type) {
     case _actions_cart_item_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_ITEMS"]:
-      if (action.payload.photos) {
-        return action.payload.photos;
+      if (action.payload.items) {
+        return action.payload.items;
       }
 
       return {};

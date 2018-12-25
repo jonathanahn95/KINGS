@@ -10,8 +10,8 @@ export default (state = {}, action) => {
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_ALL_ITEMS:
-      if (action.payload.photos) {
-        return action.payload.photos;
+      if (action.payload.items) {
+        return action.payload.items;
       }
       return {};
     case RECEIVE_ITEM:
