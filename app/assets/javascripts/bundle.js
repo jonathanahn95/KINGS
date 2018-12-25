@@ -3501,7 +3501,7 @@ var sessionReducer = function sessionReducer() {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
       {
         return {
-          id: action.user.user.id
+          id: action.user.id
         };
       }
 
