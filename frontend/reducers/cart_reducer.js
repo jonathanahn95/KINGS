@@ -10,8 +10,10 @@ export default (state = {}, action) => {
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_ALL_ITEMS:
-      debugger;
-      return action.payload.items;
+      if (action.payload.photos) {
+        return action.payload.photos;
+      }
+      return {};
     case RECEIVE_ITEM:
       const newItem = action.item;
       return merge({}, state, { [newItem.product_id]: newItem });

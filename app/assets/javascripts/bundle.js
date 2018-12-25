@@ -1953,7 +1953,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var msp = function msp(state, ownProps) {
-  debugger;
   return {
     product: state.entities.products[ownProps.match.params.id],
     user: state.entities.users,
@@ -2058,7 +2057,6 @@ function (_React$Component) {
     value: function handleClick(e) {
       var _this2 = this;
 
-      debugger;
       e.preventDefault();
 
       if (this.props.currentUser) {
@@ -3160,8 +3158,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
   switch (action.type) {
     case _actions_cart_item_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_ITEMS"]:
-      debugger;
-      return action.payload.items;
+      if (action.payload.photos) {
+        return action.payload.photos;
+      }
+
+      return {};
 
     case _actions_cart_item_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ITEM"]:
       var newItem = action.item;
@@ -3349,8 +3350,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return lodash_merge__WEBPACK_IMPORTED_MODULE_0___default()({}, state, action.payload.photos);
 
     case _actions_cart_item_actions__WEBPACK_IMPORTED_MODULE_4__["RECEIVE_ALL_ITEMS"]:
-      debugger;
-      return action.payload.photos;
+      if (action.payload.photos) {
+        return action.payload.photos;
+      }
+
+      return {};
 
     default:
       return state;

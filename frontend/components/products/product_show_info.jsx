@@ -23,7 +23,6 @@ class ProductShowInfo extends React.Component {
   }
 
   handleClick(e) {
-    debugger;
     e.preventDefault();
     if (this.props.currentUser) {
       this.addToCart(this.state).then(() => this.props.history.push("/cart"));
