@@ -3501,7 +3501,7 @@ var sessionReducer = function sessionReducer() {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
       {
         return {
-          id: action.user.id
+          id: action.user.user.id
         };
       }
 
@@ -3563,7 +3563,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return {};
 
     case _actions_user_actions__WEBPACK_IMPORTED_MODULE_3__["RECEIVE_USER_INFO"]:
-      return Object(lodash__WEBPACK_IMPORTED_MODULE_4__["merge"])({}, state, _defineProperty({}, action.payload.user.id, action.payload.user));
+      return Object(lodash__WEBPACK_IMPORTED_MODULE_4__["merge"])({}, state, _defineProperty({}, action.payload.id, action.payload.user));
 
     default:
       return state;
