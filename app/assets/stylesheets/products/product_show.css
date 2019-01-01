@@ -8,7 +8,6 @@
 
 .prod-show-user-info {
   display: flex;
-  width: 23%;
   justify-content: space-between;
   align-items: center;
 }
@@ -146,10 +145,7 @@
 
 .prod-show-user-star {
   display: flex;
-  width: 60%;
   justify-content: space-between;
-  font-size: 17px;
-  font-weight: 600;
   align-items: center;
 }
 
@@ -261,4 +257,10 @@
 .single-user-link {
   text-decoration: none;
   color: black;
+}
+
+.prod-show-username {
+  font-size: 17px;
+  font-weight: 600;
+  padding: 0 10px 0 20px;
 }

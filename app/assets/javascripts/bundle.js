@@ -2182,7 +2182,9 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "prod-show-user-img",
         src: "https://s3.amazonaws.com/kings-2-dev/user_prof.png"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, userName)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_stars__WEBPACK_IMPORTED_MODULE_3___default.a, {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "prod-show-username"
+      }, userName), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_stars__WEBPACK_IMPORTED_MODULE_3___default.a, {
         color2: "#ffaa00",
         count: 5,
         edit: false,
