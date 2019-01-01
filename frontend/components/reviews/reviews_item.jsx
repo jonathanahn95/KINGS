@@ -32,11 +32,14 @@ class ReviewsItem extends React.Component {
   }
 
   render() {
+    const { review } = this.props;
+    const { user_id, id, rating, created_at, body } = review;
+    debugger;
     let removeButton = null;
-    if (this.props.currentUser.id === this.props.review.user_id) {
+    if (this.props.currentUser.id === user_id) {
       removeButton = (
         <button
-          onClick={() => this.props.deleteReview(this.props.review.id)}
+          onClick={() => this.props.deleteReview(id)}
           className="delete-review"
         >
           Delete Review
@@ -58,16 +61,16 @@ class ReviewsItem extends React.Component {
               color2={"#ffaa00"}
               count={5}
               edit={false}
-              value={this.props.review.rating}
+              value={rating}
               half={true}
               size={20}
               onChange={this.selectRating}
             />
-            <p>{this.parseTime(this.props.review.created_at)}</p>
+            <p>{this.parseTime(created_at)}</p>
           </div>
 
           <div className="review-body">
-            <p className="review-body-p">{this.props.review.body}</p>
+            <p className="review-body-p">{body}</p>
           </div>
           {removeButton}
         </div>

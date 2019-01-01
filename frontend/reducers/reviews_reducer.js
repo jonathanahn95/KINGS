@@ -18,7 +18,6 @@ export default (state = {}, action) => {
     case REMOVE_REVIEW:
       newState = merge({}, state);
       delete newState[action.review.id];
-      debugger;
       return newState;
     default:
       return state;

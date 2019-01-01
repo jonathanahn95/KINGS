@@ -419,10 +419,8 @@ var receiveProductReviews = function receiveProductReviews(productId) {
   };
 };
 var deleteReview = function deleteReview(review) {
-  debugger;
   return function (dispatch) {
     return _util_review_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteReview"](review).then(function (review) {
-      debugger;
       return dispatch(removeReview(review));
     });
   };
@@ -2185,7 +2183,7 @@ function (_React$Component) {
         className: "prod-show-user-img",
         src: "https://s3.amazonaws.com/kings-2-dev/user_prof.png"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, userName)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_stars__WEBPACK_IMPORTED_MODULE_3___default.a, {
-        color2: "black",
+        color2: "#ffaa00",
         count: 5,
         edit: false,
         value: rating,
@@ -2721,6 +2719,11 @@ function (_React$Component) {
       this.props.receiveProductReviews(this.props.match.params.id);
     }
   }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
+      window.scrollTo(0, 0);
+    }
+  }, {
     key: "reviewCount",
     value: function reviewCount() {
       return  false || this.props.reviews.length;
@@ -2755,7 +2758,7 @@ function (_React$Component) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("article", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_review_form_container__WEBPACK_IMPORTED_MODULE_5__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
         className: "reviews-section"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Reviews"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_stars__WEBPACK_IMPORTED_MODULE_3___default.a, {
-        color2: "black",
+        color2: "#ffaa00",
         count: 5,
         edit: false,
         value: this.ratingAverage() ? this.ratingAverage() : 0,
@@ -2795,7 +2798,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var msp = function msp(state, ownProps) {
-  debugger;
   return {
     reviews: Object.values(state.entities.reviews),
     currentUser: state.entities.users[state.session.id]
@@ -2889,12 +2891,19 @@ function (_React$Component) {
     value: function render() {
       var _this = this;
 
+      var review = this.props.review;
+      var user_id = review.user_id,
+          id = review.id,
+          rating = review.rating,
+          created_at = review.created_at,
+          body = review.body;
+      debugger;
       var removeButton = null;
 
-      if (this.props.currentUser.id === this.props.review.user_id) {
+      if (this.props.currentUser.id === user_id) {
         removeButton = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           onClick: function onClick() {
-            return _this.props.deleteReview(_this.props.review.id);
+            return _this.props.deleteReview(id);
           },
           className: "delete-review"
         }, "Delete Review");
@@ -2917,15 +2926,15 @@ function (_React$Component) {
         color2: "#ffaa00",
         count: 5,
         edit: false,
-        value: this.props.review.rating,
+        value: rating,
         half: true,
         size: 20,
         onChange: this.selectRating
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this.parseTime(this.props.review.created_at))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this.parseTime(created_at))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "review-body"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "review-body-p"
-      }, this.props.review.body)), removeButton));
+      }, body)), removeButton));
     }
   }]);
 
@@ -3969,7 +3978,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     case _actions_review_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_REVIEW"]:
       newState = Object(lodash__WEBPACK_IMPORTED_MODULE_1__["merge"])({}, state);
       delete newState[action.review.id];
-      debugger;
       return newState;
 
     default:

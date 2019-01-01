@@ -67,7 +67,7 @@ class ProductShowInfo extends React.Component {
             </li>
             <li>
               <ReactStars
-                color2={"black"}
+                color2={"#ffaa00"}
                 count={5}
                 edit={false}
                 value={rating}

@@ -54,10 +54,8 @@ export const receiveProductReviews = productId => {
 };
 
 export const deleteReview = review => {
-  debugger;
   return dispatch => {
     return ReviewApiUtil.deleteReview(review).then(review => {
-      debugger;
       return dispatch(removeReview(review));
     });
   };

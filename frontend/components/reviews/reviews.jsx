@@ -11,6 +11,10 @@ class Reviews extends React.Component {
     this.props.receiveProductReviews(this.props.match.params.id);
   }
 
+  componentDidUpdate() {
+    window.scrollTo(0, 0);
+  }
+
   reviewCount() {
     return 0 || this.props.reviews.length;
   }
@@ -45,7 +49,7 @@ class Reviews extends React.Component {
             <div>Reviews</div>
             <div>
               <ReactStars
-                color2={"black"}
+                color2={"#ffaa00"}
                 count={5}
                 edit={false}
                 value={this.ratingAverage() ? this.ratingAverage() : 0}
