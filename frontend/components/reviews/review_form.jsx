@@ -29,9 +29,13 @@ class ReviewForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props
-      .createReview(this.state)
-      .then(() => this.setState({ rating: "", body: "" }));
+    if (this.props.currentUser) {
+      this.props
+        .createReview(this.state)
+        .then(() => this.setState({ rating: "", body: "" }));
+    } else {
+      this.props.openModal("login");
+    }
   }
 
   render() {

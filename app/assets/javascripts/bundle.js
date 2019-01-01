@@ -2029,6 +2029,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var msp = function msp(state, ownProps) {
+  debugger;
   return {
     product: state.entities.products[ownProps.match.params.id],
     user: state.entities.users,
@@ -2167,6 +2168,7 @@ function (_React$Component) {
       var renderUsersProducts = null;
       var userName,
           renderPhoto = null;
+      debugger;
 
       if (user[product.user_id]) {
         userName = user[product.user_id].fname;
@@ -2579,12 +2581,17 @@ function (_React$Component) {
       var _this3 = this;
 
       e.preventDefault();
-      this.props.createReview(this.state).then(function () {
-        return _this3.setState({
-          rating: "",
-          body: ""
+
+      if (this.props.currentUser) {
+        this.props.createReview(this.state).then(function () {
+          return _this3.setState({
+            rating: "",
+            body: ""
+          });
         });
-      });
+      } else {
+        this.props.openModal("login");
+      }
     }
   }, {
     key: "render",
@@ -2640,21 +2647,32 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _review_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./review_form */ "./frontend/components/reviews/review_form.jsx");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
 /* harmony import */ var _actions_review_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/review_actions */ "./frontend/actions/review_actions.js");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
 
 
 
 
 
+
+
+var msp = function msp(state, ownProps) {
+  return {
+    currentUser: state.entities.users[state.session.id]
+  };
+};
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     createReview: function createReview(review) {
       return dispatch(Object(_actions_review_actions__WEBPACK_IMPORTED_MODULE_4__["createReview"])(review));
+    },
+    openModal: function openModal(type) {
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_5__["openModal"])(type));
     }
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(null, mapDispatchToProps)(_review_form__WEBPACK_IMPORTED_MODULE_2__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(msp, mapDispatchToProps)(_review_form__WEBPACK_IMPORTED_MODULE_2__["default"]));
 
 /***/ }),
 
@@ -2897,10 +2915,9 @@ function (_React$Component) {
           rating = review.rating,
           created_at = review.created_at,
           body = review.body;
-      debugger;
       var removeButton = null;
 
-      if (this.props.currentUser.id === user_id) {
+      if (this.props.currentUser && this.props.currentUser.id === user_id) {
         removeButton = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           onClick: function onClick() {
             return _this.props.deleteReview(id);
@@ -4138,7 +4155,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return {};
 
     case _actions_user_actions__WEBPACK_IMPORTED_MODULE_3__["RECEIVE_USER_INFO"]:
-      return Object(lodash__WEBPACK_IMPORTED_MODULE_4__["merge"])({}, state, _defineProperty({}, action.payload.id, action.payload.user));
+      debugger;
+      return Object(lodash__WEBPACK_IMPORTED_MODULE_4__["merge"])({}, state, _defineProperty({}, action.payload.user.id, action.payload.user));
 
     default:
       return state;

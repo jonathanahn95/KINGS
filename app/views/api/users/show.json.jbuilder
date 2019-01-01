@@ -1,4 +1,6 @@
-json.partial! "api/users/user", user: @user
+json.user do
+  json.partial! "api/users/user", user: @user
+end
 
 json.userProducts do
   @products.each do |product|
