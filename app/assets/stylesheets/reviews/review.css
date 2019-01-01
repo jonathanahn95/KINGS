@@ -1,0 +1,95 @@
+.review-form-container {
+  line-height: 1.6;
+  margin: 26px 0;
+}
+
+.write-a-review {
+  font-size: 17px;
+  margin-bottom: 10px;
+}
+
+.submit-review {
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 14px;
+  width: 50%;
+  line-height: 1.4;
+  margin-top: 15px;
+  padding: 8px 12px;
+  text-align: center;
+  background-color: #ffaa00;
+  cursor: pointer;
+}
+
+.form-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-body {
+  font-size: 13px;
+  min-height: 50px;
+}
+
+.review-form {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 50px;
+}
+
+.reviews-section {
+  display: FLEX;
+  width: 35%;
+  justify-content: space-between;
+}
+
+.review {
+  border-bottom: 1px solid #dddfda;
+  padding: 10px;
+  display: flex;
+  margin-bottom: 15px;
+  line-height: 22px;
+  font-size: 14px;
+}
+
+.reviewer-info {
+  height: 100%;
+  width: 40%;
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.review-info {
+  width: 100%;
+}
+
+.rating-date {
+  display: flex;
+  width: 50%;
+  justify-content: space-between;
+}
+
+.review-body {
+  margin-top: 15px;
+}
+
+.link {
+  text-decoration: none;
+  color: black;
+}
+
+.delete-review {
+  margin-top: 10px;
+  font-size: 12px;
+  min-height: 28px;
+  padding: 4px 12px;
+  background-color: #fff;
+  border-radius: 3px;
+  border: 1px solid #d9d9d9;
+  cursor: pointer;
+  line-height: 1.4;
+}
+
+.review-body-p {
+  width: 80%;
+  word-wrap: break-word;
+}
