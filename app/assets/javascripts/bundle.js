@@ -356,7 +356,7 @@ var fetchProduct = function fetchProduct(product) {
 /*!********************************************!*\
   !*** ./frontend/actions/review_actions.js ***!
   \********************************************/
-/*! exports provided: RECEIVE_REVIEW, RECEIVE_REVIEW_ERRORS, RECEIVE_ALL_REVIEWS, receiveReview, receiveAllReviews, receiveReviewErrors, removeReview, createReview, receiveProductReviews */
+/*! exports provided: RECEIVE_REVIEW, RECEIVE_REVIEW_ERRORS, RECEIVE_ALL_REVIEWS, REMOVE_REVIEW, receiveReview, receiveAllReviews, receiveReviewErrors, removeReview, createReview, receiveProductReviews, deleteReview */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -364,17 +364,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_REVIEW", function() { return RECEIVE_REVIEW; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_REVIEW_ERRORS", function() { return RECEIVE_REVIEW_ERRORS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ALL_REVIEWS", function() { return RECEIVE_ALL_REVIEWS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_REVIEW", function() { return REMOVE_REVIEW; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveReview", function() { return receiveReview; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveAllReviews", function() { return receiveAllReviews; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveReviewErrors", function() { return receiveReviewErrors; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeReview", function() { return removeReview; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createReview", function() { return createReview; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveProductReviews", function() { return receiveProductReviews; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteReview", function() { return deleteReview; });
 /* harmony import */ var _util_review_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../util/review_api_util */ "./frontend/util/review_api_util.jsx");
 
 var RECEIVE_REVIEW = "RECEIVE_REVIEW";
 var RECEIVE_REVIEW_ERRORS = "RECEIVE_REVIEW_ERRORS";
 var RECEIVE_ALL_REVIEWS = "RECEIVE_ALL_REVIEWS";
+var REMOVE_REVIEW = "REMOVE_REVIEW";
 var receiveReview = function receiveReview(review) {
   return {
     type: RECEIVE_REVIEW,
@@ -412,6 +415,15 @@ var receiveProductReviews = function receiveProductReviews(productId) {
   return function (dispatch) {
     return _util_review_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchProductReviews"](productId).then(function (reviews) {
       return dispatch(receiveAllReviews(reviews));
+    });
+  };
+};
+var deleteReview = function deleteReview(review) {
+  debugger;
+  return function (dispatch) {
+    return _util_review_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteReview"](review).then(function (review) {
+      debugger;
+      return dispatch(removeReview(review));
     });
   };
 };
@@ -2709,11 +2721,6 @@ function (_React$Component) {
       this.props.receiveProductReviews(this.props.match.params.id);
     }
   }, {
-    key: "componentDidUpdate",
-    value: function componentDidUpdate(prevProps, prevState) {
-      debugger;
-    }
-  }, {
     key: "reviewCount",
     value: function reviewCount() {
       return  false || this.props.reviews.length;
@@ -2735,10 +2742,14 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this = this;
+
       var reviews = this.props.reviews.map(function (review) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_reviews_item__WEBPACK_IMPORTED_MODULE_4__["default"], {
           key: review.id,
-          review: review
+          review: review,
+          currentUser: _this.props.currentUser,
+          deleteReview: _this.props.deleteReview
         });
       });
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("article", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_review_form_container__WEBPACK_IMPORTED_MODULE_5__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
@@ -2784,6 +2795,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var msp = function msp(state, ownProps) {
+  debugger;
   return {
     reviews: Object.values(state.entities.reviews),
     currentUser: state.entities.users[state.session.id]
@@ -2794,6 +2806,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     createReview: function createReview(review) {
       return dispatch(Object(_actions_review_actions__WEBPACK_IMPORTED_MODULE_4__["createReview"])(review));
+    },
+    deleteReview: function deleteReview(id) {
+      return dispatch(Object(_actions_review_actions__WEBPACK_IMPORTED_MODULE_4__["deleteReview"])(id));
     },
     receiveProductReviews: function receiveProductReviews(productId) {
       return dispatch(Object(_actions_review_actions__WEBPACK_IMPORTED_MODULE_4__["receiveProductReviews"])(productId));
@@ -2863,7 +2878,6 @@ function (_React$Component) {
       var day = date.getDate();
       var year = date.getFullYear();
       var monthNum = date.getMonth();
-      debugger;
       var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
       var monthStr = months[monthNum];
       var fulldate = "";
@@ -2873,6 +2887,19 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this = this;
+
+      var removeButton = null;
+
+      if (this.props.currentUser.id === this.props.review.user_id) {
+        removeButton = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          onClick: function onClick() {
+            return _this.props.deleteReview(_this.props.review.id);
+          },
+          className: "delete-review"
+        }, "Delete Review");
+      }
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "review"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2896,7 +2923,9 @@ function (_React$Component) {
         onChange: this.selectRating
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this.parseTime(this.props.review.created_at))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "review-body"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this.props.review.body))));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "review-body-p"
+      }, this.props.review.body)), removeButton));
     }
   }]);
 
@@ -3927,6 +3956,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = (function () {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
+  var newState;
   Object.freeze(state);
 
   switch (action.type) {
@@ -3935,6 +3965,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
     case _actions_review_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_REVIEWS"]:
       return action.reviews;
+
+    case _actions_review_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_REVIEW"]:
+      newState = Object(lodash__WEBPACK_IMPORTED_MODULE_1__["merge"])({}, state);
+      delete newState[action.review.id];
+      debugger;
+      return newState;
 
     default:
       return state;
@@ -4240,13 +4276,14 @@ var fetchProduct = function fetchProduct(product) {
 /*!*******************************************!*\
   !*** ./frontend/util/review_api_util.jsx ***!
   \*******************************************/
-/*! exports provided: createReview, fetchProductReviews */
+/*! exports provided: createReview, fetchProductReviews, deleteReview */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createReview", function() { return createReview; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchProductReviews", function() { return fetchProductReviews; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteReview", function() { return deleteReview; });
 var createReview = function createReview(review) {
   return $.ajax({
     method: "POST",
@@ -4260,6 +4297,12 @@ var fetchProductReviews = function fetchProductReviews(productId) {
   return $.ajax({
     method: "GET",
     url: "api/products/".concat(productId, "/reviews")
+  });
+};
+var deleteReview = function deleteReview(id) {
+  return $.ajax({
+    method: "DELETE",
+    url: "api/reviews/".concat(id)
   });
 };
 

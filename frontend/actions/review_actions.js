@@ -2,6 +2,7 @@ import * as ReviewApiUtil from "./../util/review_api_util";
 export const RECEIVE_REVIEW = "RECEIVE_REVIEW";
 export const RECEIVE_REVIEW_ERRORS = "RECEIVE_REVIEW_ERRORS";
 export const RECEIVE_ALL_REVIEWS = "RECEIVE_ALL_REVIEWS";
+export const REMOVE_REVIEW = "REMOVE_REVIEW";
 
 export const receiveReview = review => {
   return {
@@ -48,6 +49,16 @@ export const receiveProductReviews = productId => {
   return dispatch => {
     return ReviewApiUtil.fetchProductReviews(productId).then(reviews => {
       return dispatch(receiveAllReviews(reviews));
+    });
+  };
+};
+
+export const deleteReview = review => {
+  debugger;
+  return dispatch => {
+    return ReviewApiUtil.deleteReview(review).then(review => {
+      debugger;
+      return dispatch(removeReview(review));
     });
   };
 };

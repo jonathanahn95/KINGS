@@ -11,10 +11,6 @@ class Reviews extends React.Component {
     this.props.receiveProductReviews(this.props.match.params.id);
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    debugger;
-  }
-
   reviewCount() {
     return 0 || this.props.reviews.length;
   }
@@ -31,7 +27,14 @@ class Reviews extends React.Component {
 
   render() {
     let reviews = this.props.reviews.map(review => {
-      return <ReviewsItem key={review.id} review={review} />;
+      return (
+        <ReviewsItem
+          key={review.id}
+          review={review}
+          currentUser={this.props.currentUser}
+          deleteReview={this.props.deleteReview}
+        />
+      );
     });
 
     return (

@@ -10,7 +10,6 @@ class ReviewsItem extends React.Component {
     let day = date.getDate();
     let year = date.getFullYear();
     let monthNum = date.getMonth();
-    debugger;
     const months = [
       "Jan",
       "Feb",
@@ -33,6 +32,17 @@ class ReviewsItem extends React.Component {
   }
 
   render() {
+    let removeButton = null;
+    if (this.props.currentUser.id === this.props.review.user_id) {
+      removeButton = (
+        <button
+          onClick={() => this.props.deleteReview(this.props.review.id)}
+          className="delete-review"
+        >
+          Delete Review
+        </button>
+      );
+    }
     return (
       <li className="review">
         <div className="reviewer-info">
@@ -57,8 +67,9 @@ class ReviewsItem extends React.Component {
           </div>
 
           <div className="review-body">
-            <p>{this.props.review.body}</p>
+            <p className="review-body-p">{this.props.review.body}</p>
           </div>
+          {removeButton}
         </div>
       </li>
     );

@@ -12,3 +12,10 @@ export const fetchProductReviews = productId => {
     url: `api/products/${productId}/reviews`
   });
 };
+
+export const deleteReview = id => {
+  return $.ajax({
+    method: "DELETE",
+    url: `api/reviews/${id}`
+  });
+};

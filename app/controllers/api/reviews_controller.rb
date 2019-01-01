@@ -1,7 +1,7 @@
 class Api::ReviewsController < ApplicationController
 
   def index
-    @reviews = Review.where( product_id: params[:product_id]).order(id: :asc)[0..8]
+    @reviews = Review.where( product_id: params[:product_id]).order(id: :desc)[0..8]
   end
 
   def create
@@ -16,6 +16,9 @@ class Api::ReviewsController < ApplicationController
   end
 
   def destroy
+    @review = Review.find(params[:id])
+    @review.destroy
+    render 'api/reviews/show'
   end
 
   private
