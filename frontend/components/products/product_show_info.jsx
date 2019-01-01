@@ -4,6 +4,7 @@ import merge from "lodash/merge";
 import { Link } from "react-router-dom";
 import ReactStars from "react-stars";
 import UserProductsContainer from "./user_products_container";
+import ReviewsContainer from "../reviews/reviews_container";
 
 class ProductShowInfo extends React.Component {
   constructor(props) {
@@ -89,6 +90,7 @@ class ProductShowInfo extends React.Component {
                 {description}
               </div>
             </div>
+            <ReviewsContainer productId={this.props.match.params.id} />
           </section>
           <div className="prod-show-form-wrapper">
             <form className="prod-show-form">
