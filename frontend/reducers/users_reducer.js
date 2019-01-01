@@ -18,9 +18,8 @@ export default (state = {}, action) => {
       }
       return {};
     case RECEIVE_USER_INFO:
-      debugger;
       return merge({}, state, {
-        [action.payload.user.id]: action.payload.user
+        [action.payload.id]: action.payload.user
       });
     default:
       return state;

@@ -49,7 +49,6 @@ class ProductShowInfo extends React.Component {
     let userName,
       renderPhoto = null;
 
-    debugger;
     if (user[product.user_id]) {
       userName = user[product.user_id].fname;
       renderPhoto = photos[0].photo_image_url;

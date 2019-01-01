@@ -8,7 +8,6 @@ import { addToCart } from "../../actions/cart_item_actions";
 import { openModal } from "../../actions/modal_actions";
 
 const msp = (state, ownProps) => {
-  debugger;
   return {
     product: state.entities.products[ownProps.match.params.id],
     user: state.entities.users,
