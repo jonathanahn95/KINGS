@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import CategoryShowItem from "./category_show_item";
+import SearchFilterContainer from "../../search/search_filter_container";
 
 class CategoryShow extends React.Component {
   constructor(props) {
@@ -58,7 +59,10 @@ class CategoryShow extends React.Component {
           <li className="small-item-count">{`(${productsCount} items)`}</li>
         </ul>
         <div className="big-name">{categoryName}</div>
-        <div className="products-container">{renderProducts}</div>
+        <div className="filter-products">
+          <SearchFilterContainer />
+          <div className="products-container">{renderProducts}</div>
+        </div>
       </aside>
     );
   }

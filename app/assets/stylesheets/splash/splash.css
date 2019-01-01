@@ -8,7 +8,6 @@
 
 .header-nav-left {
   display: flex;
-  width: 30%;
   align-items: center;
   justify-content: space-around;
 }
@@ -21,7 +20,7 @@
 .header-nav {
   display: flex;
   justify-content: space-between;
-  width: 90%;
+  width: 93%;
   padding: 20px 0 30px 0;
   margin: auto;
   align-items: center;
@@ -66,8 +65,13 @@
 }
 
 .header-search-input {
-  max-height: 15px;
-  min-width: 155px;
+  min-width: 370px;
+  min-height: 20px;
+  padding: 7px 10px;
+  margin-left: 20px;
+  font-size: 14px;
+  border: 1px solid #cfcbc8;
+  border-radius: 3px 0 0 3px;
 }
 
 .kings-logo {
@@ -189,4 +193,13 @@
 
 .splash-figure {
   padding-bottom: 16px;
+}
+
+.search-text {
+  color: white;
+  background-color: #f56400;
+  padding: 11px 10px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 0 3px 3px 0;
 }

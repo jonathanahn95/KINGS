@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import ModalLinks from "../modals/modal_links";
 import GreetingLinksContainer from "../greeting/greeting_links_container";
 import CategoriesContainer from "../categories/index/categories_container";
+import SearchFormContainer from "../search/search_form_container";
 
 class Header extends React.Component {
   toggleLinks() {
@@ -25,13 +26,7 @@ class Header extends React.Component {
             <Link className="link-kings-logo" to="/">
               <div className="kings-logo">KINGS</div>
             </Link>
-            <form className="header-nav-form">
-              <input
-                placeholder="Search for items or shops"
-                className="header-search-input"
-              />
-              <div>Search</div>
-            </form>
+            <SearchFormContainer />
           </div>
           {this.toggleLinks()}
         </nav>
