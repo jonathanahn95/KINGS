@@ -2029,7 +2029,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var msp = function msp(state, ownProps) {
-  debugger;
   return {
     product: state.entities.products[ownProps.match.params.id],
     user: state.entities.users,
@@ -2168,7 +2167,6 @@ function (_React$Component) {
       var renderUsersProducts = null;
       var userName,
           renderPhoto = null;
-      debugger;
 
       if (user[product.user_id]) {
         userName = user[product.user_id].fname;
@@ -3625,6 +3623,7 @@ function (_React$Component) {
     value: function logoutUser() {
       this.props.logout();
       this.props.closeModal();
+      this.props.history.push("/");
     }
   }, {
     key: "render",
@@ -4155,8 +4154,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return {};
 
     case _actions_user_actions__WEBPACK_IMPORTED_MODULE_3__["RECEIVE_USER_INFO"]:
-      debugger;
-      return Object(lodash__WEBPACK_IMPORTED_MODULE_4__["merge"])({}, state, _defineProperty({}, action.payload.user.id, action.payload.user));
+      return Object(lodash__WEBPACK_IMPORTED_MODULE_4__["merge"])({}, state, _defineProperty({}, action.payload.id, action.payload.user));
 
     default:
       return state;
