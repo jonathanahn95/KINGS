@@ -60,7 +60,7 @@ class CategoryShow extends React.Component {
         </ul>
         <div className="big-name">{categoryName}</div>
         <div className="filter-products">
-          <SearchFilterContainer />
+          <SearchFilterContainer categoryId={categoryId} />
           <div className="products-container">{renderProducts}</div>
         </div>
       </aside>

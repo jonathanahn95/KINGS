@@ -5,6 +5,7 @@ import {
 } from "../actions/product_actions";
 import { RECEIVE_SINGLE_CATEGORY } from "../actions/category_actions";
 import { RECEIVE_USER_INFO } from "../actions/user_actions";
+import { RECEIVE_SEARCH_RESULTS } from "../actions/search_actions";
 
 export default (state = {}, action) => {
   Object.freeze(state);
@@ -20,6 +21,12 @@ export default (state = {}, action) => {
       return { [action.payload.product.id]: action.payload.product };
     case RECEIVE_USER_INFO:
       return merge({}, state, action.payload.userProducts);
+    case RECEIVE_SEARCH_RESULTS:
+      if (action.payload.products) {
+        return action.payload.products;
+      } else {
+        return {};
+      }
     default:
       return state;
   }

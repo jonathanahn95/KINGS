@@ -6,10 +6,143 @@ import { Link } from "react-router-dom";
 class SearchFilter extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      "On sale": [],
+      "Shop location": [],
+      Price: [],
+      Shipping: [],
+      "Item style": [],
+      category_id: this.props.match.params.id
+    };
+    this.createOptions = this.createOptions.bind(this);
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.match.params.id !== prevProps.match.params.id) {
+      this.setState({
+        "On sale": [],
+        "Shop location": [],
+        Price: [],
+        Shipping: [],
+        "Item style": [],
+        category_id: this.props.match.params.id
+      });
+    } else if (this.state !== prevState) {
+      this.props.requestSearchResults(this.generateQuery(this.state));
+    }
+  }
+
+  generateQuery(nextState) {
+    const queries = Object.keys(nextState);
+    let queryString = "";
+    queries.forEach(element => {
+      let querySplit = element.split(" ");
+      let query = querySplit[querySplit.length - 1];
+      queryString += `${query}=(${nextState[element]})&`;
+    });
+    return queryString;
+  }
+
+  addToArray(field) {
+    return e => {
+      const val = e.target.value;
+      let newArr = this.state[field];
+
+      if (field === "Shipping") {
+        if (newArr.includes(val)) {
+          newArr = newArr.filter(ele => ele !== val);
+        } else {
+          newArr.push(val);
+        }
+      } else {
+        if (newArr.includes(val)) {
+          newArr = [];
+        } else {
+          newArr = [];
+          newArr.push(val);
+        }
+      }
+      this.setState({
+        [field]: newArr
+      });
+    };
+  }
+
+  createOptions(type) {
+    switch (type) {
+      case "Shipping":
+        return [
+          [
+            "Free Shipping",
+            "Ready to ship in 1 business day",
+            "Ready to ship within 3 business days"
+          ],
+          ["checkbox"],
+          [0, 1, 2]
+        ];
+      case "Shop location":
+        return [["Anywhere", "United States", "Custom"], ["radio"], [0, 1, 2]];
+      case "Item style":
+        return [["All items", "Handmade", "Vintage"], ["radio"], [0, 1, 2]];
+      case "Price":
+        return [
+          [
+            "Any price",
+            "Under $25",
+            "$25 to $50",
+            "$50 to $100",
+            "Over $100",
+            "Custom"
+          ],
+          ["radio"],
+          [0, 1, 2, 3, 4, 5]
+        ];
+      default:
+        return [];
+    }
+  }
+
+  createToggle(type, idx) {
+    let checked = "";
+    if (this.state[type].includes(idx.toString())) {
+      checked = "checked";
+    }
+    return checked;
+  }
+
+  createSection(type) {
+    const typeOptions = this.createOptions(type);
+
+    return (
+      <div className="single-section-wrapper">
+        <h2 className="filter-h2">{type}</h2>
+        <ul className="section-ul">
+          {typeOptions[2].map((val, idx) => {
+            return (
+              <div key={idx} className="input-wrapper">
+                <input
+                  onClick={this.addToArray(type)}
+                  name={type}
+                  type={`${typeOptions[1]}`}
+                  value={idx}
+                  className="input"
+                  checked={this.createToggle(type, idx)}
+                />
+                <p>{typeOptions[0][idx]}</p>
+              </div>
+            );
+          })}
+        </ul>
+      </div>
+    );
   }
 
   render() {
+    const shippingOptions = this.createSection("Shipping");
+    const shopLocations = this.createSection("Shop location");
+    const itemTypes = this.createSection("Item style");
+    const priceOptions = this.createSection("Price");
+
     return (
       <section className="filter-section">
         <div className="on-sale-wrapper">
@@ -24,166 +157,10 @@ class SearchFilter extends React.Component {
             <p>On sale</p>
           </div>
         </div>
-        <div className="single-section-wrapper">
-          <h2 className="filter-h2">Shipping</h2>
-          <ul className="section-ul">
-            <div className="input-wrapper">
-              <input
-                name="answer"
-                type="checkbox"
-                value="true"
-                checked="checked"
-                className="input"
-              />
-              <p>Free Shipping</p>
-            </div>
-            <div className="input-wrapper">
-              <input
-                className="input"
-                name="answer"
-                type="checkbox"
-                value="true"
-              />
-              <p>Ready to ship in 1 business day</p>
-            </div>
-            <div className="input-wrapper">
-              <input
-                className="input"
-                name="answer"
-                type="checkbox"
-                value="true"
-              />
-              <p>Ready to ship within 3 business days</p>
-            </div>
-          </ul>
-        </div>
-        <div className="single-section-wrapper">
-          <h2 className="filter-h2">Shop location</h2>
-          <ul className="section-ul">
-            <div className="input-wrapper">
-              <input
-                className="input"
-                name="answer"
-                type="radio"
-                value="true"
-                checked="checked"
-              />
-              <p>Anywhere</p>
-            </div>
-            <div className="input-wrapper">
-              <input
-                className="input"
-                name="answer"
-                type="radio"
-                value="true"
-              />
-              <p>United States</p>
-              s
-            </div>
-            <div className="input-wrapper">
-              <input
-                className="input"
-                name="answer"
-                type="radio"
-                value="true"
-              />
-              <p>Custom</p>
-            </div>
-          </ul>
-        </div>
-        <div className="single-section-wrapper">
-          <h2 className="filter-h2">Item type</h2>
-          <ul className="section-ul">
-            <div className="input-wrapper">
-              <input
-                className="input"
-                name="answer2"
-                type="radio"
-                value="true"
-                checked="checked"
-              />
-              <p>All items</p>
-            </div>
-            <div className="input-wrapper">
-              <input
-                className="input"
-                name="answer2"
-                type="radio"
-                value="true"
-              />
-              <p>Handmande</p>
-            </div>
-            <div className="input-wrapper">
-              <input
-                className="input"
-                name="answer2"
-                type="radio"
-                value="true"
-              />
-              <p>Vintage</p>
-            </div>
-          </ul>
-        </div>
-        <div className="single-section-wrapper">
-          <h2 className="filter-h2">Price</h2>
-          <ul className="section-ul">
-            <div className="input-wrapper">
-              <input
-                className="input"
-                name="answer3"
-                type="radio"
-                value="true"
-                checked="checked"
-              />
-              <p>Any price</p>
-            </div>
-            <div className="input-wrapper">
-              <input
-                className="input"
-                name="answer3"
-                type="radio"
-                value="true"
-              />
-              <p>Under $25</p>
-            </div>
-            <div className="input-wrapper">
-              <input
-                className="input"
-                name="answer3"
-                type="radio"
-                value="true"
-              />
-              <p>$25 to $50</p>
-            </div>
-            <div className="input-wrapper">
-              <input
-                className="input"
-                name="answer3"
-                type="radio"
-                value="true"
-              />
-              <p>$50 to $100</p>
-            </div>
-            <div className="input-wrapper">
-              <input
-                className="input"
-                name="answer3"
-                type="radio"
-                value="true"
-              />
-              <p>Over $100</p>
-            </div>
-            <div className="input-wrapper">
-              <input
-                className="input"
-                name="answer3"
-                type="radio"
-                value="true"
-              />
-              <p>Custom</p>
-            </div>
-          </ul>
-        </div>
+        {shippingOptions}
+        {shopLocations}
+        {itemTypes}
+        {priceOptions}
       </section>
     );
   }

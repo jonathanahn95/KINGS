@@ -8,6 +8,7 @@ import CategoryShowContainer from "./categories/show/category_show_container";
 import ProductShowContainer from "./products/product_show_container";
 import HeaderContainer from "./header/header_container";
 import CartItemsContainer from "./cart/cart_items_container";
+import SearchFilterContainer from "./search/search_filter_container";
 import Modal from "./modals/modal";
 import Footer from "./footer";
 

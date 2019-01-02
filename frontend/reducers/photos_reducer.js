@@ -6,6 +6,7 @@ import {
 import { RECEIVE_SINGLE_CATEGORY } from "../actions/category_actions";
 import { RECEIVE_USER_INFO } from "../actions/user_actions";
 import { RECEIVE_ALL_ITEMS } from "../actions/cart_item_actions";
+import { RECEIVE_SEARCH_RESULTS } from "../actions/search_actions";
 
 export default (state = {}, action) => {
   Object.freeze(state);
@@ -26,6 +27,12 @@ export default (state = {}, action) => {
         return action.payload.photos;
       }
       return {};
+    case RECEIVE_SEARCH_RESULTS:
+      if (action.payload.photos) {
+        return action.payload.photos;
+      } else {
+        return {};
+      }
     default:
       return state;
   }

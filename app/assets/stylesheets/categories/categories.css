@@ -64,8 +64,7 @@
   display: flex;
   width: 78%;
   flex-wrap: wrap;
-  margin: auto;
-  justify-content: space-between;
+  margin-left: 15px;
 }
 
 .cat-show-description {
@@ -81,6 +80,7 @@
 }
 
 .cat-show-prod-ul {
+  padding-right: 8px;
   padding-bottom: 60px;
 }
 
