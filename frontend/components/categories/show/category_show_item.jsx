@@ -42,7 +42,9 @@ class CategoryShowItem extends React.Component {
           </li>
         </Link>
         <Link className="cat-show-link" to={`/product/${product.id}`}>
-          <li className="cat-show-price">{`$${product.price}`}</li>
+          <li className="cat-show-price">{`$${parseFloat(product.price).toFixed(
+            2
+          )}`}</li>
         </Link>
       </ul>
     );

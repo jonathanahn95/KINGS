@@ -43,11 +43,14 @@ class SearchFilter extends React.Component {
     return queryString;
   }
 
-  addToArray(field) {
+  addToArray(field, options) {
+    const allItems = options.slice(1);
     return e => {
-      const val = e.target.value;
+      let val = e.target.value;
       let newArr = this.state[field];
-
+      if (val === "0" && field !== "Shipping") {
+        val = allItems;
+      }
       if (field === "Shipping") {
         if (newArr.includes(val)) {
           newArr = newArr.filter(ele => ele !== val);
@@ -55,7 +58,10 @@ class SearchFilter extends React.Component {
           newArr.push(val);
         }
       } else {
-        if (newArr.includes(val)) {
+        if (
+          newArr.includes(val) ||
+          (newArr[0] && newArr[0].toString() === allItems.toString())
+        ) {
           newArr = [];
         } else {
           newArr = [];
@@ -81,30 +87,29 @@ class SearchFilter extends React.Component {
           [0, 1, 2]
         ];
       case "Shop location":
-        return [["Anywhere", "United States", "Custom"], ["radio"], [0, 1, 2]];
+        return [["Anywhere", "United States", "China"], ["radio"], [0, 1, 2]];
       case "Item style":
         return [["All items", "Handmade", "Vintage"], ["radio"], [0, 1, 2]];
       case "Price":
         return [
-          [
-            "Any price",
-            "Under $25",
-            "$25 to $50",
-            "$50 to $100",
-            "Over $100",
-            "Custom"
-          ],
+          ["Any price", "Under $25", "$25 to $50", "$50 to $100", "Over $100"],
           ["radio"],
-          [0, 1, 2, 3, 4, 5]
+          [0, 1, 2, 3, 4]
         ];
       default:
         return [];
     }
   }
 
-  createToggle(type, idx) {
+  createToggle(type, idx, options) {
+    const allItems = options.slice(1);
+
     let checked = "";
-    if (this.state[type].includes(idx.toString())) {
+    if (
+      this.state[type].includes(idx.toString()) ||
+      (this.state[type][idx] &&
+        this.state[type][idx].toString() === options.slice(1).toString())
+    ) {
       checked = "checked";
     }
     return checked;
@@ -120,12 +125,12 @@ class SearchFilter extends React.Component {
             return (
               <div key={idx} className="input-wrapper">
                 <input
-                  onClick={this.addToArray(type)}
+                  onClick={this.addToArray(type, typeOptions[2])}
                   name={type}
                   type={`${typeOptions[1]}`}
                   value={idx}
                   className="input"
-                  checked={this.createToggle(type, idx)}
+                  checked={this.createToggle(type, idx, typeOptions[2])}
                 />
                 <p>{typeOptions[0][idx]}</p>
               </div>

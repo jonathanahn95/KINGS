@@ -20,7 +20,10 @@ class UserProductsIndexItem extends React.Component {
             <li className="user-prod-description">
               {product.description.slice(0, 20)}
             </li>
-            <li className="user-prod-price">{`$${product.price}`}</li>
+            <li className="user-prod-price">{`$${parseFloat(
+              product.price
+            ).toFixed(2)}
+`}</li>
           </ul>
         </Link>
       </div>
