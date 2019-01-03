@@ -51,6 +51,7 @@ class SearchFilter extends React.Component {
       if (val === "0" && field !== "Shipping") {
         val = allItems;
       }
+      debugger;
       if (field === "Shipping") {
         if (newArr.includes(val)) {
           newArr = newArr.filter(ele => ele !== val);

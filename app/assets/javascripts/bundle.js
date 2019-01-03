@@ -3133,6 +3133,8 @@ function (_React$Component) {
           val = allItems;
         }
 
+        debugger;
+
         if (field === "Shipping") {
           if (newArr.includes(val)) {
             newArr = newArr.filter(function (ele) {
