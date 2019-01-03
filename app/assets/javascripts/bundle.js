@@ -452,7 +452,9 @@ var receiveSearchResults = function receiveSearchResults(payload) {
 };
 var requestSearchResults = function requestSearchResults(searchData) {
   return function (dispatch) {
+    debugger;
     return _util_search_api_util__WEBPACK_IMPORTED_MODULE_0__["requestSearchResults"](searchData).then(function (results) {
+      debugger;
       return dispatch(receiveSearchResults(results));
     });
   };
@@ -3111,6 +3113,7 @@ function (_React$Component) {
     key: "generateQuery",
     value: function generateQuery(nextState) {
       var queries = Object.keys(nextState);
+      debugger;
       var queryString = "";
       queries.forEach(function (element) {
         var querySplit = element.split(" ");
@@ -3133,9 +3136,7 @@ function (_React$Component) {
           val = allItems;
         }
 
-        debugger;
-
-        if (field === "Shipping") {
+        if (field === "Shipping" || field === "On sale") {
           if (newArr.includes(val)) {
             newArr = newArr.filter(function (ele) {
               return ele !== val;
@@ -3144,12 +3145,8 @@ function (_React$Component) {
             newArr.push(val);
           }
         } else {
-          if (newArr.includes(val) || newArr[0] && newArr[0].toString() === allItems.toString()) {
-            newArr = [];
-          } else {
-            newArr = [];
-            newArr.push(val);
-          }
+          newArr = [];
+          newArr.push(val);
         }
 
         _this2.setState(_defineProperty({}, field, newArr));
@@ -3231,8 +3228,10 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         name: "answer0",
         type: "checkbox",
-        value: "true",
-        className: "input"
+        value: "1",
+        className: "input",
+        onClick: this.addToArray("On sale", ["checkbox"]),
+        checked: this.createToggle("On sale", [1], [0, 1])
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "On sale"))), shippingOptions, shopLocations, itemTypes, priceOptions);
     }
   }]);

@@ -34,6 +34,7 @@ class SearchFilter extends React.Component {
 
   generateQuery(nextState) {
     const queries = Object.keys(nextState);
+    debugger;
     let queryString = "";
     queries.forEach(element => {
       let querySplit = element.split(" ");
@@ -51,23 +52,15 @@ class SearchFilter extends React.Component {
       if (val === "0" && field !== "Shipping") {
         val = allItems;
       }
-      debugger;
-      if (field === "Shipping") {
+      if (field === "Shipping" || field === "On sale") {
         if (newArr.includes(val)) {
           newArr = newArr.filter(ele => ele !== val);
         } else {
           newArr.push(val);
         }
       } else {
-        if (
-          newArr.includes(val) ||
-          (newArr[0] && newArr[0].toString() === allItems.toString())
-        ) {
-          newArr = [];
-        } else {
-          newArr = [];
-          newArr.push(val);
-        }
+        newArr = [];
+        newArr.push(val);
       }
       this.setState({
         [field]: newArr
@@ -156,8 +149,10 @@ class SearchFilter extends React.Component {
             <input
               name="answer0"
               type="checkbox"
-              value="true"
+              value="1"
               className="input"
+              onClick={this.addToArray("On sale", ["checkbox"])}
+              checked={this.createToggle("On sale", [1], [0, 1])}
             />
             <p>On sale</p>
           </div>
