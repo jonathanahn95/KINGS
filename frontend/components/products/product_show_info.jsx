@@ -96,7 +96,9 @@ class ProductShowInfo extends React.Component {
             <form className="prod-show-form">
               <div className="prod-show-description">{description}</div>
               <div className="prod-show-price-quest">
-                <p className="prod-show-price">{`$${price}`}</p>
+                <p className="prod-show-price">{`$${parseFloat(price).toFixed(
+                  2
+                )}`}</p>
                 <p className="prod-ask-question">Ask a question</p>
               </div>
               <div className="prod-show-select-size">

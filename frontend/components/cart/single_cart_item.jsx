@@ -63,8 +63,10 @@ class SingleCartItem extends React.Component {
               <option value="4">4</option>
             </select>
             <li className="item-total-price">
-              ${totalPrice}
-              <p className="item-ind-price">(${price} each)</p>
+              ${parseFloat(totalPrice).toFixed(2)}
+              <p className="item-ind-price">
+                (${parseFloat(price).toFixed(2)} each)
+              </p>
             </li>
           </ul>
           <button

@@ -189,6 +189,7 @@ var removeAllItems = function removeAllItems() {
 var fetchCartItems = function fetchCartItems() {
   return function (dispatch) {
     return _util_cart_item_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchCartItems"]().then(function (items) {
+      debugger;
       return dispatch(receiveCartItems(items));
     });
   };
@@ -451,7 +452,6 @@ var receiveSearchResults = function receiveSearchResults(payload) {
 };
 var requestSearchResults = function requestSearchResults(searchData) {
   return function (dispatch) {
-    debugger;
     return _util_search_api_util__WEBPACK_IMPORTED_MODULE_0__["requestSearchResults"](searchData).then(function (results) {
       return dispatch(receiveSearchResults(results));
     });
@@ -758,7 +758,7 @@ function (_React$Component) {
         className: "checkout-section"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "total-price"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Items Total"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, totalPrice)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Items Total"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, Math.round(totalPrice * 100) / 100)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.checkOut,
         className: "checkout"
       }, "Proceed to checkout"))));
@@ -953,9 +953,9 @@ function (_React$Component) {
         value: "4"
       }, "4")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "item-total-price"
-      }, "$", totalPrice, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      }, "$", parseFloat(totalPrice).toFixed(2), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "item-ind-price"
-      }, "($", price, " each)"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, "($", parseFloat(price).toFixed(2), " each)"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
           return _this3.props.deleteItem(id);
         },
@@ -1435,7 +1435,7 @@ function (_React$Component) {
         to: "/product/".concat(product.id)
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "cat-show-price"
-      }, "$".concat(product.price))));
+      }, "$".concat(parseFloat(product.price).toFixed(2)))));
     }
   }]);
 
@@ -2255,7 +2255,7 @@ function (_React$Component) {
         className: "prod-show-price-quest"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "prod-show-price"
-      }, "$".concat(price)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      }, "$".concat(parseFloat(price).toFixed(2))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "prod-ask-question"
       }, "Ask a question")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "prod-show-select-size"
@@ -2522,7 +2522,7 @@ function (_React$Component) {
         className: "user-prod-description"
       }, product.description.slice(0, 20)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "user-prod-price"
-      }, "$".concat(product.price)))));
+      }, "$".concat(parseFloat(product.price).toFixed(2), "\n")))));
     }
   }]);
 
@@ -3121,12 +3121,19 @@ function (_React$Component) {
     }
   }, {
     key: "addToArray",
-    value: function addToArray(field) {
+    value: function addToArray(field, options) {
       var _this2 = this;
 
+      var allItems = options.slice(1);
       return function (e) {
         var val = e.target.value;
         var newArr = _this2.state[field];
+
+        if (val === "0" && field !== "Shipping") {
+          val = allItems;
+        }
+
+        debugger;
 
         if (field === "Shipping") {
           if (newArr.includes(val)) {
@@ -3137,7 +3144,7 @@ function (_React$Component) {
             newArr.push(val);
           }
         } else {
-          if (newArr.includes(val)) {
+          if (newArr.includes(val) || newArr[0] && newArr[0].toString() === allItems.toString()) {
             newArr = [];
           } else {
             newArr = [];
@@ -3156,13 +3163,13 @@ function (_React$Component) {
           return [["Free Shipping", "Ready to ship in 1 business day", "Ready to ship within 3 business days"], ["checkbox"], [0, 1, 2]];
 
         case "Shop location":
-          return [["Anywhere", "United States", "Custom"], ["radio"], [0, 1, 2]];
+          return [["Anywhere", "United States", "China"], ["radio"], [0, 1, 2]];
 
         case "Item style":
           return [["All items", "Handmade", "Vintage"], ["radio"], [0, 1, 2]];
 
         case "Price":
-          return [["Any price", "Under $25", "$25 to $50", "$50 to $100", "Over $100", "Custom"], ["radio"], [0, 1, 2, 3, 4, 5]];
+          return [["Any price", "Under $25", "$25 to $50", "$50 to $100", "Over $100"], ["radio"], [0, 1, 2, 3, 4]];
 
         default:
           return [];
@@ -3170,10 +3177,11 @@ function (_React$Component) {
     }
   }, {
     key: "createToggle",
-    value: function createToggle(type, idx) {
+    value: function createToggle(type, idx, options) {
+      var allItems = options.slice(1);
       var checked = "";
 
-      if (this.state[type].includes(idx.toString())) {
+      if (this.state[type].includes(idx.toString()) || this.state[type][idx] && this.state[type][idx].toString() === options.slice(1).toString()) {
         checked = "checked";
       }
 
@@ -3196,12 +3204,12 @@ function (_React$Component) {
           key: idx,
           className: "input-wrapper"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          onClick: _this3.addToArray(type),
+          onClick: _this3.addToArray(type, typeOptions[2]),
           name: type,
           type: "".concat(typeOptions[1]),
           value: idx,
           className: "input",
-          checked: _this3.createToggle(type, idx)
+          checked: _this3.createToggle(type, idx, typeOptions[2])
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, typeOptions[0][idx]));
       })));
     }

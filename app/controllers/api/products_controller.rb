@@ -14,7 +14,7 @@ class Api::ProductsController < ApplicationController
 
   def search
     @query_matches = ""
-    @param_queries = {price: params[:Price], shipping: params[:Shipping], style: params[:style], location: params[:location], sale: params[:sale]}
+    @param_queries = {cost: params[:Price], shipping: params[:Shipping], style: params[:style], location: params[:location], sale: params[:sale]}
       selected_queries = @param_queries.select {|k,v| v.length > 2}
       selected_queries.keys.each_with_index do |query,idx|
         if idx != selected_queries.length - 1
