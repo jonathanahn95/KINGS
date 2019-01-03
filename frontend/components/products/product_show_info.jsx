@@ -63,8 +63,8 @@ class ProductShowInfo extends React.Component {
                 className="prod-show-user-img"
                 src="https://s3.amazonaws.com/kings-2-dev/user_prof.png"
               />
-              <p>{userName}</p>
             </li>
+            <p className="prod-show-username">{userName}</p>
             <li>
               <ReactStars
                 color2={"#ffaa00"}

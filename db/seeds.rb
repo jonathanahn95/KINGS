@@ -32,9 +32,9 @@ Category.create!([
 categories = Category.all
 
 Product.create!([
-  {rating: 5, description: 'This is the best gift I ever got', title: 'Necklace', price: 35.99, category_id: categories[4].id, user_id: users[1].id},
-  {rating: 5, description: 'I LOVE THESE EARRINGS', title: 'Earrings', price: 35.99, category_id: categories[4].id, user_id: users[0].id},
-  {rating: 5, description: 'Daddy Necklace to wear around your neck to remember', title: 'Daddy Necklace', price: 35.99, category_id: categories[4].id, user_id: users[0].id},
+  {rating: 5, description: 'This is the best gift I ever got', title: 'Necklace', price: 35.99, category_id: categories[4].id, user_id: users[1].id, style: 0},
+  {rating: 5, description: 'I LOVE THESE EARRINGS', title: 'Earrings', price: 35.99, category_id: categories[4].id, user_id: users[0].id, style: 1},
+  {rating: 5, description: 'Daddy Necklace to wear around your neck to remember', title: 'Daddy Necklace', price: 35.99, category_id: categories[4].id, user_id: users[0].id, style: 2},
   {rating: 5, description: 'Bracelet', title: 'Bracelet', price: 35.99, category_id: categories[4].id, user_id: users[0].id},
   {rating: 5, description: 'Earring2', title: 'Earrings', price: 35.99, category_id: categories[4].id, user_id: users[0].id},
   {rating: 5, description: 'Thank you for these', title: 'Pearl', price: 35.99, category_id: categories[4].id, user_id: users[0].id},
@@ -45,9 +45,9 @@ Product.create!([
   {rating: 5, description: 'Awesome jesus pieces', title: 'Jesus Piece Necklace', price: 35.99, category_id: categories[4].id, user_id: users[0].id},
   {rating: 5, description: 'Buy this set of many bracelets', title: 'Bracelets', price: 35.99, category_id: categories[4].id, user_id: users[0].id},
   {rating: 5, description: 'Women Shoe', title: 'Women Shoe', price: 35.99, category_id: categories[3].id, user_id: users[0].id},
+  {rating: 5, description: 'Supreme', title: 'Supreme Clothing', price: 35.99, category_id: categories[3].id, user_id: users[0].id, style: 1},
   {rating: 5, description: 'Supreme', title: 'Supreme Clothing', price: 35.99, category_id: categories[3].id, user_id: users[0].id},
-  {rating: 5, description: 'Supreme', title: 'Supreme Clothing', price: 35.99, category_id: categories[3].id, user_id: users[0].id},
-  {rating: 5, description: 'Gucci', title: 'Gucci', price: 35.99, category_id: categories[3].id, user_id: users[0].id},
+  {rating: 5, description: 'Gucci', title: 'Gucci', price: 35.99, category_id: categories[3].id, user_id: users[0].id, style: 2},
   {rating: 5, description: 'Supreme3', title: 'Supreme Clothing', price: 35.99, category_id: categories[3].id, user_id: users[0].id},
   {rating: 5, description: 'Polo', title: 'Polo Shirt', price: 35.99, category_id: categories[3].id, user_id: users[0].id},
   {rating: 5, description: 'Dress', title: 'Dress', price: 35.99, category_id: categories[3].id, user_id: users[0].id},
@@ -94,67 +94,68 @@ Product.create!([
   {rating: 5, description: 'Sports11', title: 'Sports', price: 35.99, category_id: categories[2].id, user_id: users[0].id}
   ])
 
+sort_products = Product.all.sort
 
-prod = Product.all[0]
-prod1 = Product.all[1]
-prod2 = Product.all[2]
-prod3 = Product.all[3]
-prod4 = Product.all[4]
-prod5 = Product.all[5]
-prod6 = Product.all[6]
-prod7 = Product.all[7]
-prod8 = Product.all[8]
-prod9 = Product.all[9]
-prod10 = Product.all[10]
-prod11 = Product.all[11]
-prod12 = Product.all[12]
-prod13 = Product.all[13]
-prod14 = Product.all[14]
-prod15 = Product.all[15]
-prod16 = Product.all[16]
-prod17 = Product.all[17]
-prod18 = Product.all[18]
-prod19 = Product.all[19]
-prod20 = Product.all[20]
-prod21 = Product.all[21]
-prod22 = Product.all[22]
-prod23 = Product.all[23]
-prod24 = Product.all[24]
-prod25 = Product.all[25]
-prod26 = Product.all[26]
-prod27 = Product.all[27]
-prod28 = Product.all[28]
-prod29 = Product.all[29]
-prod30 = Product.all[30]
-prod31 = Product.all[31]
-prod32 = Product.all[32]
-prod33 = Product.all[33]
-prod34 = Product.all[34]
-prod35 = Product.all[35]
-prod36 = Product.all[36]
-prod37 = Product.all[37]
-prod38 = Product.all[38]
-prod39 = Product.all[39]
-prod40 = Product.all[40]
-prod41 = Product.all[41]
-prod42 = Product.all[42]
-prod43 = Product.all[43]
-prod44 = Product.all[44]
-prod45 = Product.all[45]
-prod46 = Product.all[46]
-prod47 = Product.all[47]
-prod48 = Product.all[48]
-prod49 = Product.all[49]
-prod50 = Product.all[50]
-prod51 = Product.all[51]
-prod52 = Product.all[52]
-prod53 = Product.all[53]
-prod54 = Product.all[54]
-prod55 = Product.all[55]
-prod56 = Product.all[56]
-prod57 = Product.all[57]
-prod58 = Product.all[58]
-prod59 = Product.all[59]
+prod = sort_products[0]
+prod1 = sort_products[1]
+prod2 = sort_products[2]
+prod3 = sort_products[3]
+prod4 = sort_products[4]
+prod5 = sort_products[5]
+prod6 = sort_products[6]
+prod7 = sort_products[7]
+prod8 = sort_products[8]
+prod9 = sort_products[9]
+prod10 = sort_products[10]
+prod11 = sort_products[11]
+prod12 = sort_products[12]
+prod13 = sort_products[13]
+prod14 = sort_products[14]
+prod15 = sort_products[15]
+prod16 = sort_products[16]
+prod17 = sort_products[17]
+prod18 = sort_products[18]
+prod19 = sort_products[19]
+prod20 = sort_products[20]
+prod21 = sort_products[21]
+prod22 = sort_products[22]
+prod23 = sort_products[23]
+prod24 = sort_products[24]
+prod25 = sort_products[25]
+prod26 = sort_products[26]
+prod27 = sort_products[27]
+prod28 = sort_products[28]
+prod29 = sort_products[29]
+prod30 = sort_products[30]
+prod31 = sort_products[31]
+prod32 = sort_products[32]
+prod33 = sort_products[33]
+prod34 = sort_products[34]
+prod35 = sort_products[35]
+prod36 = sort_products[36]
+prod37 = sort_products[37]
+prod38 = sort_products[38]
+prod39 = sort_products[39]
+prod40 = sort_products[40]
+prod41 = sort_products[41]
+prod42 = sort_products[42]
+prod43 = sort_products[43]
+prod44 = sort_products[44]
+prod45 = sort_products[45]
+prod46 = sort_products[46]
+prod47 = sort_products[47]
+prod48 = sort_products[48]
+prod49 = sort_products[49]
+prod50 = sort_products[50]
+prod51 = sort_products[51]
+prod52 = sort_products[52]
+prod53 = sort_products[53]
+prod54 = sort_products[54]
+prod55 = sort_products[55]
+prod56 = sort_products[56]
+prod57 = sort_products[57]
+prod58 = sort_products[58]
+prod59 = sort_products[59]
 
 add_photo(Product, prod.id, "https://s3.amazonaws.com/kings-2-dev/necklage.png", "necklage.png")
 add_photo(Product, prod1.id, "https://s3.amazonaws.com/kings-2-dev/earring1.png", "earring1.png")

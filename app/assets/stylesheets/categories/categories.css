@@ -18,6 +18,7 @@
 .category-link:hover {
   cursor: pointer;
   border-bottom: 2px solid #f45800;
+  margin-bottom: -2px;
 }
 
 .category-link {
@@ -55,16 +56,15 @@
 }
 
 .big-name {
-  margin: 25px 0 0 50px;
+  margin: 25px 0 25px 50px;
   font-size: 25px;
 }
 
 .products-container {
   display: flex;
-  width: 73%;
+  width: 78%;
   flex-wrap: wrap;
-  margin: auto;
-  justify-content: space-between;
+  margin-left: 15px;
 }
 
 .cat-show-description {
@@ -80,6 +80,7 @@
 }
 
 .cat-show-prod-ul {
+  padding-right: 8px;
   padding-bottom: 60px;
 }
 
