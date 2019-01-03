@@ -10,7 +10,9 @@ export const receiveSearchResults = payload => {
 };
 
 export const requestSearchResults = searchData => dispatch => {
+  debugger;
   return SearchApiUtil.requestSearchResults(searchData).then(results => {
+    debugger;
     return dispatch(receiveSearchResults(results));
   });
 };
