@@ -14,6 +14,6 @@ KINGS is a single-page web application inspired by Etsy. It is a local-search se
 ## Features
 
 
+![alt text](https://github.com/jonathanahn95/KINGS/blob/master/app/assets/images/readme1.png "Logo Title Text 1")
 
-
-
+A visitor to KINGS can browse all available products without logging in. In addition, they have the ability to navigate the site as a Guest Demo by logging in as a Guest user. Users must be logged in as a Guest user or create an account to add items to their cart and make purchases
