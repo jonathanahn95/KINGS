@@ -451,6 +451,7 @@ var receiveSearchResults = function receiveSearchResults(payload) {
 };
 var requestSearchResults = function requestSearchResults(searchData) {
   return function (dispatch) {
+    debugger;
     return _util_search_api_util__WEBPACK_IMPORTED_MODULE_0__["requestSearchResults"](searchData).then(function (results) {
       return dispatch(receiveSearchResults(results));
     });

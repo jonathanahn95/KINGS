@@ -112,7 +112,6 @@ class SearchFilter extends React.Component {
 
   createSection(type) {
     const typeOptions = this.createOptions(type);
-
     return (
       <div className="single-section-wrapper">
         <h2 className="filter-h2">{type}</h2>
