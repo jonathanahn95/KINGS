@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import SingleCartItem from "./single_cart_item";
+import HeaderContainer from "../header/header_container";
 
 class CartItems extends React.Component {
   constructor(props) {
@@ -31,6 +32,7 @@ class CartItems extends React.Component {
 
     return (
       <div className="processed-order-container">
+        <HeaderContainer id={"cart-container-header"} />
         <div className="processed-order-section">
           <div className="text-area">{greetingMsg}</div>
           <div className="order-link">
@@ -64,6 +66,7 @@ class CartItems extends React.Component {
 
     return (
       <section className="cart-container">
+        <HeaderContainer id={"cart-container-header"} />
         <div className="cart-header">
           <div>{itemLength} items in your cart</div>
           <button className="keep-shopping">Keep Shopping</button>

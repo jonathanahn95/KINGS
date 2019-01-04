@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import CategoryShowItem from "./category_show_item";
 import SearchFilterContainer from "../../search/filter/search_filter_container";
+import HeaderContainer from "../../header/header_container";
 
 class CategoryShow extends React.Component {
   constructor(props) {
@@ -49,6 +50,7 @@ class CategoryShow extends React.Component {
 
     return (
       <aside>
+        <HeaderContainer url={this.props.location.pathname} />
         <ul className="small-nav-links">
           <li className="small-home">
             <Link className="show-home-link" to="/">

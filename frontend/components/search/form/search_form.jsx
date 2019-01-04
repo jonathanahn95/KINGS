@@ -9,16 +9,16 @@ class SearchForm extends React.Component {
     super(props);
     this.state = {
       dropdown: "hide",
-      searchData: "",
-      hidden: true
+      searchData: ""
     };
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.props.location.pathname !== prevProps.location.pathname) {
+    if (this.props.url !== prevProps.url) {
       this.setState({
         searchData: "",
-        dropdown: "hide"
+        dropdown: "hide",
+        searching: false
       });
     } else {
       this.props.requestDropDownList(this.state.searchData);
@@ -32,6 +32,7 @@ class SearchForm extends React.Component {
         dropdown: "show"
       });
     };
+    this.props.requestDropDownList(this.state.searchData);
   }
 
   render() {
@@ -47,10 +48,7 @@ class SearchForm extends React.Component {
           />
           <div className="search-text">Search</div>
         </div>
-        <SearchDropDownContainer
-          hidden={this.state.hidden}
-          dropdown={this.state.dropdown}
-        />
+        <SearchDropDownContainer dropdown={this.state.dropdown} />
       </form>
     );
   }

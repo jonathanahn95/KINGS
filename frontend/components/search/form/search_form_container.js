@@ -9,6 +9,7 @@ import {
 
 const msp = (state, ownProps) => {
   return {
+    url: ownProps.url,
     currentUser: state.entities.users[state.session.id]
   };
 };

@@ -4,10 +4,6 @@ import merge from "lodash/merge";
 import { Link } from "react-router-dom";
 
 class DropDown extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   dropDownItem(product, idx) {
     let toggle;
     if (idx === 0) {

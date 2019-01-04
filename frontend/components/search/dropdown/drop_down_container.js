@@ -9,7 +9,7 @@ import {
 
 const msp = (state, ownProps) => {
   return {
-    hidden: ownProps.hidden,
+    hidden: ownProps.searching,
     dropdown: ownProps.dropdown,
     products: Object.values(state.entities.search),
     currentUser: state.entities.users[state.session.id]
