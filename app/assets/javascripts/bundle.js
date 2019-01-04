@@ -2279,7 +2279,7 @@ function (_React$Component) {
       var userName,
           renderPhoto = null;
 
-      if (user[product.user_id]) {
+      if (user[product.user_id] && photos && photos.length > 0) {
         userName = user[product.user_id].fname;
         renderPhoto = photos[0].photo_image_url;
       }
