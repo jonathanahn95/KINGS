@@ -6,6 +6,7 @@ import SplashPopularItems from "./splash_popular_items";
 class SplashPage extends React.Component {
   componentDidMount() {
     this.props.fetchAllProducts();
+    this.props.clearDropDownResults();
   }
 
   render() {

@@ -34,7 +34,6 @@ class SearchFilter extends React.Component {
 
   generateQuery(nextState) {
     const queries = Object.keys(nextState);
-    debugger;
     let queryString = "";
     queries.forEach(element => {
       let querySplit = element.split(" ");
@@ -97,7 +96,6 @@ class SearchFilter extends React.Component {
 
   createToggle(type, idx, options) {
     const allItems = options.slice(1);
-
     let checked = "";
     if (
       this.state[type].includes(idx.toString()) ||

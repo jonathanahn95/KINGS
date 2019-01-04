@@ -9,6 +9,14 @@ class ProductShow extends React.Component {
   componentDidMount() {
     window.scrollTo(0, 0);
     this.props.fetchProduct(this.props.match.params);
+    this.props.clearDropDownResults();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.match.params.id !== this.props.match.params.id) {
+      this.props.fetchProduct(this.props.match.params);
+    }
+    this.props.clearDropDownResults();
   }
 
   render() {

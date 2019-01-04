@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import ModalLinks from "../modals/modal_links";
 import GreetingLinksContainer from "../greeting/greeting_links_container";
 import CategoriesContainer from "../categories/index/categories_container";
-import SearchFormContainer from "../search/search_form_container";
+import SearchFormContainer from "../search//form/search_form_container";
 
 class Header extends React.Component {
   toggleLinks() {
