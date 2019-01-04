@@ -784,7 +784,7 @@ function (_React$Component) {
         className: "checkout-section"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "total-price"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Items Total"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, Math.round(totalPrice * 100) / 100)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Items Total"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, " $", parseFloat(totalPrice).toFixed(2))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.checkOut,
         className: "checkout"
       }, "Proceed to checkout"))));
