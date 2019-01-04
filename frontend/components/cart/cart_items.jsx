@@ -76,7 +76,7 @@ class CartItems extends React.Component {
           <div className="checkout-section">
             <div className="total-price">
               <div>Items Total</div>
-              <div>{Math.round(totalPrice * 100) / 100}</div>
+              <div> ${parseFloat(totalPrice).toFixed(2)}</div>
             </div>
             <button onClick={this.checkOut} className="checkout">
               Proceed to checkout
