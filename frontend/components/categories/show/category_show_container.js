@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import CategoryShow from "./category_show";
 import { Link } from "react-router-dom";
 import { fetchSingleCategory } from "../../../actions/category_actions";
+import { clearDropDownResults } from "../../../actions/search_actions";
 
 const msp = (state, ownProps) => {
   let categoryName,
@@ -30,7 +31,8 @@ const msp = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchSingleCategory: category => dispatch(fetchSingleCategory(category))
+    fetchSingleCategory: category => dispatch(fetchSingleCategory(category)),
+    clearDropDownResults: () => dispatch(clearDropDownResults())
   };
 };
 

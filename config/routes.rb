@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: 'json' } do
     delete 'cart_items/checkout/', to: 'cart_items#checkout'
     get 'products/search', to: 'products#search'
+    get 'products/dropdown', to: 'products#dropdown'
 
 
       resources :users, only: [:create, :show]

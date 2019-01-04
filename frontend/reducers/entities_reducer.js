@@ -6,6 +6,7 @@ import products from "./products_reducer";
 import photos from "./photos_reducer";
 import cart from "./cart_reducer";
 import reviews from "./reviews_reducer";
+import search from "./search_reducer";
 
 const entitiesReducer = combineReducers({
   users,
@@ -14,7 +15,8 @@ const entitiesReducer = combineReducers({
   products,
   photos,
   cart,
-  reviews
+  reviews,
+  search
 });
 
 export default entitiesReducer;

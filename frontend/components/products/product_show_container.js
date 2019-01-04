@@ -6,6 +6,7 @@ import { fetchProduct } from "../../actions/product_actions";
 import { fetchUser } from "../../actions/user_actions";
 import { addToCart } from "../../actions/cart_item_actions";
 import { openModal } from "../../actions/modal_actions";
+import { clearDropDownResults } from "../../actions/search_actions";
 
 const msp = (state, ownProps) => {
   return {
@@ -23,7 +24,8 @@ const mapDispatchToProps = dispatch => {
     fetchProduct: product => dispatch(fetchProduct(product)),
     fetchUser: user => dispatch(fetchUser(user)),
     addToCart: item => dispatch(addToCart(item)),
-    openModal: type => dispatch(openModal(type))
+    openModal: type => dispatch(openModal(type)),
+    clearDropDownResults: () => dispatch(clearDropDownResults())
   };
 };
 

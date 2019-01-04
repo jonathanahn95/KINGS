@@ -64,3 +64,31 @@
   display: flex;
   align-items: center;
 }
+
+.dropdown-wrapper {
+  position: absolute;
+  min-width: 436px;
+  margin-top: 35px;
+  margin-left: 21px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  z-index: 2;
+}
+
+.dropdown-item {
+  padding-left: 5px;
+  padding-top: 15px;
+}
+
+#item-1 {
+  padding-top: 10px;
+}
+
+#item-2 {
+  padding-bottom: 10px;
+}
+
+.hide {
+  display: none;
+}

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import CategoryShowItem from "./category_show_item";
-import SearchFilterContainer from "../../search/search_filter_container";
+import SearchFilterContainer from "../../search/filter/search_filter_container";
 
 class CategoryShow extends React.Component {
   constructor(props) {
@@ -10,9 +10,11 @@ class CategoryShow extends React.Component {
 
   componentDidMount() {
     this.props.fetchSingleCategory(this.props.match.params);
+    this.props.clearDropDownResults();
   }
 
   componentDidUpdate(prevProps, prevState) {
+    this.props.clearDropDownResults();
     if (this.props.match.params.id !== prevProps.match.params.id) {
       this.props.fetchSingleCategory(this.props.match.params);
     }

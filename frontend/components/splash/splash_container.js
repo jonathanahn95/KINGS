@@ -3,6 +3,8 @@ import { logout } from "../../actions/session_actions";
 import { openModal } from "../../actions/modal_actions";
 import SplashPage from "./splash_page";
 import { fetchAllProducts } from "../../actions/product_actions";
+import { clearDropDownResults } from "../../actions/search_actions";
+
 const mapStateToProps = state => {
   let photos,
     products = null;
@@ -22,6 +24,7 @@ const mapStateToProps = state => {
 const mapDispatchToPros = dispatch => {
   return {
     logout: () => dispatch(logout()),
+    clearDropDownResults: () => dispatch(clearDropDownResults()),
     openModal: type => dispatch(openModal(type)),
     fetchAllProducts: () => dispatch(fetchAllProducts())
   };

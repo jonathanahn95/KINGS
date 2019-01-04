@@ -23,13 +23,22 @@ class Api::ProductsController < ApplicationController
           @query_matches << "#{query} IN #{selected_queries[query]} "
         end
       end
-      @query_matches.length == 0 ?
-      @query_matches = "category_id IN #{params[:category_id]}" :
-      @query_matches = "category_id IN #{params[:category_id]}" + "AND #{@query_matches}"
 
-    # @query_matches = "category_id IN #{params[:category_id]}" + "AND #{@query_matches}"
+    @query_matches.length == 0 ?
+    @query_matches = "category_id IN #{params[:category_id]}" :
+    @query_matches = "category_id IN #{params[:category_id]}" + "AND #{@query_matches}"
+
     @products = Product.where(@query_matches)
 
+    render :index
+  end
+
+  def dropdown
+    if params[:title] == ""
+      @products = []
+    else
+      @products = Product.where('title ILIKE ?', "%#{params[:title]}%").limit(10)
+    end
     render :index
   end
 
