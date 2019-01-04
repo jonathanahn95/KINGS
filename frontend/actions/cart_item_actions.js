@@ -29,7 +29,6 @@ export const removeAllItems = () => ({
 export const fetchCartItems = () => {
   return dispatch => {
     return CartItemApiUtil.fetchCartItems().then(items => {
-      debugger;
       return dispatch(receiveCartItems(items));
     });
   };

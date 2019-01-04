@@ -149,6 +149,7 @@
   background-color: #f5f5f1;
   height: 45vw;
   display: flex;
+  flex-direction: column;
 }
 
 .processed-order-section {

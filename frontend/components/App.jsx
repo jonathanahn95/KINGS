@@ -14,8 +14,6 @@ import Footer from "./footer";
 
 const App = () => (
   <div>
-    <HeaderContainer />
-
     <Modal />
     <Route exact path="/" component={SplashContainer} />
     <Route exact path="/category/:id" component={CategoryShowContainer} />

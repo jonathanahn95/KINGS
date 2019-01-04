@@ -20,13 +20,13 @@ class Header extends React.Component {
   }
   render() {
     return (
-      <header>
+      <header id={this.props.cartHeader}>
         <nav className="header-nav">
           <div className="header-nav-left">
             <Link className="link-kings-logo" to="/">
               <div className="kings-logo">KINGS</div>
             </Link>
-            <SearchFormContainer />
+            <SearchFormContainer url={this.props.url} />
           </div>
           {this.toggleLinks()}
         </nav>

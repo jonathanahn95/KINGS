@@ -4,6 +4,7 @@ import merge from "lodash/merge";
 import { Link } from "react-router-dom";
 import ProductShowInfo from "./product_show_info";
 import ReactStars from "react-stars";
+import HeaderContainer from "../header/header_container";
 
 class ProductShow extends React.Component {
   componentDidMount() {
@@ -47,8 +48,12 @@ class ProductShow extends React.Component {
         />
       );
     }
-
-    return <div>{renderProductInfo}</div>;
+    return (
+      <div>
+        <HeaderContainer url={this.props.location.pathname} />
+        {renderProductInfo}
+      </div>
+    );
   }
 }
 
