@@ -13,6 +13,12 @@ class Api::ProductsController < ApplicationController
   end
 
   def search
+    @products = Product.with_attached_photos.includes(:category, :user).where('title ILIKE ?', "%#{params[:search]}%")
+    render :index
+  end
+
+  def search_filter
+
     @query_matches = ""
     @param_queries = {cost: params[:Price], shipping: params[:Shipping], style: params[:style], location: params[:location], sale: params[:sale]}
       selected_queries = @param_queries.select {|k,v| v.length > 2}
@@ -24,11 +30,13 @@ class Api::ProductsController < ApplicationController
         end
       end
 
-    @query_matches.length == 0 ?
-    @query_matches = "category_id IN #{params[:category_id]}" :
-    @query_matches = "category_id IN #{params[:category_id]}" + "AND #{@query_matches}"
+    if params[:category_id] != "(undefined)"
+      @query_matches.length == 0 ?
+      @query_matches = "category_id IN #{params[:category_id]}" :
+      @query_matches = "category_id IN #{params[:category_id]}" + "AND #{@query_matches}"
+    end
 
-    @products = Product.where(@query_matches)
+    @products = Product.with_attached_photos.includes(:category, :user).where(@query_matches)
 
     render :index
   end
@@ -37,7 +45,8 @@ class Api::ProductsController < ApplicationController
     if params[:title] == ""
       @products = []
     else
-      @products = Product.where('title ILIKE ?', "%#{params[:title]}%").limit(10)
+      @products = Product.with_attached_photos.includes(:category, :user)
+      .where('title ILIKE ?', "%#{params[:title]}%").limit(10)
     end
     render :index
   end

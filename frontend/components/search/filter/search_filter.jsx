@@ -18,7 +18,10 @@ class SearchFilter extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.props.match.params.id !== prevProps.match.params.id) {
+    if (
+      this.props.match.params.id !== prevProps.match.params.id ||
+      this.props.location.search !== prevProps.location.search
+    ) {
       this.setState({
         "On sale": [],
         "Shop location": [],

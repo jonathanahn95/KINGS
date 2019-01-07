@@ -206,3 +206,7 @@
   font-weight: 600;
   border-radius: 0 3px 3px 0;
 }
+
+.fa-caret {
+  padding: 0 9px;
+}

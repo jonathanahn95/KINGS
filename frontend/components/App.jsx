@@ -10,6 +10,7 @@ import ProductIndexContainer from "./products/index/products_index_container";
 import HeaderContainer from "./header/header_container";
 import CartItemsContainer from "./cart/cart_items_container";
 import SearchFilterContainer from "./search/filter/search_filter_container";
+import SearchPageContainer from "./search/page/search_page_container";
 import Modal from "./modals/modal";
 import Footer from "./footer";
 
@@ -21,6 +22,7 @@ const App = () => (
     <Route exact path="/cart" component={CartItemsContainer} />
     <Route exact path="/product/:id" component={ProductShowContainer} />
     <Route exact path="/products" component={ProductIndexContainer} />
+    <Route exact path="/search" component={SearchPageContainer} />
     <Footer />
   </div>
 );
