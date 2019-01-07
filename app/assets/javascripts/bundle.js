@@ -3598,7 +3598,8 @@ function (_React$Component) {
       Price: [],
       Shipping: [],
       "Item style": [],
-      category_id: _this.props.match.params.id
+      category_id: _this.props.match.params.id,
+      searching: _this.props.location.search.slice(1)
     };
     _this.createOptions = _this.createOptions.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     return _this;
@@ -3618,6 +3619,7 @@ function (_React$Component) {
         });
       } else if (this.state !== prevState) {
         this.props.requestSearchResults(this.generateQuery(this.state));
+        debugger;
       }
     }
   }, {
@@ -4024,8 +4026,6 @@ function (_React$Component) {
   _createClass(SearchPage, [{
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps, prevState) {
-      debugger;
-
       if (this.props.location.search !== prevProps.location.search) {
         this.props.searchBusinesses(this.props.location.search.slice(1));
       }

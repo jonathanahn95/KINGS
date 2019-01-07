@@ -30,6 +30,7 @@ class Api::ProductsController < ApplicationController
         end
       end
 
+
     if params[:category_id] != "(undefined)"
       @query_matches.length == 0 ?
       @query_matches = "category_id IN #{params[:category_id]}" :

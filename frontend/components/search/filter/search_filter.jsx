@@ -12,7 +12,8 @@ class SearchFilter extends React.Component {
       Price: [],
       Shipping: [],
       "Item style": [],
-      category_id: this.props.match.params.id
+      category_id: this.props.match.params.id,
+      searching: this.props.location.search.slice(1)
     };
     this.createOptions = this.createOptions.bind(this);
   }
@@ -32,6 +33,7 @@ class SearchFilter extends React.Component {
       });
     } else if (this.state !== prevState) {
       this.props.requestSearchResults(this.generateQuery(this.state));
+      debugger;
     }
   }
 

@@ -14,7 +14,6 @@ class SearchPage extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    debugger;
     if (this.props.location.search !== prevProps.location.search) {
       this.props.searchBusinesses(this.props.location.search.slice(1));
     }
