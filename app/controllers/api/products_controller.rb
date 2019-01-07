@@ -4,7 +4,7 @@ class Api::ProductsController < ApplicationController
     if params[:category_id]
       @products = Product.with_attached_photos.includes(:category, :user).where(category_id: params[:category_id])
     else
-      @products = Product.with_attached_photos.includes(:category, :user).all
+      @products = Product.with_attached_photos.includes(:category, :user).all.limit(12)
     end
   end
 

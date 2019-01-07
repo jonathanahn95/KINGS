@@ -4,7 +4,7 @@ import merge from "lodash/merge";
 import { Link } from "react-router-dom";
 import ReactStars from "react-stars";
 import UserProductsContainer from "./user_products_container";
-import ReviewsContainer from "../reviews/reviews_container";
+import ReviewsContainer from "../../reviews/reviews_container";
 
 class ProductShowInfo extends React.Component {
   constructor(props) {

@@ -4,7 +4,7 @@ import merge from "lodash/merge";
 import { Link } from "react-router-dom";
 import ProductShowInfo from "./product_show_info";
 import ReactStars from "react-stars";
-import HeaderContainer from "../header/header_container";
+import HeaderContainer from "../../header/header_container";
 
 class ProductShow extends React.Component {
   componentDidMount() {
