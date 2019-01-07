@@ -2,11 +2,11 @@ import React from "react";
 import { connect } from "react-redux";
 import ProductShow from "./product_show";
 import { Link } from "react-router-dom";
-import { fetchProduct } from "../../actions/product_actions";
-import { fetchUser } from "../../actions/user_actions";
-import { addToCart } from "../../actions/cart_item_actions";
-import { openModal } from "../../actions/modal_actions";
-import { clearDropDownResults } from "../../actions/search_actions";
+import { fetchProduct } from "../../../actions/product_actions";
+import { fetchUser } from "../../../actions/user_actions";
+import { addToCart } from "../../../actions/cart_item_actions";
+import { openModal } from "../../../actions/modal_actions";
+import { clearDropDownResults } from "../../../actions/search_actions";
 
 const msp = (state, ownProps) => {
   return {

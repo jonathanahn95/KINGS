@@ -11,29 +11,31 @@ const SplashHeaderInfo = () => {
         <p className="splash-greeting-text">unique, it’s on KINGS.</p>
       </div>
       <div className="splash-pics-wrapper">
-        <figure className="splash-figure-wrapper">
-          <figcaption className="splash-figcaption">
-            <p className="splash-figcaption-text">
-              The world of KINGS awaits you!
-            </p>
-            <Link className="splash-explore-link" to="/products">
+        <Link className="splash-explore-link" to="/products">
+          <figure className="splash-figure-wrapper">
+            <figcaption className="splash-figcaption">
+              <p className="splash-figcaption-text">
+                The world of KINGS awaits you!
+              </p>
               <p className="splash-figcaption-subtext">
                 Take a look inside<i className="fa fa-caret-right splash-subtext" />
               </p>
-            </Link>
-          </figcaption>
-          <img
-            className="splash-big-pic"
-            src="https://s3.amazonaws.com/kings-2-dev/splash.png"
-          />
-        </figure>
-        <div className="splash-pics2-wrapper">
-          <figure className="splash-figure">
+            </figcaption>
             <img
-              className="splash-sec-pic"
-              src="https://s3.amazonaws.com/kings-2-dev/splash2.jpg"
+              className="splash-big-pic"
+              src="https://s3.amazonaws.com/kings-2-dev/splash.png"
             />
           </figure>
+        </Link>
+        <div className="splash-pics2-wrapper">
+          <Link className="splash-explore-link" to="/products">
+            <figure className="splash-figure">
+              <img
+                className="splash-sec-pic"
+                src="https://s3.amazonaws.com/kings-2-dev/splash2.jpg"
+              />
+            </figure>
+          </Link>
           <Link className="splash-explore-link" to="/products">
             <figcaption className="splash-ship-products">
               Shop ready-to-ship products

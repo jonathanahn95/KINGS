@@ -3,6 +3,7 @@ import { withRouter } from "react-router-dom";
 import merge from "lodash/merge";
 import { Link } from "react-router-dom";
 import SearchDropDownContainer from "../dropdown/drop_down_container";
+import { DebounceInput } from "react-debounce-input";
 
 class SearchForm extends React.Component {
   constructor(props) {
@@ -11,6 +12,13 @@ class SearchForm extends React.Component {
       dropdown: "hide",
       searchData: ""
     };
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    this.setState({ searchData: "" });
+    this.props.history.push(`/search?${this.state.searchData}`);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -37,15 +45,17 @@ class SearchForm extends React.Component {
 
   render() {
     return (
-      <form className="header-nav-form">
+      <form className="header-nav-form" onSubmit={this.handleSubmit}>
         <div className="header-nav-form-div">
-          <input
-            onChange={this.update("searchData")}
-            type="search"
-            placeholder="Search for items or shops"
+          <DebounceInput
             className="header-search-input"
+            placeholder="Search for items or shops"
+            minLength={1}
+            debounceTimeout={300}
             value={this.state.searchData}
+            onChange={this.update("searchData")}
           />
+
           <div className="search-text">Search</div>
         </div>
         <SearchDropDownContainer dropdown={this.state.dropdown} />
