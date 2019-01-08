@@ -1,11 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
-import { login, clearErrors } from "../../actions/session_actions";
+import { login, clearErrors, logout } from "../../actions/session_actions";
 import GreetingLinks from "./greeting_links.jsx";
 import { Link } from "react-router-dom";
 import { closeModal, openModal } from "../../actions/modal_actions";
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
+  debugger;
   return {
     modal: state.entities.modal
   };
@@ -14,7 +15,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     processForm: user => dispatch(login(user)),
-    openModal: type => dispatch(openModal(type))
+    openModal: type => dispatch(openModal(type)),
+    logout: () => dispatch(logout())
   };
 };
 
