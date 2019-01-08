@@ -33,7 +33,6 @@ class SearchFilter extends React.Component {
       });
     } else if (this.state !== prevState) {
       this.props.requestSearchResults(this.generateQuery(this.state));
-      debugger;
     }
   }
 

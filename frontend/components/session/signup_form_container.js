@@ -18,7 +18,8 @@ const msp = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    processForm: user => dispatch(signup(user)),
+    login: user => dispatch(login(user)),
+    signup: user => dispatch(signup(user)),
     clearErrors: () => dispatch(clearErrors()),
     closeModal: () => dispatch(closeModal())
   };

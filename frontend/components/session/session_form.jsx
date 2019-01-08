@@ -7,9 +7,9 @@ class SessionForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: "",
       password: "",
-      fname: ""
+      fname: "",
+      email: ""
     };
     this.guestDemo = this.guestDemo.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -18,7 +18,7 @@ class SessionForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const user = Object.assign({}, this.state);
-    this.props.processForm(user).then(this.props.closeModal());
+    this.props.signup(user).then(this.props.closeModal());
   }
 
   update(field) {
@@ -36,7 +36,8 @@ class SessionForm extends React.Component {
       password: "123123",
       fname: "Guest"
     };
-    this.props.processForm(user).then(this.props.closeModal());
+    debugger;
+    this.props.login(user).then(this.props.closeModal());
   }
 
   render() {

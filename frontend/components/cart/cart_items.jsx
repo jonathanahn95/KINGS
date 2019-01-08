@@ -69,7 +69,11 @@ class CartItems extends React.Component {
         <HeaderContainer id={"cart-container-header"} />
         <div className="cart-header">
           <div>{itemLength} items in your cart</div>
-          <button className="keep-shopping">Keep Shopping</button>
+          <Link className="link" to="/products">
+            <button id="keep-shopping-id" className="keep-shopping">
+              Keep Shopping
+            </button>
+          </Link>
         </div>
         <div className="cart-section">
           <div className="cart-items-container">{renderItems}</div>

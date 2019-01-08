@@ -470,7 +470,9 @@ var clearDropDownResults = function clearDropDownResults() {
 };
 var requestSearchResults = function requestSearchResults(searchData) {
   return function (dispatch) {
+    debugger;
     return _util_search_api_util__WEBPACK_IMPORTED_MODULE_0__["requestSearchResults"](searchData).then(function (results) {
+      debugger;
       return dispatch(receiveSearchResults(results));
     });
   };
@@ -542,20 +544,22 @@ var clearErrors = function clearErrors() {
   };
 };
 var signup = function signup(user) {
+  debugger;
   return function (dispatch) {
     return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__["signup"](user).then(function (user) {
-      return dispatch(receiveCurrentUser(user));
-    }, function (errors) {
-      return dispatch(receiveErrors(errors.responseJSON));
+      debugger;
+      return dispatch(receiveCurrentUser(user)), function (errors) {
+        return dispatch(receiveErrors(errors.responseJSON));
+      };
     });
   };
 };
 var login = function login(user) {
   return function (dispatch) {
     return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__["login"](user).then(function (user) {
-      return dispatch(receiveCurrentUser(user));
-    }, function (errors) {
-      return dispatch(receiveErrors(errors.responseJSON));
+      return dispatch(receiveCurrentUser(user)), function (errors) {
+        return dispatch(receiveErrors(errors.responseJSON));
+      };
     });
   };
 };
@@ -799,9 +803,13 @@ function (_React$Component) {
         id: "cart-container-header"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "cart-header"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, itemLength, " items in your cart"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, itemLength, " items in your cart"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        className: "link",
+        to: "/products"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        id: "keep-shopping-id",
         className: "keep-shopping"
-      }, "Keep Shopping")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Keep Shopping"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "cart-section"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "cart-items-container"
@@ -1631,9 +1639,12 @@ function (_React$Component) {
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "header-nav-right"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Sell on KINGS"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Sell on KINGS"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        className: "link",
+        to: "/products"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "greeting-discover"
-      }, "Discover"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      }, "Discover")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "greeting-user"
       }, "You"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         className: "link",
@@ -1683,7 +1694,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  debugger;
   return {
     modal: state.entities.modal
   };
@@ -3631,7 +3641,6 @@ function (_React$Component) {
         });
       } else if (this.state !== prevState) {
         this.props.requestSearchResults(this.generateQuery(this.state));
-        debugger;
       }
     }
   }, {
@@ -4301,7 +4310,7 @@ var msp = function msp(state, ownProps) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    processForm: function processForm(user) {
+    login: function login(user) {
       return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["login"])(user));
     },
     clearErrors: function clearErrors() {
@@ -4368,9 +4377,9 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(SessionForm).call(this, props));
     _this.state = {
-      username: "",
       password: "",
-      fname: ""
+      fname: "",
+      email: ""
     };
     _this.guestDemo = _this.guestDemo.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_assertThisInitialized(_this)));
@@ -4382,7 +4391,7 @@ function (_React$Component) {
     value: function handleSubmit(e) {
       e.preventDefault();
       var user = Object.assign({}, this.state);
-      this.props.processForm(user).then(this.props.closeModal());
+      this.props.signup(user).then(this.props.closeModal());
     }
   }, {
     key: "update",
@@ -4402,7 +4411,8 @@ function (_React$Component) {
         password: "123123",
         fname: "Guest"
       };
-      this.props.processForm(user).then(this.props.closeModal());
+      debugger;
+      this.props.login(user).then(this.props.closeModal());
     }
   }, {
     key: "render",
@@ -4502,7 +4512,10 @@ var msp = function msp(state, ownProps) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    processForm: function processForm(user) {
+    login: function login(user) {
+      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["login"])(user));
+    },
+    signup: function signup(user) {
       return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["signup"])(user));
     },
     clearErrors: function clearErrors() {
@@ -5489,11 +5502,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return Object(lodash__WEBPACK_IMPORTED_MODULE_5__["merge"])({}, state, _defineProperty({}, action.user.id, action.user));
 
     case _actions_product_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_ALL_PRODUCTS"]:
-      return Object(lodash__WEBPACK_IMPORTED_MODULE_5__["merge"])({}, action.payload.users);
+      return Object(lodash__WEBPACK_IMPORTED_MODULE_5__["merge"])({}, state, action.payload.users);
 
     case _actions_category_actions__WEBPACK_IMPORTED_MODULE_2__["RECEIVE_SINGLE_CATEGORY"]:
       if (action.payload.users) {
-        return action.payload.users[action.payload.category.id];
+        return Object(lodash__WEBPACK_IMPORTED_MODULE_5__["merge"])({}, state, action.payload.users[action.payload.category.id]);
       }
 
       return {};
@@ -5502,8 +5515,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return Object(lodash__WEBPACK_IMPORTED_MODULE_5__["merge"])({}, state, _defineProperty({}, action.payload.id, action.payload.user));
 
     case _actions_search_actions__WEBPACK_IMPORTED_MODULE_4__["RECEIVE_SEARCH_RESULTS"]:
+      debugger;
+
       if (action.payload.users) {
-        return action.payload.users;
+        return Object(lodash__WEBPACK_IMPORTED_MODULE_5__["merge"])({}, state, action.payload.users);
       } else {
         return {};
       }

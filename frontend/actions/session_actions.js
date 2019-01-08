@@ -30,17 +30,29 @@ export const clearErrors = () => {
   };
 };
 
-export const signup = user => dispatch =>
-  SessionAPIUtil.signup(user).then(
-    user => dispatch(receiveCurrentUser(user)),
-    errors => dispatch(receiveErrors(errors.responseJSON))
-  );
+export const signup = user => {
+  debugger;
+  return dispatch => {
+    return SessionAPIUtil.signup(user).then(user => {
+      debugger;
+      return (
+        dispatch(receiveCurrentUser(user)),
+        errors => dispatch(receiveErrors(errors.responseJSON))
+      );
+    });
+  };
+};
 
-export const login = user => dispatch =>
-  SessionAPIUtil.login(user).then(
-    user => dispatch(receiveCurrentUser(user)),
-    errors => dispatch(receiveErrors(errors.responseJSON))
-  );
+export const login = user => {
+  return dispatch => {
+    return SessionAPIUtil.login(user).then(user => {
+      return (
+        dispatch(receiveCurrentUser(user)),
+        errors => dispatch(receiveErrors(errors.responseJSON))
+      );
+    });
+  };
+};
 
 export const logout = () => dispatch =>
   SessionAPIUtil.logout().then(() => dispatch(logoutCurrentUser()));
