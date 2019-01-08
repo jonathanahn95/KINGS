@@ -1595,13 +1595,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 
 
@@ -1611,29 +1611,37 @@ var GreetingLinks =
 function (_React$Component) {
   _inherits(GreetingLinks, _React$Component);
 
-  function GreetingLinks() {
+  function GreetingLinks(props) {
+    var _this;
+
     _classCallCheck(this, GreetingLinks);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(GreetingLinks).apply(this, arguments));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(GreetingLinks).call(this, props));
+    _this.logoutUser = _this.logoutUser.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    return _this;
   }
 
   _createClass(GreetingLinks, [{
+    key: "logoutUser",
+    value: function logoutUser() {
+      this.props.logout();
+    }
+  }, {
     key: "render",
     value: function render() {
-      var _this = this;
-
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "header-nav-right"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Sell on KINGS"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "greeting-discover"
       }, "Discover"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        className: "greeting-notifications"
-      }, "Notifications"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        onClick: function onClick() {
-          return _this.props.openModal("userprof");
-        },
         className: "greeting-user"
       }, "You"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        className: "link",
+        to: "/"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        onClick: this.logoutUser,
+        className: "greeting-notifications"
+      }, "Log Out")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         className: "shopping-cart",
         to: "/cart"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
@@ -1674,7 +1682,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var mapStateToProps = function mapStateToProps(state) {
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  debugger;
   return {
     modal: state.entities.modal
   };
@@ -1687,6 +1696,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     openModal: function openModal(type) {
       return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_5__["openModal"])(type));
+    },
+    logout: function logout() {
+      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["logout"])());
     }
   };
 };
