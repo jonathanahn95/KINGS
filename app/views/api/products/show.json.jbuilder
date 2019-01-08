@@ -3,7 +3,7 @@ json.product do
 end
 
 json.photos do
-    json.array! @product.photos.each do |photo|
-      json.photo_image_url url_for(photo)
-    end
+  json.array! @product.photos.each do |photo|
+    json.photo_image_url url_for(photo)
+  end
 end

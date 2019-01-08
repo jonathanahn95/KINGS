@@ -12,10 +12,14 @@ export default (state = {}, action) => {
     case RECEIVE_CURRENT_USER:
       return merge({}, state, { [action.user.id]: action.user });
     case RECEIVE_ALL_PRODUCTS:
-      return merge({}, action.payload.users);
+      return merge({}, state, action.payload.users);
     case RECEIVE_SINGLE_CATEGORY:
       if (action.payload.users) {
-        return action.payload.users[action.payload.category.id];
+        return merge(
+          {},
+          state,
+          action.payload.users[action.payload.category.id]
+        );
       }
       return {};
     case RECEIVE_USER_INFO:
@@ -23,8 +27,9 @@ export default (state = {}, action) => {
         [action.payload.id]: action.payload.user
       });
     case RECEIVE_SEARCH_RESULTS:
+      debugger;
       if (action.payload.users) {
-        return action.payload.users;
+        return merge({}, state, action.payload.users);
       } else {
         return {};
       }

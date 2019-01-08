@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import { closeModal, openModal } from "../../actions/modal_actions";
 
 const mapStateToProps = (state, ownProps) => {
-  debugger;
   return {
     modal: state.entities.modal
   };

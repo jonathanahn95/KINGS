@@ -15,7 +15,9 @@ class GreetingLinks extends React.Component {
     return (
       <ul className="header-nav-right">
         <li>Sell on KINGS</li>
-        <li className="greeting-discover">Discover</li>
+        <Link className="link" to="/products">
+          <li className="greeting-discover">Discover</li>
+        </Link>
         <li className="greeting-user">You</li>
         <Link className="link" to="/">
           <li onClick={this.logoutUser} className="greeting-notifications">
