@@ -2014,11 +2014,14 @@ function (_React$Component) {
           return _this.props.openModal("login");
         },
         className: "header-sign-in-li"
-      }, "Sign In"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      }, "Sign In"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        className: "link",
+        to: "/products"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "header-discover-li"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-search"
-      }), "Discover"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      }), "Discover")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         onClick: function onClick() {
           return _this.props.openModal("login");
         },
