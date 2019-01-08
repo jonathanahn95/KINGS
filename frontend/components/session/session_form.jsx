@@ -36,7 +36,6 @@ class SessionForm extends React.Component {
       password: "123123",
       fname: "Guest"
     };
-    debugger;
     this.props.login(user).then(this.props.closeModal());
   }
 

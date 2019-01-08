@@ -11,6 +11,9 @@ import HeaderContainer from "./header/header_container";
 import CartItemsContainer from "./cart/cart_items_container";
 import SearchFilterContainer from "./search/filter/search_filter_container";
 import SearchPageContainer from "./search/page/search_page_container";
+import UserProfileContainer from "./user/user_profile_container";
+import ItemEditContainer from "./item/item_edit_container.js";
+import ItemCreateContainer from "./item/item_create_container.js";
 import Modal from "./modals/modal";
 import Footer from "./footer";
 
@@ -23,6 +26,9 @@ const App = () => (
     <Route exact path="/product/:id" component={ProductShowContainer} />
     <Route exact path="/products" component={ProductIndexContainer} />
     <Route exact path="/search" component={SearchPageContainer} />
+    <Route exact path="/users/:id" component={UserProfileContainer} />
+    <Route exact path="/items/new" component={ItemCreateContainer} />
+    <Route exact path="/items/:id/edit" component={ItemEditContainer} />
     <Footer />
   </div>
 );

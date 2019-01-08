@@ -32,3 +32,19 @@ export const fetchProduct = product => {
     });
   };
 };
+
+export const createProduct = product => {
+  return dispatch => {
+    return ProductApiUtil.createProduct(product).then(product => {
+      return dispatch(receiveProduct(product));
+    });
+  };
+};
+
+export const updateProduct = product => {
+  return dispatch => {
+    return ProductApiUtil.updateProduct(product).then(product => {
+      return dispatch(receiveProduct(product));
+    });
+  };
+};

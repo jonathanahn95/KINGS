@@ -31,10 +31,8 @@ export const clearErrors = () => {
 };
 
 export const signup = user => {
-  debugger;
   return dispatch => {
     return SessionAPIUtil.signup(user).then(user => {
-      debugger;
       return (
         dispatch(receiveCurrentUser(user)),
         errors => dispatch(receiveErrors(errors.responseJSON))

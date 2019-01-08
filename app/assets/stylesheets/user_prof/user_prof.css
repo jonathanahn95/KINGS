@@ -1,0 +1,134 @@
+.user-right-name {
+  text-align: left;
+  color: black;
+  font-weight: 400;
+  font-size: 1.8em;
+  padding-bottom: 38px;
+}
+
+.create-an-item {
+  text-align: right;
+  font-size: 14px;
+  padding: 7px;
+  display: table;
+  color: #444;
+  background-color: #fff;
+  font-weight: normal;
+  text-shadow: none;
+  border-radius: 3px;
+  border: 1px solid #e1e3e0;
+}
+
+.user-prof-wrapper {
+  margin-top: 30px;
+}
+
+.user-prof-section {
+  width: 980px;
+  text-align: left;
+  border-radius: 3px;
+  margin: auto;
+  display: flex;
+  padding-top: 20px;
+}
+
+.user-show-left {
+  padding: 20px;
+  position: relative;
+  width: 20%;
+  background-color: #f4f3ef;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  height: 5%;
+  border-radius: 3px;
+}
+
+.user-show-right {
+  display: flex;
+  justify-content: space-between;
+  width: 75%;
+  flex-direction: column;
+  margin-left: 20px;
+}
+
+.user-show-right-top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.user-prof-products {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.user-single-prod {
+  width: 30%;
+  border-radius: 5px;
+  border: 2px solid #f4f3ef;
+  padding-bottom: 5px;
+  height: 100%;
+  margin-bottom: 20px;
+}
+
+.user-prod-img {
+  width: 100%;
+  object-fit: cover;
+  height: 200px;
+}
+
+.user-prod-info {
+  display: flex;
+  justify-content: space-between;
+  width: 95%;
+  margin: auto;
+  font-size: 15px;
+  padding: 8px 0;
+}
+
+.user-prod-edit {
+  display: flex;
+  justify-content: space-between;
+  width: 95%;
+  margin: auto;
+  font-size: 15px;
+  line-height: 1.4;
+  color: #b6b6b6;
+  font-family: "Graphik Webfont", -apple-system, BlinkMacSystemFont, "Roboto",
+    "Droid Sans", "Segoe UI", "Helvetica", Arial, sans-serif;
+  border-top: 1px solid #dddfda;
+  padding-top: 5px;
+}
+
+/* .view-item {
+  text-align: center;
+  border-radius: 3px;
+  display: inline-block;
+  font-weight: bold;
+  margin: auto;
+}
+
+.edit-item {
+  text-align: center;
+  border-radius: 3px;
+  display: inline-block;
+  font-weight: bold;
+  margin: auto;
+}
+
+.user-prod-title {
+  text-align: center;
+  border-radius: 3px;
+  display: inline-block;
+  font-weight: bold;
+  margin: auto;
+}
+
+.user-prod-price {
+  text-align: center;
+  border-radius: 3px;
+  display: inline-block;
+  font-weight: bold;
+  margin: auto;
+} */
