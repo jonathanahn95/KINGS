@@ -27,7 +27,6 @@ export default (state = {}, action) => {
         [action.payload.id]: action.payload.user
       });
     case RECEIVE_SEARCH_RESULTS:
-      debugger;
       if (action.payload.users) {
         return merge({}, state, action.payload.users);
       } else {

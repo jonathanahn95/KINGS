@@ -52,8 +52,17 @@ class Api::ProductsController < ApplicationController
     render :index
   end
 
+  def create
+   @product = Product.new(product_params)
+   if @product.save!
+     render "api/products/show"
+   else
+     render json: ['Sorry invalid item, please try again.'], status: 422
+   end
+ end
+
   private
   def product_params
-    params.require(:product).permit(:title, :price, :description, :category_id, :user_id)
+    params.require(:product).permit(:title, :price, :description, :category_id, :user_id, photos: [])
   end
 end

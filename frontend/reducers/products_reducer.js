@@ -20,7 +20,11 @@ export default (state = {}, action) => {
     case RECEIVE_PRODUCT:
       return { [action.payload.product.id]: action.payload.product };
     case RECEIVE_USER_INFO:
-      return merge({}, state, action.payload.userProducts);
+      if (action.payload.userProducts) {
+        return merge({}, state, action.payload.userProducts);
+      } else {
+        return {};
+      }
     case RECEIVE_SEARCH_RESULTS:
       if (action.payload.products) {
         return action.payload.products;
