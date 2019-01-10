@@ -2,7 +2,7 @@
 
 # KINGS
 
-![](kings_giphy.gif	)
+![](kings.gif	)
 
 [Live!](https://kings-ja.herokuapp.com/)
  * Please note the live site is currently on Heroku Hobby Dynos, so please allow a couple seconds for KINGS to get up and running *
