@@ -31,7 +31,7 @@ Category.create!([
   {category_name: 'Art'},
   {category_name: 'Sports'},
   {category_name: 'Clothes'},
-  {category_name: 'Jewerly'},
+  {category_name: 'Jewelry'},
   {category_name: 'Garden'},
   {category_name: 'Kitchen'},
   {category_name: 'Electronics'}
