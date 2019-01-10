@@ -11,10 +11,10 @@ export const receiveReview = review => {
   };
 };
 
-export const receiveAllReviews = reviews => {
+export const receiveAllReviews = payload => {
   return {
     type: RECEIVE_ALL_REVIEWS,
-    reviews
+    payload
   };
 };
 

@@ -4,7 +4,10 @@ import {
   RECEIVE_PRODUCT
 } from "../actions/product_actions";
 import { RECEIVE_SINGLE_CATEGORY } from "../actions/category_actions";
-import { RECEIVE_USER_INFO } from "../actions/user_actions";
+import {
+  RECEIVE_USER_INFO,
+  RECEIVE_USER_PROF_INFO
+} from "../actions/user_actions";
 import { RECEIVE_SEARCH_RESULTS } from "../actions/search_actions";
 
 export default (state = {}, action) => {
@@ -22,6 +25,12 @@ export default (state = {}, action) => {
     case RECEIVE_USER_INFO:
       if (action.payload.userProducts) {
         return merge({}, state, action.payload.userProducts);
+      } else {
+        return {};
+      }
+    case RECEIVE_USER_PROF_INFO:
+      if (action.payload.userProducts) {
+        return action.payload.userProducts;
       } else {
         return {};
       }

@@ -10,17 +10,19 @@ class UserProfile extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchUser(this.props.currentUser.id);
+    this.props.fetchUserProfInfo(this.props.currentUser.id);
   }
 
   singleProduct(prod, photos) {
+    let photoSrc;
+    if (photos[prod.id]) {
+      photoSrc = photos[prod.id][0].photo_image_url;
+    }
+
     return (
       <li className="user-single-prod" key={prod.id}>
         <Link className="cat-show-link" to={`/product/${prod.id}`}>
-          <img
-            className="user-prod-img"
-            src={photos[prod.id][0].photo_image_url}
-          />
+          <img className="user-prod-img" src={photoSrc} />
         </Link>
         <div className="user-prod-info">
           <div className="user-prod-title">{prod.title}</div>

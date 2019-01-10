@@ -14,7 +14,12 @@ export default (state = {}, action) => {
         [action.review.id]: action.review
       });
     case RECEIVE_ALL_REVIEWS:
-      return action.reviews;
+      debugger;
+      if (action.payload.reviews) {
+        return action.payload.reviews;
+      } else {
+        return {};
+      }
     case REMOVE_REVIEW:
       newState = merge({}, state);
       delete newState[action.review.id];
