@@ -1338,8 +1338,10 @@ function (_React$Component) {
           photos = _this$props.photos,
           categoryId = _this$props.categoryId,
           users = _this$props.users;
+      debugger;
 
-      if (products && photos) {
+      if (products && photos && Object.values(products).length > 0) {
+        debugger;
         productsCount = Object.values(products).length;
         renderProducts = Object.values(products).map(function (prod, idx) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_category_show_item__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -1350,6 +1352,14 @@ function (_React$Component) {
             users: users
           });
         });
+      } else {
+        debugger;
+        renderProducts = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "show-no-results"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          className: "no-results-img",
+          src: "https://s3.amazonaws.com/kings-2-dev/no_results.png"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "We couldnt find any results"));
       }
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("aside", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_header_header_container__WEBPACK_IMPORTED_MODULE_4__["default"], {
@@ -4410,30 +4420,41 @@ function (_React$Component) {
         });
       }
 
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_header_header_container__WEBPACK_IMPORTED_MODULE_5__["default"], {
-        url: this.props.location.pathname
-      }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
-        className: "small-nav-links"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        className: "small-home"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        className: "show-home-link",
-        to: "/"
-      }, "Home")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        className: "fa fa-caret-right"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        className: "small-name"
-      }, "Search"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        className: "fa fa-caret-right"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        className: "small-item-count"
-      }, "(".concat(productsCount, " items)"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "big-name"
-      }, this.props.location.search.slice(1)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "filter-products"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_search_filter_search_filter_container__WEBPACK_IMPORTED_MODULE_6__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "products-container"
-      }, searchProducts)));
+      if (products) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_header_header_container__WEBPACK_IMPORTED_MODULE_5__["default"], {
+          url: this.props.location.pathname
+        }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+          className: "small-nav-links"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          className: "small-home"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+          className: "show-home-link",
+          to: "/"
+        }, "Home")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+          className: "fa fa-caret-right"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          className: "small-name"
+        }, "Search"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+          className: "fa fa-caret-right"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          className: "small-item-count"
+        }, "(".concat(productsCount, " items)"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "big-name"
+        }, this.props.location.search.slice(1)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "filter-products"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_search_filter_search_filter_container__WEBPACK_IMPORTED_MODULE_6__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "products-container"
+        }, searchProducts)));
+      } else {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_header_header_container__WEBPACK_IMPORTED_MODULE_5__["default"], {
+          url: this.props.location.pathname
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "search-no-results"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          className: "no-results-img",
+          src: "https://s3.amazonaws.com/kings-2-dev/no_results.png"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "We couldnt find any results for", this.props.location.search.slice(1))));
+      }
     }
   }]);
 

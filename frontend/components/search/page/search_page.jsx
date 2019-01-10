@@ -43,27 +43,45 @@ class SearchPage extends React.Component {
         });
     }
 
-    return (
-      <div>
-        <HeaderContainer url={this.props.location.pathname} />{" "}
-        <ul className="small-nav-links">
-          <li className="small-home">
-            <Link className="show-home-link" to="/">
-              Home
-            </Link>
-          </li>
-          <i className="fa fa-caret-right" />
-          <li className="small-name">Search</li>
-          <i className="fa fa-caret-right" />
-          <li className="small-item-count">{`(${productsCount} items)`}</li>
-        </ul>
-        <div className="big-name">{this.props.location.search.slice(1)}</div>
-        <div className="filter-products">
-          <SearchFilterContainer />
-          <div className="products-container">{searchProducts}</div>
+    if (products) {
+      return (
+        <div>
+          <HeaderContainer url={this.props.location.pathname} />{" "}
+          <ul className="small-nav-links">
+            <li className="small-home">
+              <Link className="show-home-link" to="/">
+                Home
+              </Link>
+            </li>
+            <i className="fa fa-caret-right" />
+            <li className="small-name">Search</li>
+            <i className="fa fa-caret-right" />
+            <li className="small-item-count">{`(${productsCount} items)`}</li>
+          </ul>
+          <div className="big-name">{this.props.location.search.slice(1)}</div>
+          <div className="filter-products">
+            <SearchFilterContainer />
+            <div className="products-container">{searchProducts}</div>
+          </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return (
+        <div>
+          <HeaderContainer url={this.props.location.pathname} />
+          <div className="search-no-results">
+            <img
+              className="no-results-img"
+              src="https://s3.amazonaws.com/kings-2-dev/no_results.png"
+            />
+            <p>
+              We couldnt find any results for
+              {this.props.location.search.slice(1)}
+            </p>
+          </div>
+        </div>
+      );
+    }
   }
 }
 
