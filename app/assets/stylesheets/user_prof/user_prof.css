@@ -60,7 +60,7 @@
 .user-prof-products {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 .user-single-prod {
@@ -68,6 +68,7 @@
   border-radius: 5px;
   border: 2px solid #f4f3ef;
   padding-bottom: 5px;
+  padding-right: 20px;
   height: 100%;
   margin-bottom: 20px;
 }

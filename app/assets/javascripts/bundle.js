@@ -5189,7 +5189,7 @@ function (_React$Component) {
         to: "/product/".concat(product.id)
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "splash-pop-price"
-      }, "$".concat(product.price))));
+      }, "$".concat(parseFloat(product.price).toFixed(2), "\n"))));
     }
   }]);
 

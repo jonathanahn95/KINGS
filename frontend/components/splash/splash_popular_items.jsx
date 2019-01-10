@@ -28,7 +28,10 @@ class SplashPopularItems extends React.Component {
           <li className="splash-pop-username">{userName}</li>
         </Link>
         <Link className="splash-pop-link" to={`/product/${product.id}`}>
-          <li className="splash-pop-price">{`$${product.price}`}</li>
+          <li className="splash-pop-price">{`$${parseFloat(
+            product.price
+          ).toFixed(2)}
+`}</li>
         </Link>
       </div>
     );
