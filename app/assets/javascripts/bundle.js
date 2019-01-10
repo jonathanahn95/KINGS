@@ -4453,7 +4453,7 @@ function (_React$Component) {
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
           className: "no-results-img",
           src: "https://s3.amazonaws.com/kings-2-dev/no_results.png"
-        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "We couldnt find any results for", this.props.location.search.slice(1))));
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "We couldnt find any results")));
       }
     }
   }]);

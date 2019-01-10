@@ -74,10 +74,7 @@ class SearchPage extends React.Component {
               className="no-results-img"
               src="https://s3.amazonaws.com/kings-2-dev/no_results.png"
             />
-            <p>
-              We couldnt find any results for
-              {this.props.location.search.slice(1)}
-            </p>
+            <p>We couldnt find any results</p>
           </div>
         </div>
       );
