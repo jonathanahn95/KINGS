@@ -32,8 +32,9 @@ class ReviewsItem extends React.Component {
   }
 
   render() {
-    const { review } = this.props;
+    const { review, users } = this.props;
     const { user_id, id, rating, created_at, body } = review;
+    const userName = users[review.user_id].fname;
     let removeButton = null;
     if (this.props.currentUser && this.props.currentUser.id === user_id) {
       removeButton = (
@@ -51,7 +52,7 @@ class ReviewsItem extends React.Component {
           <i className="far fa-user" />
           <p>Reviewed by</p>
           <Link className="link" to={`/users`}>
-            <p>Guest Name</p>
+            <p>{userName}</p>
           </Link>
         </div>
         <div className="review-info">

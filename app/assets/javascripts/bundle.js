@@ -400,10 +400,10 @@ var receiveReview = function receiveReview(review) {
     review: review
   };
 };
-var receiveAllReviews = function receiveAllReviews(reviews) {
+var receiveAllReviews = function receiveAllReviews(payload) {
   return {
     type: RECEIVE_ALL_REVIEWS,
-    reviews: reviews
+    payload: payload
   };
 };
 var receiveReviewErrors = function receiveReviewErrors(errors) {
@@ -589,20 +589,30 @@ var logout = function logout() {
 /*!******************************************!*\
   !*** ./frontend/actions/user_actions.js ***!
   \******************************************/
-/*! exports provided: RECEIVE_USER_INFO, receiveUser, fetchUser */
+/*! exports provided: RECEIVE_USER_INFO, RECEIVE_USER_PROF_INFO, receiveUser, receiveUserProfInfo, fetchUser, fetchUserProfInfo */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_USER_INFO", function() { return RECEIVE_USER_INFO; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_USER_PROF_INFO", function() { return RECEIVE_USER_PROF_INFO; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveUser", function() { return receiveUser; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveUserProfInfo", function() { return receiveUserProfInfo; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUser", function() { return fetchUser; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUserProfInfo", function() { return fetchUserProfInfo; });
 /* harmony import */ var _util_user_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../util/user_api_util */ "./frontend/util/user_api_util.jsx");
 
 var RECEIVE_USER_INFO = "RECEIVE_USER_INFO";
+var RECEIVE_USER_PROF_INFO = "RECEIVE_USER_PROF_INFO";
 var receiveUser = function receiveUser(payload) {
   return {
     type: RECEIVE_USER_INFO,
+    payload: payload
+  };
+};
+var receiveUserProfInfo = function receiveUserProfInfo(payload) {
+  return {
+    type: RECEIVE_USER_PROF_INFO,
     payload: payload
   };
 };
@@ -610,6 +620,13 @@ var fetchUser = function fetchUser(userId) {
   return function (dispatch) {
     return _util_user_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchUser"](userId).then(function (user) {
       return dispatch(receiveUser(user));
+    });
+  };
+};
+var fetchUserProfInfo = function fetchUserProfInfo(userId) {
+  return function (dispatch) {
+    return _util_user_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchUser"](userId).then(function (user) {
+      return dispatch(receiveUserProfInfo(user));
     });
   };
 };
@@ -2951,9 +2968,7 @@ function (_React$Component) {
         className: "prod-show-main-description-header"
       }, "Description"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "prod-show-main-description-text"
-      }, description)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_reviews_reviews_container__WEBPACK_IMPORTED_MODULE_5__["default"], {
-        productId: this.props.match.params.id
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, description)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_reviews_reviews_container__WEBPACK_IMPORTED_MODULE_5__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "prod-show-form-wrapper"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         className: "prod-show-form"
@@ -3482,11 +3497,6 @@ function (_React$Component) {
       this.props.receiveProductReviews(this.props.match.params.id);
     }
   }, {
-    key: "componentDidUpdate",
-    value: function componentDidUpdate() {
-      window.scrollTo(0, 0);
-    }
-  }, {
     key: "reviewCount",
     value: function reviewCount() {
       return  false || this.props.reviews.length;
@@ -3515,7 +3525,8 @@ function (_React$Component) {
           key: review.id,
           review: review,
           currentUser: _this.props.currentUser,
-          deleteReview: _this.props.deleteReview
+          deleteReview: _this.props.deleteReview,
+          users: _this.props.users
         });
       });
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("article", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_review_form_container__WEBPACK_IMPORTED_MODULE_5__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
@@ -3561,8 +3572,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var msp = function msp(state, ownProps) {
+  debugger;
   return {
     reviews: Object.values(state.entities.reviews),
+    users: state.entities.users,
     currentUser: state.entities.users[state.session.id]
   };
 };
@@ -3654,12 +3667,15 @@ function (_React$Component) {
     value: function render() {
       var _this = this;
 
-      var review = this.props.review;
+      var _this$props = this.props,
+          review = _this$props.review,
+          users = _this$props.users;
       var user_id = review.user_id,
           id = review.id,
           rating = review.rating,
           created_at = review.created_at,
           body = review.body;
+      var userName = users[review.user_id].fname;
       var removeButton = null;
 
       if (this.props.currentUser && this.props.currentUser.id === user_id) {
@@ -3680,7 +3696,7 @@ function (_React$Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Reviewed by"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         className: "link",
         to: "/users"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Guest Name"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, userName))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "review-info"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "rating-date"
@@ -4629,6 +4645,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     login: function login(user) {
       return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["login"])(user));
     },
+    processForm: function processForm(user) {
+      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["login"])(user));
+    },
     clearErrors: function clearErrors() {
       return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["clearErrors"])());
     },
@@ -4707,7 +4726,7 @@ function (_React$Component) {
     value: function handleSubmit(e) {
       e.preventDefault();
       var user = Object.assign({}, this.state);
-      this.props.signup(user).then(this.props.closeModal());
+      this.props.processForm(user).then(this.props.closeModal());
     }
   }, {
     key: "update",
@@ -4830,7 +4849,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     login: function login(user) {
       return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["login"])(user));
     },
-    signup: function signup(user) {
+    processForm: function processForm(user) {
       return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["signup"])(user));
     },
     clearErrors: function clearErrors() {
@@ -5234,11 +5253,17 @@ function (_React$Component) {
   _createClass(UserProfile, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchUser(this.props.currentUser.id);
+      this.props.fetchUserProfInfo(this.props.currentUser.id);
     }
   }, {
     key: "singleProduct",
     value: function singleProduct(prod, photos) {
+      var photoSrc;
+
+      if (photos[prod.id]) {
+        photoSrc = photos[prod.id][0].photo_image_url;
+      }
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "user-single-prod",
         key: prod.id
@@ -5247,7 +5272,7 @@ function (_React$Component) {
         to: "/product/".concat(prod.id)
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "user-prod-img",
-        src: photos[prod.id][0].photo_image_url
+        src: photoSrc
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "user-prod-info"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -5332,8 +5357,8 @@ var mapDispatchToPros = function mapDispatchToPros(dispatch) {
     closeModal: function closeModal(type) {
       return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__["closeModal"])(type));
     },
-    fetchUser: function fetchUser(user) {
-      return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_3__["fetchUser"])(user));
+    fetchUserProfInfo: function fetchUserProfInfo(user) {
+      return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_3__["fetchUserProfInfo"])(user));
     }
   };
 };
@@ -5564,6 +5589,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     case _actions_user_actions__WEBPACK_IMPORTED_MODULE_3__["RECEIVE_USER_INFO"]:
       return lodash_merge__WEBPACK_IMPORTED_MODULE_0___default()({}, state, action.payload.photos);
 
+    case _actions_user_actions__WEBPACK_IMPORTED_MODULE_3__["RECEIVE_USER_PROF_INFO"]:
+      return lodash_merge__WEBPACK_IMPORTED_MODULE_0___default()({}, state, action.payload.photos);
+
     case _actions_cart_item_actions__WEBPACK_IMPORTED_MODULE_4__["RECEIVE_ALL_ITEMS"]:
       if (action.payload.photos) {
         return action.payload.photos;
@@ -5633,6 +5661,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return {};
       }
 
+    case _actions_user_actions__WEBPACK_IMPORTED_MODULE_3__["RECEIVE_USER_PROF_INFO"]:
+      if (action.payload.userProducts) {
+        return action.payload.userProducts;
+      } else {
+        return {};
+      }
+
     case _actions_search_actions__WEBPACK_IMPORTED_MODULE_4__["RECEIVE_SEARCH_RESULTS"]:
       if (action.payload.products) {
         return action.payload.products;
@@ -5674,7 +5709,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return Object(lodash__WEBPACK_IMPORTED_MODULE_1__["merge"])({}, state, _defineProperty({}, action.review.id, action.review));
 
     case _actions_review_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_REVIEWS"]:
-      return action.reviews;
+      debugger;
+
+      if (action.payload.reviews) {
+        return action.payload.reviews;
+      } else {
+        return {};
+      }
 
     case _actions_review_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_REVIEW"]:
       newState = Object(lodash__WEBPACK_IMPORTED_MODULE_1__["merge"])({}, state);
@@ -5846,9 +5887,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_category_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions/category_actions */ "./frontend/actions/category_actions.js");
 /* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../actions/user_actions */ "./frontend/actions/user_actions.js");
 /* harmony import */ var _actions_search_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../actions/search_actions */ "./frontend/actions/search_actions.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _actions_review_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../actions/review_actions */ "./frontend/actions/review_actions.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_6__);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -5863,24 +5906,34 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
   switch (action.type) {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
-      return Object(lodash__WEBPACK_IMPORTED_MODULE_5__["merge"])({}, state, _defineProperty({}, action.user.id, action.user));
+      return Object(lodash__WEBPACK_IMPORTED_MODULE_6__["merge"])({}, state, _defineProperty({}, action.user.id, action.user));
 
     case _actions_product_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_ALL_PRODUCTS"]:
-      return Object(lodash__WEBPACK_IMPORTED_MODULE_5__["merge"])({}, state, action.payload.users);
+      return Object(lodash__WEBPACK_IMPORTED_MODULE_6__["merge"])({}, state, action.payload.users);
 
     case _actions_category_actions__WEBPACK_IMPORTED_MODULE_2__["RECEIVE_SINGLE_CATEGORY"]:
       if (action.payload.users) {
-        return Object(lodash__WEBPACK_IMPORTED_MODULE_5__["merge"])({}, state, action.payload.users[action.payload.category.id]);
+        return Object(lodash__WEBPACK_IMPORTED_MODULE_6__["merge"])({}, state, action.payload.users[action.payload.category.id]);
       }
 
       return {};
 
     case _actions_user_actions__WEBPACK_IMPORTED_MODULE_3__["RECEIVE_USER_INFO"]:
-      return Object(lodash__WEBPACK_IMPORTED_MODULE_5__["merge"])({}, state, _defineProperty({}, action.payload.id, action.payload.user));
+      return Object(lodash__WEBPACK_IMPORTED_MODULE_6__["merge"])({}, state, _defineProperty({}, action.payload.id, action.payload.user));
+
+    case _actions_user_actions__WEBPACK_IMPORTED_MODULE_3__["RECEIVE_USER_PROF_INFO"]:
+      return Object(lodash__WEBPACK_IMPORTED_MODULE_6__["merge"])({}, state, _defineProperty({}, action.payload.id, action.payload.user));
+
+    case _actions_review_actions__WEBPACK_IMPORTED_MODULE_5__["RECEIVE_ALL_REVIEWS"]:
+      if (action.payload.users) {
+        return Object(lodash__WEBPACK_IMPORTED_MODULE_6__["merge"])({}, state, action.payload.users);
+      } else {
+        return state;
+      }
 
     case _actions_search_actions__WEBPACK_IMPORTED_MODULE_4__["RECEIVE_SEARCH_RESULTS"]:
       if (action.payload.users) {
-        return Object(lodash__WEBPACK_IMPORTED_MODULE_5__["merge"])({}, state, action.payload.users);
+        return Object(lodash__WEBPACK_IMPORTED_MODULE_6__["merge"])({}, state, action.payload.users);
       } else {
         return {};
       }

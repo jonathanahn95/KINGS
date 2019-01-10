@@ -11,10 +11,6 @@ class Reviews extends React.Component {
     this.props.receiveProductReviews(this.props.match.params.id);
   }
 
-  componentDidUpdate() {
-    window.scrollTo(0, 0);
-  }
-
   reviewCount() {
     return 0 || this.props.reviews.length;
   }
@@ -37,6 +33,7 @@ class Reviews extends React.Component {
           review={review}
           currentUser={this.props.currentUser}
           deleteReview={this.props.deleteReview}
+          users={this.props.users}
         />
       );
     });

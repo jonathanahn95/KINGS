@@ -90,7 +90,7 @@ class ProductShowInfo extends React.Component {
                 {description}
               </div>
             </div>
-            <ReviewsContainer productId={this.props.match.params.id} />
+            <ReviewsContainer />
           </section>
           <div className="prod-show-form-wrapper">
             <form className="prod-show-form">
