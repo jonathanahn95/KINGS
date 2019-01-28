@@ -15,7 +15,7 @@ class UserProfile extends React.Component {
 
   singleProduct(prod, photos) {
     let photoSrc;
-    if (photos[prod.id]) {
+    if (photos[prod.id] && photos[prod.id].length > 0) {
       photoSrc = photos[prod.id][0].photo_image_url;
     }
 
@@ -53,7 +53,9 @@ class UserProfile extends React.Component {
                 <div className="user-right-name">
                   {currentUser.fname}'s' profile
                 </div>
-                <div className="create-an-item">Create an item!</div>
+                <Link className="link" to="/items/new">
+                  <div className="create-an-item">Create an item!</div>
+                </Link>
               </div>
               <ul className="user-prof-products">{userProducts}</ul>
             </div>

@@ -7,7 +7,7 @@ class UserProductsIndexItem extends React.Component {
   render() {
     const { product, photos } = this.props;
     let photoSrc = null;
-    if (photos[product.id]) {
+    if (photos[product.id] && photos[product.id].length > 0) {
       photoSrc = photos[product.id][0].photo_image_url;
     }
     return (

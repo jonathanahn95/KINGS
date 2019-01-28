@@ -33,9 +33,7 @@ class CategoryShow extends React.Component {
       users
     } = this.props;
 
-    debugger;
     if (products && photos && Object.values(products).length > 0) {
-      debugger;
       productsCount = Object.values(products).length;
       renderProducts = Object.values(products).map((prod, idx) => {
         return (
@@ -49,7 +47,6 @@ class CategoryShow extends React.Component {
         );
       });
     } else {
-      debugger;
       renderProducts = (
         <div className="show-no-results">
           <img

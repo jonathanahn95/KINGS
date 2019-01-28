@@ -54,6 +54,7 @@ class Api::ProductsController < ApplicationController
 
   def create
    @product = Product.new(product_params)
+   debugger
    if @product.save!
      render "api/products/show"
    else
@@ -63,6 +64,6 @@ class Api::ProductsController < ApplicationController
 
   private
   def product_params
-    params.require(:product).permit(:title, :price, :description, :category_id, :user_id, photos: [])
+    params.require(:product).permit(:title, :price, :description, :category_id, :user_id, :photos)
   end
 end

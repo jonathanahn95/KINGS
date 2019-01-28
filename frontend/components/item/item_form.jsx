@@ -11,19 +11,36 @@ class ItemForm extends React.Component {
   }
 
   componentDidMount() {
-    // if (this.props.match.params.itemId) {
-    //   this.props.fetchItem(this.props.match.params.itemId);
-    // }
+    this.props.fetchAllCategories();
   }
-  //
+
+  categorySection() {
+    return Object.values(this.props.categories).map((category, idx) => {
+      return (
+        <div key={idx}>
+          {category.category_name}
+          <input
+            type="radio"
+            name="category"
+            value={category.id}
+            onClick={this.updateField("category_id")}
+          />
+        </div>
+      );
+    });
+  }
+
   handleFile(e) {
-    const file = e.currentTarget.files[0];
+    const file = e.currentTarget.files;
     const fileReader = new FileReader();
+    debugger;
     fileReader.onloadend = () => {
       this.setState({ uploadedFile: file, imageUrl: fileReader.result });
     };
     if (file) {
-      fileReader.readAsDataURL(file);
+      for (let i = 0; i < file.length; i++) {
+        fileReader.readAsDataURL(file[i]);
+      }
     }
   }
 
@@ -31,20 +48,23 @@ class ItemForm extends React.Component {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append("title", this.state.title);
-    formData.append("description", this.state.description);
-    formData.append("price", this.state.price);
-    formData.append("user_id", this.props.currentUser.id);
-    if (this.state.uploadedFile) {
-      formData.append("photo", this.state.uploadedFile);
-    }
+    formData.append("product[title]", this.state.title);
+    formData.append("product[description]", this.state.description);
+    formData.append("product[price]", this.state.price);
+    formData.append("product[user_id]", this.props.currentUser.id);
+    formData.append("product[category_id]", this.state.category_id);
+    let arr = [];
 
-    if (this.state.id) {
-      formData.append("id", this.state.id);
+    if (this.state.uploadedFile) {
+      debugger;
+      for (var i = 0; i < this.state.uploadedFile.length; i++) {
+        formData.append("product[photos]", this.state.uploadedFile[i]);
+      }
+      formData.append("product[photos]", formData.get("product[photos]"));
     }
 
     this.props.processItemForm(formData).then(railsitem => {
-      this.props.history.push(`/items/${railsitem.payload.item.id}`);
+      this.props.history.push(`/product/${railsitem.payload.product.id}`);
     });
   }
 
@@ -54,7 +74,7 @@ class ItemForm extends React.Component {
 
   render() {
     const { item, formType, formTitle } = this.props;
-
+    const categoryInput = this.categorySection();
     const preview = this.state.imageUrl ? (
       <img src={this.state.imageUrl} />
     ) : null;
@@ -108,6 +128,12 @@ class ItemForm extends React.Component {
                       onChange={this.updateField("price")}
                       required
                     />
+                  </label>
+                </li>
+                <li>
+                  <label className="item-form-price">
+                    Category
+                    {categoryInput}
                   </label>
                 </li>
               </ul>

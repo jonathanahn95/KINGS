@@ -1026,7 +1026,7 @@ function (_React$Component) {
       var photoSrc = null;
       var itemPhotos = this.props.photos[product_id];
 
-      if (this.props.photos[product_id]) {
+      if (this.props.photos[product_id] && this.props.photos[product_id].length > 0) {
         photoSrc = itemPhotos[0].photo_image_url;
       }
 
@@ -1338,10 +1338,8 @@ function (_React$Component) {
           photos = _this$props.photos,
           categoryId = _this$props.categoryId,
           users = _this$props.users;
-      debugger;
 
       if (products && photos && Object.values(products).length > 0) {
-        debugger;
         productsCount = Object.values(products).length;
         renderProducts = Object.values(products).map(function (prod, idx) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_category_show_item__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -1353,7 +1351,6 @@ function (_React$Component) {
           });
         });
       } else {
-        debugger;
         renderProducts = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "show-no-results"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
@@ -1527,7 +1524,7 @@ function (_React$Component) {
         userName = users[product.user_id].fname;
       }
 
-      if (photos[product.id]) {
+      if (photos[product.id] && photos[product.id].length > 0) {
         photoSrc = photos[product.id][0].photo_image_url;
       }
 
@@ -1696,7 +1693,10 @@ function (_React$Component) {
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "header-nav-right"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Sell on KINGS"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        className: "link",
+        to: "/items/new"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Sell on KINGS")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         className: "link",
         to: "/products"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
@@ -1931,6 +1931,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _item_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./item_form */ "./frontend/components/item/item_form.jsx");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
 /* harmony import */ var _actions_product_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/product_actions */ "./frontend/actions/product_actions.js");
+/* harmony import */ var _actions_category_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions/category_actions */ "./frontend/actions/category_actions.js");
+
 
 
 
@@ -1945,9 +1947,11 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
     price: "",
     imageUrl: null,
     userId: "",
-    uploadedFile: null
+    uploadedFile: null,
+    category_id: ""
   };
   return {
+    categories: state.entities.categories,
     item: defaultItem,
     formTitle: "Create a New Product!",
     currentUser: state.entities.users[state.session.id]
@@ -1958,6 +1962,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     processItemForm: function processItemForm(item) {
       return dispatch(Object(_actions_product_actions__WEBPACK_IMPORTED_MODULE_4__["createProduct"])(item));
+    },
+    fetchAllCategories: function fetchAllCategories() {
+      return dispatch(Object(_actions_category_actions__WEBPACK_IMPORTED_MODULE_5__["fetchAllCategories"])());
     }
   };
 };
@@ -2005,7 +2012,21 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {};
+  return {
+    fetchAllCategories: function (_fetchAllCategories) {
+      function fetchAllCategories() {
+        return _fetchAllCategories.apply(this, arguments);
+      }
+
+      fetchAllCategories.toString = function () {
+        return _fetchAllCategories.toString();
+      };
+
+      return fetchAllCategories;
+    }(function () {
+      return dispatch(fetchAllCategories());
+    })
+  };
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(_item_form__WEBPACK_IMPORTED_MODULE_2__["default"]));
@@ -2067,61 +2088,82 @@ function (_React$Component) {
 
   _createClass(ItemForm, [{
     key: "componentDidMount",
-    value: function componentDidMount() {} // if (this.props.match.params.itemId) {
-    //   this.props.fetchItem(this.props.match.params.itemId);
-    // }
-    //
+    value: function componentDidMount() {
+      this.props.fetchAllCategories();
+    }
+  }, {
+    key: "categorySection",
+    value: function categorySection() {
+      var _this2 = this;
 
+      return Object.values(this.props.categories).map(function (category, idx) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          key: idx
+        }, category.category_name, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          type: "radio",
+          name: "category",
+          value: category.id,
+          onClick: _this2.updateField("category_id")
+        }));
+      });
+    }
   }, {
     key: "handleFile",
     value: function handleFile(e) {
-      var _this2 = this;
+      var _this3 = this;
 
-      var file = e.currentTarget.files[0];
+      var file = e.currentTarget.files;
       var fileReader = new FileReader();
+      debugger;
 
       fileReader.onloadend = function () {
-        _this2.setState({
+        _this3.setState({
           uploadedFile: file,
           imageUrl: fileReader.result
         });
       };
 
       if (file) {
-        fileReader.readAsDataURL(file);
+        for (var i = 0; i < file.length; i++) {
+          fileReader.readAsDataURL(file[i]);
+        }
       }
     }
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      var _this3 = this;
+      var _this4 = this;
 
       e.preventDefault();
       var formData = new FormData();
-      formData.append("title", this.state.title);
-      formData.append("description", this.state.description);
-      formData.append("price", this.state.price);
-      formData.append("user_id", this.props.currentUser.id);
+      formData.append("product[title]", this.state.title);
+      formData.append("product[description]", this.state.description);
+      formData.append("product[price]", this.state.price);
+      formData.append("product[user_id]", this.props.currentUser.id);
+      formData.append("product[category_id]", this.state.category_id);
+      var arr = [];
 
       if (this.state.uploadedFile) {
-        formData.append("photo", this.state.uploadedFile);
-      }
+        debugger;
 
-      if (this.state.id) {
-        formData.append("id", this.state.id);
+        for (var i = 0; i < this.state.uploadedFile.length; i++) {
+          formData.append("product[photos]", this.state.uploadedFile[i]);
+        }
+
+        formData.append("product[photos]", formData.get("product[photos]"));
       }
 
       this.props.processItemForm(formData).then(function (railsitem) {
-        _this3.props.history.push("/items/".concat(railsitem.payload.item.id));
+        _this4.props.history.push("/product/".concat(railsitem.payload.product.id));
       });
     }
   }, {
     key: "updateField",
     value: function updateField(field) {
-      var _this4 = this;
+      var _this5 = this;
 
       return function (e) {
-        return _this4.setState(_defineProperty({}, field, e.target.value));
+        return _this5.setState(_defineProperty({}, field, e.target.value));
       };
     }
   }, {
@@ -2131,6 +2173,7 @@ function (_React$Component) {
           item = _this$props.item,
           formType = _this$props.formType,
           formTitle = _this$props.formTitle;
+      var categoryInput = this.categorySection();
       var preview = this.state.imageUrl ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: this.state.imageUrl
       }) : null;
@@ -2178,7 +2221,9 @@ function (_React$Component) {
         value: this.state.price,
         onChange: this.updateField("price"),
         required: true
-      }))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "item-form-price"
+      }, "Category", categoryInput)))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "item-form-footer"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "item-form-submit",
@@ -2603,12 +2648,13 @@ function (_React$Component) {
           users = _this$props.users;
       var userName,
           photoSrc = null;
+      debugger;
 
       if (users[product.user_id]) {
         userName = users[product.user_id].fname;
       }
 
-      if (photos[product.id]) {
+      if (photos[product.id] && photos[product.id].length > 0) {
         photoSrc = photos[product.id][0].photo_image_url;
       }
 
@@ -2988,9 +3034,7 @@ function (_React$Component) {
         className: "prod-show-price-quest"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "prod-show-price"
-      }, "$".concat(parseFloat(price).toFixed(2))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "prod-ask-question"
-      }, "Ask a question")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "$".concat(parseFloat(price).toFixed(2)))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "prod-show-select-size"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "prod-show-size"
@@ -3237,7 +3281,7 @@ function (_React$Component) {
           photos = _this$props.photos;
       var photoSrc = null;
 
-      if (photos[product.id]) {
+      if (photos[product.id] && photos[product.id].length > 0) {
         photoSrc = photos[product.id][0].photo_image_url;
       }
 
@@ -3582,7 +3626,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var msp = function msp(state, ownProps) {
-  debugger;
   return {
     reviews: Object.values(state.entities.reviews),
     users: state.entities.users,
@@ -5281,7 +5324,7 @@ function (_React$Component) {
     value: function singleProduct(prod, photos) {
       var photoSrc;
 
-      if (photos[prod.id]) {
+      if (photos[prod.id] && photos[prod.id].length > 0) {
         photoSrc = photos[prod.id][0].photo_image_url;
       }
 
@@ -5330,9 +5373,12 @@ function (_React$Component) {
         className: "user-show-right-top"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "user-right-name"
-      }, currentUser.fname, "'s' profile"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, currentUser.fname, "'s' profile"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        className: "link",
+        to: "/items/new"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-an-item"
-      }, "Create an item!")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+      }, "Create an item!"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "user-prof-products"
       }, userProducts)))));
     }
@@ -5730,8 +5776,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return Object(lodash__WEBPACK_IMPORTED_MODULE_1__["merge"])({}, state, _defineProperty({}, action.review.id, action.review));
 
     case _actions_review_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_REVIEWS"]:
-      debugger;
-
       if (action.payload.reviews) {
         return action.payload.reviews;
       } else {

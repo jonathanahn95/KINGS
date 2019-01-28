@@ -14,7 +14,9 @@ class GreetingLinks extends React.Component {
   render() {
     return (
       <ul className="header-nav-right">
-        <li>Sell on KINGS</li>
+        <Link className="link" to="/items/new">
+          <li>Sell on KINGS</li>
+        </Link>
         <Link className="link" to="/products">
           <li className="greeting-discover">Discover</li>
         </Link>

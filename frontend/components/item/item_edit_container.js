@@ -23,7 +23,9 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = dispatch => {
-  return {};
+  return {
+    fetchAllCategories: () => dispatch(fetchAllCategories())
+  };
 };
 
 export default connect(

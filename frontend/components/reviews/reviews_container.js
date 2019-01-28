@@ -9,7 +9,6 @@ import {
 } from "../../actions/review_actions";
 
 const msp = (state, ownProps) => {
-  debugger;
   return {
     reviews: Object.values(state.entities.reviews),
     users: state.entities.users,
