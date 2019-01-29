@@ -1,5 +1,6 @@
 import React from "react";
 import HeaderContainer from "../header/header_container";
+import ItemFormHtml from "./item_form_html";
 
 class ItemForm extends React.Component {
   constructor(props) {
@@ -17,7 +18,7 @@ class ItemForm extends React.Component {
   categorySection() {
     return Object.values(this.props.categories).map((category, idx) => {
       return (
-        <div key={idx}>
+        <li className="item-category-li" key={idx}>
           {category.category_name}
           <input
             type="radio"
@@ -25,7 +26,7 @@ class ItemForm extends React.Component {
             value={category.id}
             onClick={this.updateField("category_id")}
           />
-        </div>
+        </li>
       );
     });
   }
@@ -33,7 +34,6 @@ class ItemForm extends React.Component {
   handleFile(e) {
     const file = e.currentTarget.files;
     const fileReader = new FileReader();
-    debugger;
     fileReader.onloadend = () => {
       this.setState({ uploadedFile: file, imageUrl: fileReader.result });
     };
@@ -53,10 +53,12 @@ class ItemForm extends React.Component {
     formData.append("product[price]", this.state.price);
     formData.append("product[user_id]", this.props.currentUser.id);
     formData.append("product[category_id]", this.state.category_id);
+    formData.append("product[location]", this.state.location);
+    formData.append("product[shipping]", this.state.shipping);
+    formData.append("product[style]", this.state.style);
     let arr = [];
 
     if (this.state.uploadedFile) {
-      debugger;
       for (var i = 0; i < this.state.uploadedFile.length; i++) {
         formData.append("product[photos]", this.state.uploadedFile[i]);
       }
@@ -90,11 +92,15 @@ class ItemForm extends React.Component {
           <form onSubmit={this.handleSubmit} className="item-form-container">
             <section>
               <div className="file-upload-title">
-                <h2>Photos</h2>
+                <h2 className="item-photos">Photos</h2>
                 <p>Please Add One Photo per Item</p>
               </div>
               <div className="file-upload">
-                <input type="file" onChange={this.handleFile} />
+                <input
+                  className="file"
+                  type="file"
+                  onChange={this.handleFile}
+                />
                 <div className="uploaded-picture">{preview}</div>
               </div>
             </section>
@@ -102,40 +108,40 @@ class ItemForm extends React.Component {
             <section className="item-form-details">
               <h2 className="item-form-details-title">Item Details</h2>
               <ul className="details-list">
-                <li>
-                  <label className="item-form-title">Title</label>
+                <li className="single-item-detail">
+                  <label className="item-form-title">Title:</label>
                   <input
+                    className="item-att"
                     type="text"
                     value={this.state.title}
                     onChange={this.updateField("title")}
                     required
                   />
                 </li>
-                <li>
-                  <label className="item-form-description">Description</label>
+                <li className="single-item-detail">
+                  <label className="item-form-description">Description:</label>
                   <textarea
+                    className="item-att-description"
                     value={this.state.description}
                     onChange={this.updateField("description")}
                     required
                   />
                 </li>
-                <li>
-                  <label className="item-form-price">
-                    Price
-                    <input
-                      type="number"
-                      value={this.state.price}
-                      onChange={this.updateField("price")}
-                      required
-                    />
-                  </label>
+                <li className="single-item-detail">
+                  <label className="item-form-price">Price:</label>
+                  <input
+                    className="item-att"
+                    type="number"
+                    value={this.state.price}
+                    onChange={this.updateField("price")}
+                    required
+                  />
                 </li>
-                <li>
-                  <label className="item-form-price">
-                    Category
-                    {categoryInput}
-                  </label>
-                </li>
+                <div className="single-item-detail2">
+                  <label className="item-form-category">Category:</label>
+                  <ul className="category-radio">{categoryInput}</ul>
+                </div>
+                <ItemFormHtml updateField={this.updateField} />
               </ul>
             </section>
             <div className="item-form-footer">

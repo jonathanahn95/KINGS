@@ -7,7 +7,6 @@ class ProductsIndexItem extends React.Component {
     const { product, photos, users } = this.props;
     let userName,
       photoSrc = null;
-    debugger;
     if (users[product.user_id]) {
       userName = users[product.user_id].fname;
     }

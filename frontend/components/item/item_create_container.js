@@ -14,8 +14,12 @@ const mapStateToProps = (state, ownProps) => {
     imageUrl: null,
     userId: "",
     uploadedFile: null,
-    category_id: ""
+    category_id: "",
+    location: "",
+    shipping: "",
+    style: ""
   };
+
   return {
     categories: state.entities.categories,
     item: defaultItem,

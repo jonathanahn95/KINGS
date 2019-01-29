@@ -1948,7 +1948,10 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
     imageUrl: null,
     userId: "",
     uploadedFile: null,
-    category_id: ""
+    category_id: "",
+    location: "",
+    shipping: "",
+    style: ""
   };
   return {
     categories: state.entities.categories,
@@ -2045,6 +2048,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _header_header_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../header/header_container */ "./frontend/components/header/header_container.js");
+/* harmony import */ var _item_form_html__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./item_form_html */ "./frontend/components/item/item_form_html.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -2064,6 +2068,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
 
 
 
@@ -2097,7 +2102,8 @@ function (_React$Component) {
       var _this2 = this;
 
       return Object.values(this.props.categories).map(function (category, idx) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          className: "item-category-li",
           key: idx
         }, category.category_name, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
           type: "radio",
@@ -2114,7 +2120,6 @@ function (_React$Component) {
 
       var file = e.currentTarget.files;
       var fileReader = new FileReader();
-      debugger;
 
       fileReader.onloadend = function () {
         _this3.setState({
@@ -2141,11 +2146,12 @@ function (_React$Component) {
       formData.append("product[price]", this.state.price);
       formData.append("product[user_id]", this.props.currentUser.id);
       formData.append("product[category_id]", this.state.category_id);
+      formData.append("product[location]", this.state.location);
+      formData.append("product[shipping]", this.state.shipping);
+      formData.append("product[style]", this.state.style);
       var arr = [];
 
       if (this.state.uploadedFile) {
-        debugger;
-
         for (var i = 0; i < this.state.uploadedFile.length; i++) {
           formData.append("product[photos]", this.state.uploadedFile[i]);
         }
@@ -2188,9 +2194,12 @@ function (_React$Component) {
         className: "item-form-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "file-upload-title"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Photos"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Please Add One Photo per Item")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+        className: "item-photos"
+      }, "Photos"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Please Add One Photo per Item")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "file-upload"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "file",
         type: "file",
         onChange: this.handleFile
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2201,29 +2210,44 @@ function (_React$Component) {
         className: "item-form-details-title"
       }, "Item Details"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "details-list"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "single-item-detail"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         className: "item-form-title"
-      }, "Title"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, "Title:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "item-att",
         type: "text",
         value: this.state.title,
         onChange: this.updateField("title"),
         required: true
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "single-item-detail"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         className: "item-form-description"
-      }, "Description"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+      }, "Description:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+        className: "item-att-description",
         value: this.state.description,
         onChange: this.updateField("description"),
         required: true
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "single-item-detail"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         className: "item-form-price"
-      }, "Price", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, "Price:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "item-att",
         type: "number",
         value: this.state.price,
         onChange: this.updateField("price"),
         required: true
-      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        className: "item-form-price"
-      }, "Category", categoryInput)))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "single-item-detail2"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "item-form-category"
+      }, "Category:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "category-radio"
+      }, categoryInput)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_item_form_html__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        updateField: this.updateField
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "item-form-footer"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "item-form-submit",
@@ -2237,6 +2261,130 @@ function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (ItemForm);
+
+/***/ }),
+
+/***/ "./frontend/components/item/item_form_html.jsx":
+/*!*****************************************************!*\
+  !*** ./frontend/components/item/item_form_html.jsx ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _header_header_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../header/header_container */ "./frontend/components/header/header_container.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+var ItemFormHtml =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(ItemFormHtml, _React$Component);
+
+  function ItemFormHtml() {
+    _classCallCheck(this, ItemFormHtml);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(ItemFormHtml).apply(this, arguments));
+  }
+
+  _createClass(ItemFormHtml, [{
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "details-list-2"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "item-form-location"
+      }, "Location:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "input-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-html-div"
+      }, "United States", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "radio",
+        name: "location",
+        value: 1,
+        onClick: this.props.updateField("location")
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-html-div"
+      }, "China", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "radio",
+        name: "location",
+        value: 2,
+        onClick: this.props.updateField("location")
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-html-div"
+      }, "Other", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "radio",
+        name: "location",
+        value: 0,
+        onClick: this.props.updateField("location")
+      })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "item-form-shipping"
+      }, "Shipping:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-html-div"
+      }, "Free", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "radio",
+        name: "shipping",
+        value: 0,
+        onClick: this.props.updateField("shipping")
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-html-div"
+      }, "Ready to ship in 1 business day", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "radio",
+        name: "shipping",
+        value: 1,
+        onClick: this.props.updateField("shipping")
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-html-div"
+      }, "Ready to ship within 3 business days", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "radio",
+        name: "shipping",
+        value: 2,
+        onClick: this.props.updateField("shipping")
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "item-form-style"
+      }, "Style:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-html-div"
+      }, "Handmade", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "radio",
+        name: "style",
+        value: 1,
+        onClick: this.props.updateField("style")
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-html-div"
+      }, "Vintage", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "radio",
+        name: "style",
+        value: 2,
+        onClick: this.props.updateField("style")
+      }))));
+    }
+  }]);
+
+  return ItemFormHtml;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (ItemFormHtml);
 
 /***/ }),
 
@@ -2648,7 +2796,6 @@ function (_React$Component) {
           users = _this$props.users;
       var userName,
           photoSrc = null;
-      debugger;
 
       if (users[product.user_id]) {
         userName = users[product.user_id].fname;
