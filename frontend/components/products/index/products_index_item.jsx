@@ -11,7 +11,7 @@ class ProductsIndexItem extends React.Component {
       userName = users[product.user_id].fname;
     }
 
-    if (photos[product.id]) {
+    if (photos[product.id] && photos[product.id].length > 0) {
       photoSrc = photos[product.id][0].photo_image_url;
     }
 

@@ -99,7 +99,6 @@ class ProductShowInfo extends React.Component {
                 <p className="prod-show-price">{`$${parseFloat(price).toFixed(
                   2
                 )}`}</p>
-                <p className="prod-ask-question">Ask a question</p>
               </div>
               <div className="prod-show-select-size">
                 <h3 className="prod-show-size">Size</h3>

@@ -14,7 +14,6 @@ export default (state = {}, action) => {
         [action.review.id]: action.review
       });
     case RECEIVE_ALL_REVIEWS:
-      debugger;
       if (action.payload.reviews) {
         return action.payload.reviews;
       } else {
